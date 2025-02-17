@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preencher ATA da Reunião</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+     <style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    max-width: 800px;
+    margin-top: 25%;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+header h1 {
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+main {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+section h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+section input, section select, section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+section button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+section button:hover {
+    background-color: #45a049;
+}
+
+.resultado {
+    margin-top: 30px;
+}
+
+.resultado p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+     </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Preencher ATA da Reunião</h1>
+        </header>
+
+        <main>
+            <section class="formulario">
+                <h2>Dados da Reunião</h2>
+                <form action="/preencher_ata" method="POST">
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" name="data" required>
+
+                    <label for="horaInicio">Hora de Início:</label>
+                    <input type="time" id="horaInicio" name="horaInicio" required>
+
+                    <label for="horaFinal">Hora de Término:</label>
+                    <input type="time" id="horaFinal" name="horaFinal" required>
+
+                    <label for="formato">Formato:</label>
+                    <select id="formato" name="formato" required>
+                        <option value="Presencial">Presencial</option>
+                        <option value="Online">Online</option>
+                        <option value="Híbrido">Híbrido</option>
+                    </select>
+
+                    <label for="pauta">Pauta:</label>
+                    <input type="text" id="pauta" name="pauta" required>
+
+                    <label for="resumo">Resumo:</label>
+                    <textarea id="resumo" name="resumo" required></textarea>
+
+                    <label for="responsavel">Responsável:</label>
+                    <input type="text" id="responsavel" name="responsavel" required>
+
+                    <button type="submit">Gerar ATA</button>
+                </form>
+            </section>
+
+            <!-- <section class="resultado">
+                <h2>Resultado da ATA</h2>
+                <div id="resultadoAta">
+                    <p><strong>Data:</strong> <span id="resultadoData"></span></p>
+                    <p><strong>Hora de Início:</strong> <span id="resultadoHoraInicio"></span></p>
+                    <p><strong>Hora de Término:</strong> <span id="resultadoHoraFinal"></span></p>
+                    <p><strong>Formato:</strong> <span id="resultadoFormato"></span></p>
+                    <p><strong>Pauta:</strong> <span id="resultadoPauta"></span></p>
+                    <p><strong>Resumo:</strong> <span id="resultadoResumo"></span></p>
+                    <p><strong>Responsável:</strong> <span id="resultadoResponsavel"></span></p>
+                </div>
+            </section> -->
+        </main>
+    </div>
+</body>
+</html>
