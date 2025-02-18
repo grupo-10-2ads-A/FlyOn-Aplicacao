@@ -1,55 +1,62 @@
-from flask import Flask, render_template, request
+import os
+from flask import Flask, render_template, request, jsonify
 from docx import Document
+from datetime import datetime
 
 app = Flask(__name__)
-
 # Função para preencher a ATA com os dados fornecidos, incluindo tabelas
-def preencher_ata(modelo_path, dados, output_path):
-    # Abre o documento
+def preencher_ata(dados):
+    # Obtém a data da reunião
+    data_reuniao = dados.get("data", "")
+    data_formatada = datetime.strptime(data_reuniao, "%Y-%m-%d")
+    ano = data_formatada.strftime("%Y")
+    mes = data_formatada.strftime("%m")
+
+    # Cria diretório no formato "ata_reunioes/AAAA/MM"
+    caminho_pasta = os.path.join("ata_reunioes", ano, mes)
+    os.makedirs(caminho_pasta, exist_ok=True)
+
+    # Nome do arquivo baseado na data
+    nome_arquivo = f"ata_{data_formatada.strftime('%d-%m-%Y')}.docx"
+    caminho_arquivo = os.path.join(caminho_pasta, nome_arquivo)
+
+    # Preenche o template da ATA
+    modelo_path = "template-ata.docx"
     doc = Document(modelo_path)
 
-    # Preencher parágrafos
+    # Substituir placeholders nos parágrafos
     for paragrafo in doc.paragraphs:
         for marcador, valor in dados.items():
-            if marcador in paragrafo.text:
-                paragrafo.text = paragrafo.text.replace(marcador, valor)
-    
-    # Preencher tabelas
+            placeholder = f"{{{marcador}}}"  # Formato correto: {data}, {horaInicio}, etc.
+            if placeholder in paragrafo.text:
+                paragrafo.text = paragrafo.text.replace(placeholder, valor)
+
+    # Substituir placeholders nas tabelas
     for tabela in doc.tables:
         for linha in tabela.rows:
             for celula in linha.cells:
                 for marcador, valor in dados.items():
-                    if marcador in celula.text:
-                        celula.text = celula.text.replace(marcador, valor)
+                    placeholder = f"{{{marcador}}}"  # Formato correto: {data}, {horaInicio}, etc.
+                    if placeholder in celula.text:
+                        celula.text = celula.text.replace(placeholder, valor)
 
-    # Salva o documento preenchido
-    doc.save(output_path)
-    print(f"Ata salva em: {output_path}")
+    # Salva a ata no diretório correto
+    doc.save(caminho_arquivo)
 
-# Página inicial
+    return caminho_arquivo  # Retorna o caminho onde foi salvo
+
+# Rota para exibir a página HTML
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Rota para preencher a ata
-@app.route('/preencher_ata', methods=['POST'])
-def preencher_ata_route():
-    dados_reuniao = {
-        "{data}": request.form['data'],
-        "{horaInicio}": request.form['horaInicio'],
-        "{horaFinal}": request.form['horaFinal'],
-        "{formato}": request.form['formato'],
-        "{pauta}": request.form['pauta'],
-        "{resumo}": request.form['resumo'],
-        "{responsavel}": request.form['responsavel']
-    }
+# Rota para processar os dados do formulário e gerar a ata
+@app.route('/gerar_ata', methods=['POST'])
+def gerar_ata():
+    dados_reuniao = request.json  # Recebe os dados do formulário como JSON
+    caminho_ata = preencher_ata(dados_reuniao)  # Cria a ata e obtém o caminho
 
-    modelo_ata = "template-ata.docx"
-    saida_ata = f"ata_reuniao_{dados_reuniao['{data}']}.docx"
-
-    preencher_ata(modelo_ata, dados_reuniao, saida_ata)
-    
-    return f"Ata gerada e salva em: {saida_ata}"
+    return jsonify({"mensagem": "ATA criada com sucesso!", "caminho": caminho_ata})
 
 if __name__ == '__main__':
     app.run(debug=True)

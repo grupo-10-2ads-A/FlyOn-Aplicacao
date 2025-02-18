@@ -4,100 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preencher ATA da Reunião</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
-     <style>
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        .container {
+            width: 50%;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: center;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+        .formulario {
+            text-align: left;
+        }
 
-.container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 90%;
-    max-width: 800px;
-    margin-top: 25%;
-}
+        .formulario label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
 
-header {
-    text-align: center;
-    margin-bottom: 80px;
-}
+        .formulario input, .formulario select, .formulario textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-header h1 {
-    color: #4CAF50;
-    margin-bottom: 10px;
-}
+        .formulario button {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
 
-main {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    margin-top: 20px;
-}
+        .formulario button:hover {
+            background-color: #218838;
+        }
 
-section h2 {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 10px;
-}
+        /* Tela de sucesso */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
 
-section label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
+        .mensagem-sucesso {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
 
-section input, section select, section textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
+        .mensagem-sucesso img {
+            width: 80px;
+            margin-bottom: 10px;
+        }
 
-section button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
+        .mensagem-sucesso p {
+            font-size: 18px;
+            font-weight: bold;
+        }
 
-section button:hover {
-    background-color: #45a049;
-}
+        .fechar {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+        }
 
-.resultado {
-    margin-top: 30px;
-}
-
-.resultado p {
-    font-size: 16px;
-    margin: 10px 0;
-}
-
-     </style>
+        .fechar:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+
     <div class="container">
         <header>
             <h1>Preencher ATA da Reunião</h1>
@@ -106,49 +117,84 @@ section button:hover {
         <main>
             <section class="formulario">
                 <h2>Dados da Reunião</h2>
-                <form action="/preencher_ata" method="POST">
-                    <label for="data">Data:</label>
-                    <input type="date" id="data" name="data" required>
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data">
 
-                    <label for="horaInicio">Hora de Início:</label>
-                    <input type="time" id="horaInicio" name="horaInicio" required>
+                <label for="horaInicio">Hora de Início:</label>
+                <input type="time" id="horaInicio" name="horaInicio">
 
-                    <label for="horaFinal">Hora de Término:</label>
-                    <input type="time" id="horaFinal" name="horaFinal" required>
+                <label for="horaFinal">Hora de Término:</label>
+                <input type="time" id="horaFinal" name="horaFinal">
 
-                    <label for="formato">Formato:</label>
-                    <select id="formato" name="formato" required>
-                        <option value="Presencial">Presencial</option>
-                        <option value="Online">Online</option>
-                        <option value="Híbrido">Híbrido</option>
-                    </select>
+                <label for="formato">Formato:</label>
+                <select id="formato" name="formato">
+                    <option value="Presencial">Presencial</option>
+                    <option value="Online">Online</option>
+                    <option value="Híbrido">Híbrido</option>
+                </select>
 
-                    <label for="pauta">Pauta:</label>
-                    <input type="text" id="pauta" name="pauta" required>
+                <label for="pauta">Pauta:</label>
+                <input type="text" id="pauta" name="pauta">
 
-                    <label for="resumo">Resumo:</label>
-                    <textarea id="resumo" name="resumo" required></textarea>
+                <label for="resumo">Resumo:</label>
+                <textarea id="resumo" name="resumo"></textarea>
 
-                    <label for="responsavel">Responsável:</label>
-                    <input type="text" id="responsavel" name="responsavel" required>
+                <label for="responsavel">Responsável:</label>
+                <input type="text" id="responsavel" name="responsavel">
 
-                    <button type="submit">Gerar ATA</button>
-                </form>
+                <button onclick="gerarAta()">Gerar ATA</button>
             </section>
-
-            <!-- <section class="resultado">
-                <h2>Resultado da ATA</h2>
-                <div id="resultadoAta">
-                    <p><strong>Data:</strong> <span id="resultadoData"></span></p>
-                    <p><strong>Hora de Início:</strong> <span id="resultadoHoraInicio"></span></p>
-                    <p><strong>Hora de Término:</strong> <span id="resultadoHoraFinal"></span></p>
-                    <p><strong>Formato:</strong> <span id="resultadoFormato"></span></p>
-                    <p><strong>Pauta:</strong> <span id="resultadoPauta"></span></p>
-                    <p><strong>Resumo:</strong> <span id="resultadoResumo"></span></p>
-                    <p><strong>Responsável:</strong> <span id="resultadoResponsavel"></span></p>
-                </div>
-            </section> -->
         </main>
     </div>
+
+    <!-- Tela de sucesso -->
+    <div class="overlay" id="overlay">
+        <div class="mensagem-sucesso">
+            <img src="../static/img/success-icon.png" alt="Sucesso">
+            <p>ATA Criada com Sucesso!</p>
+            <p id="caminhoAta"></p>
+            <button class="fechar" onclick="fecharMensagem()">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        function gerarAta() {
+            const dados = {
+                "data": document.getElementById('data').value.trim(),
+                "horaInicio": document.getElementById('horaInicio').value.trim(),
+                "horaFinal": document.getElementById('horaFinal').value.trim(),
+                "formato": document.getElementById('formato').value.trim(),
+                "pauta": document.getElementById('pauta').value.trim(),
+                "resumo": document.getElementById('resumo').value.trim(),
+                "responsavel": document.getElementById('responsavel').value.trim()
+            };
+
+            fetch('/gerar_ata', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dados)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('caminhoAta').textContent = `Arquivo salvo em: ${data.caminho}`;
+                document.getElementById('overlay').style.display = 'flex'; // Exibe a tela de sucesso
+            })
+            .catch(error => console.error('Erro ao gerar a ATA:', error));
+        }
+
+        function fecharMensagem() {
+            document.getElementById('overlay').style.display = 'none';
+
+             // Limpa os campos do formulário
+             document.getElementById('data').value = "";
+            document.getElementById('horaInicio').value = "";
+            document.getElementById('horaFinal').value = "";
+            document.getElementById('formato').value = "Presencial";
+            document.getElementById('pauta').value = "";
+            document.getElementById('resumo').value = "";
+            document.getElementById('responsavel').value = "";
+        }
+    </script>
+
 </body>
 </html>

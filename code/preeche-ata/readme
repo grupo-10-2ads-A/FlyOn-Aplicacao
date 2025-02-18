@@ -1,0 +1,105 @@
+# Projeto de Automatização de Atas de Reuniões/Dailys
+
+Este projeto tem como objetivo automatizar a criação de atas de reuniões ou dailys, economizando tempo e organizando melhor as informações. A interface gráfica permite ao usuário preencher os dados da reunião e gerar a ata automaticamente. As atas geradas são armazenadas em pastas organizadas por mês, para facilitar o acesso posterior.
+
+## Funcionalidades
+
+- Interface gráfica simples e intuitiva.
+- Criação de atas de reuniões/dailys a partir de dados inseridos nos inputs.
+- Armazenamento das atas geradas em pastas organizadas por mês e ano.
+- Exportação das atas no formato `.docx`.
+- Utilização do Flask para servir a aplicação web.
+
+## Tecnologias Utilizadas
+
+- **Flask**: Framework para construção da aplicação web.
+- **docx**: Biblioteca para criar e manipular documentos no formato `.docx`.
+- **datetime**: Módulo para manipulação de datas.
+- **Tkinter** (se for necessário para interface gráfica local): Biblioteca para criar a interface gráfica.
+
+## Instalação
+
+### Pré-requisitos
+
+Antes de rodar o projeto, você precisa garantir que tem o **Python** instalado na sua máquina. Você pode verificar se o Python está instalado com o comando:
+
+```bash
+python --version
+```
+
+Caso não tenha o Python instalado, você pode baixá-lo [aqui](https://www.python.org/downloads/).
+
+### Criando o Ambiente Virtual
+
+#### Windows
+
+1. Abra o terminal e navegue até a pasta do seu projeto.
+2. Crie um ambiente virtual:
+
+```bash
+python -m venv .venv
+```
+
+3. Ative o ambiente virtual:
+
+```bash
+.venv\Scripts\activate
+```
+
+#### Linux
+
+1. Abra o terminal e navegue até a pasta do seu projeto.
+2. Crie um ambiente virtual:
+
+```bash
+python3 -m venv .venv
+```
+
+3. Ative o ambiente virtual:
+
+```bash
+source .venv/bin/activate
+```
+
+### Instalando as Dependências
+
+Com o ambiente virtual ativado, instale as dependências do projeto utilizando o comando abaixo:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Rodando o Projeto
+
+Após instalar as dependências, você pode iniciar o servidor local com o seguinte comando:
+
+```bash
+python app.py
+```
+
+Isso iniciará a aplicação, e você poderá acessá-la no navegador em `http://127.0.0.1:5000`.
+
+## Estrutura de Diretórios
+
+A aplicação salva as atas de reuniões na seguinte estrutura de pastas:
+
+```
+/atas
+    /2025
+        /(01) fevereiro
+            ata_2025-02-15.docx
+    /2024
+        /(10) dezembro
+            ata_2024-12-10.docx
+```
+
+A pasta para cada mês é criada automaticamente, e os arquivos são salvos com a data da reunião.
+
+## Como Contribuir
+
+1. Faça o fork deste repositório.
+2. Crie uma branch para a sua modificação (`git checkout -b feature/nova-funcionalidade`).
+3. Faça commit das suas alterações (`git commit -am 'Adicionando nova funcionalidade'`).
+4. Envie para a branch principal (`git push origin feature/nova-funcionalidade`).
+5. Abra um pull request.
+
