@@ -75,7 +75,7 @@
         ) {
             return false;
         }
-        console.log("passei na validação de campos inválidos")
+       
        
         // Envia os dados para cadastro
         fetch("/usuarios/cadastrar", {
@@ -91,9 +91,7 @@
             }),
         })
         .then((resposta) => {
-            // Esconde o carregamento
-            document.getElementById("loading").style.display = "none";
-
+         
             if (resposta.ok) {
                 exibirMensagemSucesso("Cadastro realizado com sucesso! Redirecionando...");
                 setTimeout(() => {

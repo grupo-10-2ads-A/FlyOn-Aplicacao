@@ -8,4 +8,5 @@ router.post("/cadastrar", usuarioController.cadastrar);
 // Rota para autenticar usuário
 router.post("/autenticar", usuarioController.autenticar);
 
+
 module.exports = router;
