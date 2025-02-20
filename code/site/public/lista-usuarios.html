@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários</title>
+</head>
+
+<body>
+    <h2>Usuários Cadastrados</h2>
+    <button onclick="window.location.href='cadastro.html'">Adicionar Novo Usuário</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Nível</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="usuarios"></tbody>
+    </table>
+    <script>
+        function carregarUsuarios() {
+            fetch("/listar")
+                .then(res => res.json())
+                .then(data => {
+                    let html = "";
+                    data.forEach(user => {
+                        html += `<tr>
+                            <td>${user.id}</td>
+                            <td>${user.nome}</td>
+                            <td>${user.email}</td>
+                            <td>${user.nivel}</td>
+                            <td>
+                                <button onclick="editarUsuario(${user.id})">Editar</button>
+                                <button onclick="deletarUsuario(${user.id})">Excluir</button>
+                            </td>
+                        </tr>`;
+                    });
+                    document.getElementById("usuarios").innerHTML = html;
+                });
+        }
+
+        function deletarUsuario(id) {
+            fetch("/deletar", { method: "POST", body: JSON.stringify({ id }) })
+                .then(() => carregarUsuarios());
+        }
+
+        carregarUsuarios();
+    </script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style-signup.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="shortcut icon" href="assets/images/logo-slide.png" type="image/x-icon">
     <link rel="stylesheet" href="css/style-card-erro.css">
-    <link rel="stylesheet" href="css/style-loarder.css">
     <title>Jurema Viva | Cadastrar</title>
 </head>
 
@@ -49,28 +47,9 @@
             </div>
         </div>
     </div>
-
-    <!-- SVG de Carregamento -->
-    <div id="loading" style="display: none; text-align: center;">
-        <svg xmlns="http://www.w3.org/2000/svg" height="50px" width="50px" viewBox="0 0 200 200" class="pencil">
-            <defs>
-                <clipPath id="pencil-eraser">
-                    <rect height="30" width="30" ry="5" rx="5"></rect>
-                </clipPath>
-            </defs>
-            <circle transform="rotate(-113,100,100)" stroke-linecap="round" stroke-dashoffset="439.82" stroke-dasharray="439.82 439.82" stroke-width="2" stroke="currentColor" fill="none" r="70" class="pencil__stroke"></circle>
-            <g transform="translate(100,100)" class="pencil__rotate">
-                <g fill="none">
-                    <circle transform="rotate(-90)" stroke-dashoffset="402" stroke-dasharray="402.12 402.12" stroke-width="30" stroke="hsl(223,90%,50%)" r="64" class="pencil__body1"></circle>
-                    <circle transform="rotate(-90)" stroke-dashoffset="465" stroke-dasharray="464.96 464.96" stroke-width="10" stroke="hsl(223,90%,60%)" r="74" class="pencil__body2"></circle>
-                    <circle transform="rotate(-90)" stroke-dashoffset="339" stroke-dasharray="339.29 339.29" stroke-width="10" stroke="hsl(223,90%,40%)" r="54" class="pencil__body3"></circle>
-                </g>
-            </g>
-        </svg>
-    </div>
-    <!-- <div id="cardErro" class="show">
+    <div id="cardErro" class="show">
         <p id="mensagem_erro">Mensagem de erro aqui</p>
-    </div> -->
+    </div>
 </body>
 
 </html>
@@ -96,10 +75,8 @@
         ) {
             return false;
         }
-
-        // Exibe o carregamento
-        document.getElementById("loading").style.display = "block";
-
+        console.log("passei na validação de campos inválidos")
+       
         // Envia os dados para cadastro
         fetch("/usuarios/cadastrar", {
             method: "POST",
@@ -129,9 +106,6 @@
             }
         })
         .catch((erro) => {
-            // Esconde o carregamento em caso de erro
-            document.getElementById("loading").style.display = "none";
-            console.error(`#ERRO: ${erro}`);
             exibirMensagemErro("Erro ao realizar o cadastro. Tente novamente.");
         });
     }

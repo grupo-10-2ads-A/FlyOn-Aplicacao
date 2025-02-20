@@ -17,14 +17,6 @@ function validarTelefone(telefone) {
   }
 }
 
-function validarReligiao(religiao) {
-  if (religiao.trim().length > 2) {
-    return true;
-  } else {
-    exibirMensagemErro("Erro: Religião deve conter mais de 2 caracteres.");
-    return false;
-  }
-}
 
 function validarEmail(email) {
   const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

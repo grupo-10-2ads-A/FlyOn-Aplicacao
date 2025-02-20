@@ -1,62 +1,66 @@
-var usuarioModel = require("../models/usuarioModel");
+var database = require("../database/config");
 
-function autenticar(req, res) {
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
-  
-    if (!email) {
-      res.status(400).send("Seu email está undefined!");
-    } else if (!senha) {
-      res.status(400).send("Sua senha está indefinida!");
-    } else {
-      usuarioModel.autenticar(email, senha)
-        .then((resultado) => {
-          if (resultado.length === 1) {
-            res.json({
-              idUsuario: resultado[0].idUsuario,
-              nome: resultado[0].nome,
-              email: resultado[0].email,
-            });
-          } else if (resultado.length === 0) {
-            res.status(403).send("Email e/ou senha inválido(s)");
-          } else {
-            res.status(500).send("Mais de um usuário com o mesmo login e senha!");
-          }
-        })
-        .catch((erro) => {
-          console.error("Erro ao autenticar:", erro.sqlMessage);
-          res.status(500).json(erro.sqlMessage);
-        });
-    }
-  }
-
+// Cadastrar usuário
 function cadastrar(req, res) {
+    console.log("Iniciando validação das informações...");
+
     var nome = req.body.nome;
     var telefone = req.body.telefone;
     var email = req.body.email;
     var senha = req.body.senha;
 
-    if (!nome) {
-        res.status(400).send("Seu nome está undefined!");
-    } else if (!telefone) {
-        res.status(400).send("Seu telefone está undefined!");
-    } else if (!email) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (!senha) {
-        res.status(400).send("Sua senha está undefined!");
-    } else {
-        usuarioModel.cadastrar(nome, telefone, email, senha)
-            .then((resultado) => {
-                res.json(resultado);
-            })
-            .catch((erro) => {
-                console.error("\nHouve um erro ao realizar o cadastro! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            });
+    if (!nome || !email || !senha || !telefone) {
+        console.log("Erro: Campos obrigatórios não preenchidos.");
+        return res.status(400).json({ erro: "Todos os campos são obrigatórios." });
     }
+
+    var instrucaoSql = `INSERT INTO usuario (nome, telefone, email, senha) VALUES ('${nome}', '${telefone}','${email}', '${senha}')`;
+
+    console.log("Executando SQL:", instrucaoSql);
+
+    database.executar(instrucaoSql)
+        .then((resultado) => {
+            console.log("Usuário cadastrado com sucesso:", resultado);
+            res.status(201).json({ mensagem: "Usuário cadastrado com sucesso!", resultado });
+        })
+        .catch((erro) => {
+            console.error("Erro ao cadastrar usuário:", erro);
+            res.status(500).json({ erro: "Erro interno ao cadastrar usuário." });
+        });
+}
+
+// Autenticar usuário
+function autenticar(req, res) {
+    console.log("Dados recebidos no backend:", req.body);
+    
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    console.log("E-mail recebido:", email);
+    console.log("Senha recebida:", senha);
+
+    var instrucaoSql = `SELECT * FROM usuario WHERE email = '${email}' AND senha = '${senha}'`;
+    console.log("Query SQL:", instrucaoSql);
+
+    database.executar(instrucaoSql)
+        .then((resultado) => {
+            console.log("Resultado da consulta:", resultado);
+
+            if (resultado.length > 0) {
+                console.log("Usuário autenticado com sucesso:", resultado[0]);
+                res.status(200).json(resultado[0]);
+            } else {
+                console.log("Nenhum usuário encontrado para as credenciais fornecidas.");
+                res.status(401).json({ mensagem: "E-mail ou senha inválidos!" });
+            }
+        })
+        .catch((erro) => {
+            console.error("Erro na execução da consulta:", erro);
+            res.status(500).json(erro);
+        });
 }
 
 module.exports = {
-    autenticar,
-    cadastrar
+    cadastrar,
+    autenticar
 };
