@@ -10,7 +10,7 @@
 
     header .rigthside{
         flex-wrap: wrap;
-        width: 73vw;
+        width: 70vw;
     }
     /* FIM DO HEADER RESPONSIVO */
 
@@ -138,5 +138,13 @@
     main .contactUs .howContatUS .email span{
         font-size: 1.23rem;
     }
+    /* FIM DA SESSÃO DE FALE COM A GENTE */
+
+    /* ARRUMANDO RODAPÉ */
+    footer {
+        font-size: 0.9rem;
+    }
+    /* FIM DA TELA INICIAL - INDEX - RESPONSIVIDADE */
+
     
 }
