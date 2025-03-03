@@ -20,21 +20,21 @@
 
 <body>
     <header>
-        <div class="leftside">
-            <img src="img/logoicon.png" alt="">
-            <span>Nome da empresa</span>
+        <div class="leftside">            
+        <a href="../index.html"><img src="../img/logoicon.png" alt=""></a>
+        <span>Nome da empresa</span>
         </div>
         <div class="rigthside">
-            <span><a href="">INÍCIO</a></span>
-            <span><a href="">SOBRE NÓS</a></span>
-            <span><a href="">CONTATO</a></span>
-            <span><a href="">CADASTRO</a></span>
-            <span><a href="">LOGIN</a></span>
+            <span><a href="#home">INÍCIO</a></span>
+            <span><a href="#aboutus">SOBRE NÓS</a></span>
+            <span><a href="#contactus">CONTATO</a></span>
+            <span><a href="auth/cadastro.html">CADASTRO</a></span>
+            <span><a href="auth/login.html" target="_blank">LOGIN</a></span>
         </div>
     </header>
 
     <main>
-        <div class="home">
+        <div id="home" class="home">
             <div class="impactText">
                 <span>
                     Analisando o <span class="changeColor">Céu</span>, Otimizando o <span
@@ -66,7 +66,7 @@
             </div>
 
         </div>
-        <div class="aboutus">
+        <div id="aboutus" class="aboutus">
             <h1 class="aboutusTitle">SOBRE NÓS</h1>
             <hr style="width:50%;text-align:left;margin-left:0;color: #535353;">
             <div class="enterpriseMission">
@@ -76,21 +76,24 @@
                     </span>
                     <div class="missionText">
                         <p>Somos especialistas em análise de dados de voos comerciais.</p>
-                        <p>Eleve sua <strong style="color: #ff004d;">expertise</strong> e poupe seu <strong style="color: #ff004d;">tempo</strong> com nosso sistema.</p>
+                        <p>Eleve sua <strong style="color: #ff004d;">expertise</strong> e poupe seu <strong
+                                style="color: #ff004d;">tempo</strong> com nosso sistema.</p>
                     </div>
                 </div>
                 <div class="vision">
                     <span class="visionTitle">VISÃO</span>
                     <div class="visionText">
                         <p>Somos especialistas em análise de dados de voos comerciais.</p>
-                        <p>Eleve sua <strong style="color: #ff004d;">expertise</strong> e poupe seu <strong style="color: #ff004d;">tempo</strong> com nosso sistema.</p>
+                        <p>Eleve sua <strong style="color: #ff004d;">expertise</strong> e poupe seu <strong
+                                style="color: #ff004d;">tempo</strong> com nosso sistema.</p>
                     </div>
                 </div>
                 <div class="values">
                     <span class="valuesTitle">VALORES</span>
                     <div class="valuesText">
                         <p>Somos especialistas em análise de dados de voos comerciais.</p>
-                        <p>Eleve sua <strong style="color: #ff004d;">expertise</strong> e poupe seu <strong style="color: #ff004d;">tempo</strong> com nosso sistema.</p>
+                        <p>Eleve sua <strong style="color: #ff004d;">expertise</strong> e poupe seu <strong
+                                style="color: #ff004d;">tempo</strong> com nosso sistema.</p>
                     </div>
                 </div>
             </div>
@@ -98,9 +101,49 @@
                 DADOS SOBRE VOOS EM UM <strong style="color: #ff004d;text-decoration: underline;">CLIQUE</strong>
             </div>
         </div>
+        <div class="OurTeam">
+            <span class="ourTeamTitle">NOSSA EQUIPE</span>
+            <hr style="width:50%;text-align:left;margin-left:0;color: #535353;">
+            <div class="firstLineImage">
+                <img src="img/teamImage.webp" alt="">
+                <img src="img/teamImage.webp" alt="">
+                <img src="img/teamImage.webp" alt="">
+            </div>
+            <div class="secondLineImage">
+                <img src="img/teamImage.webp" alt="">
+                <img src="img/teamImage.webp" alt="">
+            </div>
+
+        </div>
+        <div id="contactus" class="contactUs">
+            <span class="contacUsTitle">FALE COM A GENTE!</span>
+            <hr style="width:50%;text-align:left;margin-left:0;color: #535353;">
+            <div class="howContatUS">
+                <div class="location">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14629.14941653519!2d-46.671892281792694!3d-23.558120962241837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2b063f663%3A0xc567c0d16d0bc582!2sS%C3%A3o%20Paulo%20Tech%20School!5e0!3m2!1spt-BR!2sbr!4v1740926997454!5m2!1spt-BR!2sbr"
+                        width="256" height="256" style="border-color:#ff004d;" allowfullscreen="true" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <span>Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP, 01414-001</span>
+                </div>
+                <div class="cellphone">
+                    <img src="img/chat.png" alt="">
+                    <span>NOSSO TELEFONE:
+                        (11) 1234-5678</span>
+                </div>
+                <div class="email">
+                    <img src="img/email.png" alt="">
+                    <span>NOSSO EMAIL :
+                        empresa@email.com</span>
+                </div>
+
+            </div>
+        </div>
     </main>
 
-    <footer></footer>
+    <footer>
+        COPYRIGHT© 2025
+    </footer>
 </body>
 
 </html>
