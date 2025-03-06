@@ -1,4 +1,5 @@
 @media screen and (max-width: 630px) {
+
     /* HEADER RESPONSIVO */
     header {
         height: 27vh;
@@ -8,143 +9,158 @@
         text-align: center;
     }
 
-    header .rigthside{
+    header .rigthside {
         flex-wrap: wrap;
         width: 70vw;
     }
+
     /* FIM DO HEADER RESPONSIVO */
 
     /* AREA DO BANNER / TITULO RESPONSIVO */
-    main .home{
+    main .home {
         flex-direction: column;
     }
 
-    main .home .impactText span{
+    main .home .impactText span {
         width: auto;
-        font-size: 14vw;
+        font-size: 6vw;
     }
 
-    main .home .impactImage img{
+    main .home .impactImage img {
         width: 98vw;
         height: 35vh;
     }
+
     /* FIM DO BANNER / TITULO RESPONSIVO */
 
     /* INICIO BOAS VINDA RESPONSIVO */
-    main .welcome{
-        width: 100vw;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        text-align: center;
-    }
-    main .welcome .welcomeText .mainText{
-        width: 95vw;
-    }
-
-    main .welcome .welcomeText .enterpriseName{
-        width: 95vw;
+    main .welcome {
         flex-direction: column;
-        flex-wrap: wrap;
+        align-items: center;
     }
 
-    main .welcome .welcomeText p{
-        width: 90vw;
+    main .welcome .welcomeText {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 20px;
+        padding: 3%;
     }
-
     main .welcome .welcomeImage img {
         width: 98vw;
         height: 30vh;
-        margin-left: 11.8rem;
-    }
+    } 
     /* FIM BOAS VINDAS RESPONSIVO */
 
     /* INICIO SOBRE NÓS RESPONSIVO */
-    main .aboutus{
+    main .aboutus {
         text-align: center;
         flex-direction: column;
         flex-wrap: wrap;
         width: 100vw;
     }
 
-    main .aboutus .enterpriseMission{
+    main .aboutus .aboutusTitle{
+        font-size: 46px;
+    }
+
+    main .aboutus .enterpriseMission {
         flex-direction: column;
         flex-wrap: wrap;
         width: 95vw;
     }
 
-    main .aboutus .enterpriseMission .mission{
+    main .aboutus .enterpriseMission .mission {
         width: 90vw;
     }
 
-    main .aboutus .enterpriseMission .vision{
+    main .aboutus .enterpriseMission .vision {
         width: 90vw;
     }
 
-    main .aboutus .enterpriseMission .values{
+    main .aboutus .enterpriseMission .values {
         width: 90vw;
     }
 
-    main .aboutus .phraseAboutUs{
+    main .aboutus .phraseAboutUs {
         width: 90vw;
     }
+
+    main .aboutus .missionTitle {
+        font-size: 40x;
+    }
+    main .aboutus .visionTitle {
+        font-size: 40x;
+    }
+    main .aboutus .valuesTitle {
+        font-size: 40x;
+    }
+
     /* FIM SOBRE NÓS RESPONSIVO */
 
     /* INICIO NOSSO TIME RESPONSIVO */
-    main .OurTeam{
+    main .OurTeam {
         text-align: center;
         width: 98VW;
     }
 
-    main .OurTeam .ourTeamTitle{
+    main .OurTeam .ourTeamTitle {
         font-size: 3rem;
     }
 
     /* RESPONSIVIDADE DA PRIMEIRA LINHA DO TIME */
-    main .OurTeam .firstLineImage{
+    main .OurTeam .firstLineImage {
         flex-wrap: wrap;
     }
+
     /* FIM DA RESPONSIVIDADE DA PRIMEIRA LINHA DO TIME */
 
     /* FIM DA RESPONSIVIDADE NOSSO TIME */
 
     /* INICIO RESPONSIVIDADE FALE COM A GENTE */
-    main .contactUs{
+    main .contactUs {
         text-align: center;
     }
 
-    main .contactUs .howContatUS{
+    main .contactUs .howContatUS {
         flex-direction: column;
     }
 
-    main .contactUs .howContatUS .location{
+    main .contactUs .howContatUS .location {
         margin-bottom: 2rem;
     }
 
-    main .contactUs .howContatUS .location span{
+    main .contactUs .howContatUS .location span {
         font-size: 1.23rem;
     }
 
-    main .contactUs .howContatUS .cellphone{
-        margin-bottom: 2rem;
-    }
-    main .contactUs .howContatUS .cellphone span{
-        font-size: 1.23rem;
-    }
-
-    main .contactUs .howContatUS .email{
+    main .contactUs .howContatUS .cellphone {
         margin-bottom: 2rem;
     }
 
-    main .contactUs .howContatUS .email span{
+    main .contactUs .howContatUS .cellphone span {
         font-size: 1.23rem;
     }
+
+    main .contactUs .howContatUS .email {
+        margin-bottom: 2rem;
+    }
+
+    main .contactUs .howContatUS .email span {
+        font-size: 1.23rem;
+    }
+
     /* FIM DA SESSÃO DE FALE COM A GENTE */
 
     /* ARRUMANDO RODAPÉ */
     footer {
         font-size: 0.9rem;
     }
+
     /* FIM DA TELA INICIAL - INDEX - RESPONSIVIDADE */
 
-    
+
 }
