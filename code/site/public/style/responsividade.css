@@ -2,49 +2,84 @@
 
 @media screen and (max-width: 630px) {
 
-    /* HEADER RESPONSIVO */
-    header {
-        height: 17vh;
-        flex-wrap: wrap;
-        width: 100%;
-        justify-content: space-around;
-        text-align: center;
-    }
+    @media screen and (max-width: 630px) {
 
-    header .rigthside {
-        display: none;
-    }
-
-    .open{
-        display: flex;
-    }
-
-    .cabecalho_mobile-menu-icon{
-        display: block;
-    }
-
-    .cabecalho_mobile-menu-button{
-        height: 50px;
-        margin-top: 20px;
-        background-color: #ffffff00;
-        border: solid 2px #fff;
-        border-radius: 10px;
-        padding-inline: 2px;
-    }    
+        html {
+            scroll-behavior: smooth;
+        }
+        /* HEADER RESPONSIVO */
+        header {
+            height: 17vh;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: space-between;
+            text-align: center;
+            position: relative;
+            font-family: "Poppins", sans-serif;
+            font-weight: bold;
+            font-style: normal;
+        }
     
-    .cabecalho_menu-icon-img{
-        width: 3rem;
-    }
-
-    .header .cabecalho_mobile-menu .rigthside_responsivo{
-        flex-direction: column;
+        header .rigthside {
+            display: none;
+        }
+    
+        .cabecalho_mobile-menu-icon {
+            display: block;
+            padding: 2%;
+        }
+    
+        .cabecalho_mobile-menu-button {
+            height: 50px;
+            margin-top: 20px;
+            background-color: transparent;
+            border: solid 2px #fff;
+            border-radius: 10px;
+            padding-inline: 2px;
+        }    
         
+        .cabecalho_menu-icon-img {
+            width: 3rem;
+        }
+    
+        .cabecalho_mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #333;
+            padding: 10px;
+            z-index: 10;
+        }
+    
+        .cabecalho_mobile-menu.open {
+            display: block; 
+            background-color: #10004f;
+            border-top: white 1px solid;
+            border-bottom: white 1px solid;
+            border-radius: 5px;
+        }
+    
+        .cabecalho_mobile-menu .rigthside_responsivo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cabecalho_mobile-menu .rigthside_responsivo a{
+            text-decoration: none;
+            color: #fff;
+
+        }
+    
+        .cabecalho_mobile-menu .rigthside_responsivo span {
+            margin: 10px 0;
+        }
+    
+        /* FIM DO HEADER RESPONSIVO */
     }
     
-
-    
-
-    /* FIM DO HEADER RESPONSIVO */
 
     /* AREA DO BANNER / TITULO RESPONSIVO */
     main .home {

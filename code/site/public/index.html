@@ -1,160 +1,216 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlyOn | Home</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="./style/responsividade.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-        rel="stylesheet">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FlyOn | Home</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin="crossorigin">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin="crossorigin">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="./style/responsividade.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin="crossorigin">
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+            rel="stylesheet">
         <script src="./js/menuresponsivo.js"></script>
-</head>
+    </head>
 
-<body>
-    <header>
-        <div class="leftside">            
-            <a href="../index.html"><img src="./img/logoicon.png" alt=""></a>
-        <span>FlyOn</span>
-        </div>
-        <div class="rigthside">
-            <span><a href="#home">INÍCIO</a></span>
-            <span><a href="#aboutus">SOBRE NÓS</a></span>
-            <span><a href="#contactus">CONTATO</a></span>
-            <span><a href="auth/cadastro.html">CADASTRO</a></span>
-            <span><a href="auth/login.html" target="_blank">LOGIN</a></span>
-        </div>
-
-        <div class="cabecalho_mobile-menu-icon">
-            <button onclick="menuShow()" class="cabecalho_mobile-menu-button" onclick="menuShow()"><img class="cabecalho_menu-icon-img" src="./img/icons8-hamburguer.svg" alt=""></button>
-          </div>
-
-          <div class="cabecalho_mobile-menu">
-        
-            <div class="rigthside_responsivo">
-                <span><a href="#home">INÍCIO</a></span>
-                <span><a href="#aboutus">SOBRE NÓS</a></span>
-                <span><a href="#contactus">CONTATO</a></span>
-                <span><a href="auth/cadastro.html">CADASTRO</a></span>
-                <span><a href="auth/login.html" target="_blank">LOGIN</a></span>
+    <body>
+        <header>
+            <div class="leftside">
+                <a href="../index.html"><img src="./img/logoicon.png" alt=""></a>
+                <span>FlyOn</span>
             </div>
-          </div>
-    </header>
-
-    <main>
-        <div id="home" class="home">
-            <div class="impactText">
+            <div class="rigthside">
                 <span>
-                    Analisando o <span class="changeColor">Céu</span>, Otimizando o <span
-                        class="changeColor">Futuro</span>
+                    <a href="#home">INÍCIO</a>
+                </span>
+                <span>
+                    <a href="#aboutus">SOBRE NÓS</a>
+                </span>
+                <span>
+                    <a href="#contactus">CONTATO</a>
+                </span>
+                <span>
+                    <a href="auth/cadastro.html">CADASTRO</a>
+                </span>
+                <span>
+                    <a href="auth/login.html" target="_blank">LOGIN</a>
                 </span>
             </div>
-            <div class="impactImage">
-                <img src="img/imgDefault.webp" alt="">
-            </div>
-        </div>
-        <div class="welcome">
-            <div class="welcomeText">
-                <span class="mainText">BEM VINDO A <span class="enterpriseName">FlyOn</span></span>
-                <p style="margin-bottom: 5%;">Somos especialistas em análise de dados de voos comerciais. Eleve sua
-                    <strong style="color: #ff004d;">expertise</strong> e poupe seu <strong
-                        style="color: #ff004d;">tempo</strong> com nosso sistema.
-                </p>
-                <p>✔ Análise de dados de voos comerciais(nacionais e internacionais);</p>
-                <p>✔ Os principais dados já limpos a <strong style="color: #ff004d;">um clique</strong> de você;</p>
-                <p>✔ Interface <strong style="color: #ff004d;">intuitiva</strong> e agilidade na navegação;</p>
-                <p>✔ Otimização de <strong style="color: #ff004d;">eficiência</strong> operacional;</p>
 
-                <p><strong style="margin-top: 5%; ">🚀 Eleve seus resultados com a inteligência de dados!
-                </strong></p>
-            </div>
-            <div class="welcomeImage">
-                <img src="img/imgDefault.webp" alt="">
+            <div class="cabecalho_mobile-menu-icon">
+                <button onclick="menuShow()" class="cabecalho_mobile-menu-button">
+                    <img
+                        class="cabecalho_menu-icon-img"
+                        src="./img/icons8-hamburguer.svg"
+                        alt="Menu">
+                </button>
             </div>
 
-        </div>
-        <div id="aboutus" class="aboutus">
-            <h1 class="aboutusTitle">SOBRE NÓS</h1>
-            <hr style="width:70vw;text-align:left;margin-left:0;color: #535353;">
-            <div class="enterpriseMission">
-                <div class="mission">
-                    <span class="missionTitle">
-                        MISSÃO
+            <div class="cabecalho_mobile-menu">
+                <div class="rigthside_responsivo">
+                    <span>
+                        <a href="#home">INÍCIO</a>
                     </span>
-                    <div class="missionText">
-                        <p>Fornecer dados de qualidade para que nossos clientes possam decolar nas melhores opções de voos, preços e serviços. Nossa missão é oferecer informações que ajudem a planejar a viagem perfeita, levando a experiência dos clientes a novas altitudes.</p>
+                    <span>
+                        <a href="#aboutus">SOBRE NÓS</a>
+                    </span>
+                    <span>
+                        <a href="#contactus">CONTATO</a>
+                    </span>
+                    <span>
+                        <a href="auth/cadastro.html">CADASTRO</a>
+                    </span>
+                    <span>
+                        <a href="auth/login.html" target="_blank">LOGIN</a>
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div id="home" class="home">
+                <div class="impactText">
+                    <span>
+                        Analisando o
+                        <span class="changeColor">Céu</span>, Otimizando o
+                        <span class="changeColor">Futuro</span>
+                    </span>
+                </div>
+                <div class="impactImage">
+                    <img src="img/imgDefault.webp" alt="">
+                </div>
+            </div>
+            <div class="welcome">
+                <div class="welcomeText">
+                    <span class="mainText">BEM VINDO A
+                        <span class="enterpriseName">FlyOn</span></span>
+                    <p style="margin-bottom: 5%;">Somos especialistas em análise de dados de voos comerciais. Eleve sua
+                        <strong style="color: #ff004d;">expertise</strong>
+                        e poupe seu
+                        <strong style="color: #ff004d;">tempo</strong>
+                        com nosso sistema.
+                    </p>
+                    <p>✔ Análise de dados de voos comerciais(nacionais e internacionais);</p>
+                    <p>✔ Os principais dados já limpos a
+                        <strong style="color: #ff004d;">um clique</strong>
+                        de você;</p>
+                    <p>✔ Interface
+                        <strong style="color: #ff004d;">intuitiva</strong>
+                        e agilidade na navegação;</p>
+                    <p>✔ Otimização de
+                        <strong style="color: #ff004d;">eficiência</strong>
+                        operacional;</p>
+
+                    <p>
+                        <strong style="margin-top: 5%; ">🚀 Eleve seus resultados com a inteligência de dados!
+                        </strong>
+                    </p>
+                </div>
+                <div class="welcomeImage">
+                    <img src="img/imgDefault.webp" alt="">
+                </div>
+
+            </div>
+            <div id="aboutus" class="aboutus">
+                <h1 class="aboutusTitle">SOBRE NÓS</h1>
+                <hr style="width:70vw;text-align:left;margin-left:0;color: #535353;">
+                <div class="enterpriseMission">
+                    <div class="mission">
+                        <span class="missionTitle">
+                            MISSÃO
+                        </span>
+                        <div class="missionText">
+                            <p>Fornecer dados de qualidade para que nossos clientes possam decolar nas
+                                melhores opções de voos, preços e serviços. Nossa missão é oferecer informações
+                                que ajudem a planejar a viagem perfeita, levando a experiência dos clientes a
+                                novas altitudes.</p>
+                        </div>
+                    </div>
+                    <div class="vision">
+                        <span class="visionTitle">VISÃO</span>
+                        <div class="visionText">
+                            <p>Ser a referência em soluções de análise de dados no setor de turismo,
+                                transformando informações sobre voos e serviços aéreos valiosos para nossos
+                                clientes, promovendo uma experiência de viagem mais inteligente e personalizada.</p>
+                        </div>
+                    </div>
+                    <div class="values">
+                        <span class="valuesTitle">VALORES</span>
+                        <div class="valuesText">
+                            <p>Trabalhamos para oferecer os melhores dados, contribuindo para uma
+                                experiência de viagem de excelência.</p><br>
+                            <p>Garantimos dados claros e acessíveis para nossos parceiros, para que possam
+                                fazer escolhas certeiras.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="vision">
-                    <span class="visionTitle">VISÃO</span>
-                    <div class="visionText">
-                        <p>Ser a referência em soluções de análise de dados no setor de turismo, transformando informações sobre voos e serviços aéreos valiosos para nossos clientes, promovendo uma experiência de viagem mais inteligente e personalizada.</p>
+                <div class="phraseAboutUs">UTILIZE NOSSO SERVIÇO PARA OTIMIZAR SEU TEMPO! DADOS SOBRE VOOS EM UM
+                    <strong style="color: #ff004d;text-decoration: underline;">CLIQUE</strong>
+                </div>
+            </div>
+            <div class="OurTeam">
+                <span class="ourTeamTitle">NOSSA EQUIPE</span>
+                <hr style="width:70vw;text-align:left;margin-left:0;color: #535353;">
+                <div class="firstLineImage">
+                    <img src="img/teamImage.webp" alt="">
+                    <img src="img/teamImage.webp" alt="">
+                    <img src="img/teamImage.webp" alt="">
+                </div>
+                <div class="secondLineImage">
+                    <img src="img/teamImage.webp" alt="">
+                    <img src="img/teamImage.webp" alt="">
+                </div>
+
+            </div>
+            <div id="contactus" class="contactUs">
+                <span class="contacUsTitle">FALE COM A GENTE!</span>
+                <hr style="width:50%;text-align:left;margin-left:0;color: #535353;">
+                <div class="howContatUS">
+                    <div class="location">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14629.14941653519!2d-46.671892281792694!3d-23.558120962241837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2b063f663%3A0xc567c0d16d0bc582!2sS%C3%A3o%20Paulo%20Tech%20School!5e0!3m2!1spt-BR!2sbr!4v1740926997454!5m2!1spt-BR!2sbr"
+                            width="256"
+                            height="256"
+                            style="border-color:#c0bebe;"
+                            allowfullscreen="true"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <span>Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP, 01414-001</span>
                     </div>
-                </div>
-                <div class="values">
-                    <span class="valuesTitle">VALORES</span>
-                    <div class="valuesText">
-                        <p>Trabalhamos para oferecer os melhores dados, contribuindo para uma experiência de viagem de excelência.</p><br>
-                        <p>Garantimos dados claros e acessíveis para nossos parceiros, para que possam fazer escolhas certeiras.</p>
+                    <div class="cellphone">
+                        <img src="img/chat.png" alt="">
+                        <span>NOSSO TELEFONE: (11) 1234-5678</span>
                     </div>
-                </div>
-            </div>
-            <div class="phraseAboutUs">UTILIZE NOSSO SERVIÇO PARA OTIMIZAR SEU TEMPO!
-                DADOS SOBRE VOOS EM UM <strong style="color: #ff004d;text-decoration: underline;">CLIQUE</strong>
-            </div>
-        </div>
-        <div class="OurTeam">
-            <span class="ourTeamTitle">NOSSA EQUIPE</span>
-            <hr style="width:70vw;text-align:left;margin-left:0;color: #535353;">
-            <div class="firstLineImage">
-                <img src="img/teamImage.webp" alt="">
-                <img src="img/teamImage.webp" alt="">
-                <img src="img/teamImage.webp" alt="">
-            </div>
-            <div class="secondLineImage">
-                <img src="img/teamImage.webp" alt="">
-                <img src="img/teamImage.webp" alt="">
-            </div>
+                    <div class="email">
+                        <img src="img/email.png" alt="">
+                        <span>NOSSO EMAIL : empresa@email.com</span>
+                    </div>
 
-        </div>
-        <div id="contactus" class="contactUs">
-            <span class="contacUsTitle">FALE COM A GENTE!</span>
-            <hr style="width:50%;text-align:left;margin-left:0;color: #535353;">
-            <div class="howContatUS">
-                <div class="location">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14629.14941653519!2d-46.671892281792694!3d-23.558120962241837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2b063f663%3A0xc567c0d16d0bc582!2sS%C3%A3o%20Paulo%20Tech%20School!5e0!3m2!1spt-BR!2sbr!4v1740926997454!5m2!1spt-BR!2sbr"
-                        width="256" height="256" style="border-color:#c0bebe;" allowfullscreen="true" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <span>Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP, 01414-001</span>
                 </div>
-                <div class="cellphone">
-                    <img src="img/chat.png" alt="">
-                    <span>NOSSO TELEFONE:
-                        (11) 1234-5678</span>
-                </div>
-                <div class="email">
-                    <img src="img/email.png" alt="">
-                    <span>NOSSO EMAIL :
-                        empresa@email.com</span>
-                </div>
-
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer>
-        COPYRIGHT© 2025
-    </footer>
-</body>
+        <footer>
+            COPYRIGHT© 2025
+        </footer>
+    </body>
 
 </html>
