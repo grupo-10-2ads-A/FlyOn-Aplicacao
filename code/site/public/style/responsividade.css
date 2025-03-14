@@ -1,18 +1,48 @@
+
+
 @media screen and (max-width: 630px) {
 
     /* HEADER RESPONSIVO */
     header {
-        height: 27vh;
+        height: 17vh;
         flex-wrap: wrap;
         width: 100%;
-        justify-content: center;
+        justify-content: space-around;
         text-align: center;
     }
 
     header .rigthside {
-        flex-wrap: wrap;
-        width: 70vw;
+        display: none;
     }
+
+    .open{
+        display: flex;
+    }
+
+    .cabecalho_mobile-menu-icon{
+        display: block;
+    }
+
+    .cabecalho_mobile-menu-button{
+        height: 50px;
+        margin-top: 20px;
+        background-color: #ffffff00;
+        border: solid 2px #fff;
+        border-radius: 10px;
+        padding-inline: 2px;
+    }    
+    
+    .cabecalho_menu-icon-img{
+        width: 3rem;
+    }
+
+    .header .cabecalho_mobile-menu .rigthside_responsivo{
+        flex-direction: column;
+        
+    }
+    
+
+    
 
     /* FIM DO HEADER RESPONSIVO */
 

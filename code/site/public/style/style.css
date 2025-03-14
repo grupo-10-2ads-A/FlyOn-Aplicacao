@@ -42,6 +42,19 @@ body {
 }
 
 /* HEADER */
+
+/* ======================================================== */
+/* ocutando o menu mobile no desktop */
+.cabecalho_mobile-menu-icon{
+    display: none;
+}
+
+.cabecalho_mobile-menu{
+    display: none;
+}
+/* ======================================================== */
+
+
 header {
     background-color: #10004f;
     display: flex;

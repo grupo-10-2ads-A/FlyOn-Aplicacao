@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlyOn</title>
+    <title>FlyOn | Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +17,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
         rel="stylesheet">
+        <script src="./js/menuresponsivo.js"></script>
 </head>
 
 <body>
@@ -32,6 +33,21 @@
             <span><a href="auth/cadastro.html">CADASTRO</a></span>
             <span><a href="auth/login.html" target="_blank">LOGIN</a></span>
         </div>
+
+        <div class="cabecalho_mobile-menu-icon">
+            <button onclick="menuShow()" class="cabecalho_mobile-menu-button" onclick="menuShow()"><img class="cabecalho_menu-icon-img" src="./img/icons8-hamburguer.svg" alt=""></button>
+          </div>
+
+          <div class="cabecalho_mobile-menu">
+        
+            <div class="rigthside_responsivo">
+                <span><a href="#home">INÍCIO</a></span>
+                <span><a href="#aboutus">SOBRE NÓS</a></span>
+                <span><a href="#contactus">CONTATO</a></span>
+                <span><a href="auth/cadastro.html">CADASTRO</a></span>
+                <span><a href="auth/login.html" target="_blank">LOGIN</a></span>
+            </div>
+          </div>
     </header>
 
     <main>
