@@ -43,8 +43,7 @@ body {
 
 /* HEADER */
 
-/* ======================================================== */
-/* ocutando o menu mobile no desktop */
+
 .cabecalho_mobile-menu-icon{
     display: none;
 }
@@ -52,7 +51,6 @@ body {
 .cabecalho_mobile-menu{
     display: none;
 }
-/* ======================================================== */
 
 
 header {
@@ -199,12 +197,14 @@ main .welcome .welcomeImage {
     width: 50%;
     display: flex;
     justify-content: center;
+    border-radius: 10px;
 }
 
 main .welcome .welcomeImage img {
     width: 542px;
     height: 466px;
     border-radius: 10px;
+    object-fit: contain;
 }
 
 /* ABOUT US */
