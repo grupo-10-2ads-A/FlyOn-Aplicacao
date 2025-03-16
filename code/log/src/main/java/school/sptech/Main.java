@@ -2,7 +2,6 @@ package school.sptech;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Random;
 
 public class Main {
 
@@ -33,7 +32,7 @@ public class Main {
     private static void analisarDados() {
         log("Analisando os dados recebidos...");
         simularProcessamento(3000); // Simula um tempo de processamento de 3 segundos
-        int errosDetectados = new Random().nextInt(500); // Gera um número aleatório de registros inconsistentes
+        int errosDetectados = 124; // Gera um número de registros inconsistentes
         log("Análise concluída: " + errosDetectados + " registros inconsistentes encontrados.");
     }
 
@@ -52,7 +51,7 @@ public class Main {
     private static void enviarParaDashboard() {
         log("Enviando dados limpos para o dashboard...");
         simularProcessamento(1500); // Simula um tempo de processamento de 1,5 segundos
-        log("Envio finalizado: 49.500 registros disponíveis para visualização.");
+        log("Envio finalizado: 49.876 registros disponíveis para visualização.");
     }
 
     /**
