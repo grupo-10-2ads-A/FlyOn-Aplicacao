@@ -1,0 +1,13 @@
+@media screen and (max-width: 630px){
+    /* INICIO TELA DE CADASTRO RESPONSIVO */
+    main .form{
+        width: 85vw;
+        height: 85vw;
+        padding: 10px;
+        margin-top: 7%;
+    }
+
+    main{
+        height: 60vh;
+    }
+}
