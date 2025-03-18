@@ -13,6 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
         rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+        <script src="../js/menuresponsivo.js"></script>
 </head>
 <body>
     <header>
@@ -22,10 +23,31 @@
         </div>
         <div class="rigthside">
             <span><a href="../index.html">INÍCIO</a></span>
-            <span><a href="#aboutus">SOBRE NÓS</a></span>
-            <span><a href="#contactus">CONTATO</a></span>
             <span><a href="cadastro.html">CADASTRO</a></span>
             <span><a href="login.html">LOGIN</a></span>
+        </div>
+
+        <div class="cabecalho_mobile-menu-icon">
+            <button onclick="menuShow()" class="cabecalho_mobile-menu-button">
+                <img
+                    class="cabecalho_menu-icon-img"
+                    src="../img/icons8-hamburguer.svg"
+                    alt="Menu">
+            </button>
+        </div>
+
+        <div class="cabecalho_mobile-menu">
+            <div class="rigthside_responsivo">
+                <span>
+                    <a href="../index.html">INÍCIO</a>
+                </span>
+                <span>
+                    <a href="cadastro.html">CADASTRO</a>
+                </span>
+                <span>
+                    <a href="login.html">LOGIN</a>
+                </span>
+            </div>
         </div>
     </header>
     <main>
@@ -33,7 +55,7 @@
             <span class="formTitle">
                 Login
             </span>
-        <div class="labelsInputs">
+        <div id="labelsInputsLogin" class="labelsInputs">
             <div class="email">
                 <label for="">EMAIL</label>
                 <input type="email" name="" placeholder="empresa@email.com" id="">
