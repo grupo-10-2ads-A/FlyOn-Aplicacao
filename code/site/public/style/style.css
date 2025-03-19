@@ -351,6 +351,13 @@ main .OurTeam .firstLineImage {
     justify-content: space-around;
 }
 
+main .OurTeam img{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 main .OurTeam .secondLineImage {
     padding-top: 2%;
     width: 100%;

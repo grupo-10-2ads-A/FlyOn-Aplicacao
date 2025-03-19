@@ -178,7 +178,14 @@
 
     /* RESPONSIVIDADE DA PRIMEIRA LINHA DO TIME */
     main .OurTeam .firstLineImage {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main .OurTeam img{
+        width: 200px;
+        height: 200px;
     }
 
     /* FIM DA RESPONSIVIDADE DA PRIMEIRA LINHA DO TIME */
