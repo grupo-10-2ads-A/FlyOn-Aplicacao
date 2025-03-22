@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("/admin/") // Alterado para a rota de admin
+    fetch("/admin/") 
         .then(response => response.json())
         .then(usuarios => {
             console.log("Usuários recebidos:", usuarios);
             let tabela = document.getElementById("tabelaUsuarios");
-            tabela.innerHTML = ""; // Limpa antes de renderizar
+            tabela.innerHTML = ""; 
 
             usuarios.forEach(usuario => {
                 let linha = document.createElement("tr");
@@ -26,13 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function editarUsuario(IdUsuario) {
-    window.location.href = `/editar-usuario.html?IdUsuario=${IdUsuario}`; // Redireciona para a página de edição
+    window.location.href = `/editar-usuario.html?IdUsuario=${IdUsuario}`;
 }
 
 
 function deletarUsuario(IdUsuario) {
     if (confirm("Tem certeza que deseja excluir este usuário?")) {
-        fetch(`/admin/deletar/${IdUsuario}`, { method: "DELETE" }) // Alterado para a rota de admin
+        fetch(`/admin/deletar/${IdUsuario}`, { method: "DELETE" })
         .then(response => {
             if (!response.ok) throw new Error("Erro ao excluir usuário");
             return response.json();

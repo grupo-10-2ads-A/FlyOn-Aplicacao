@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../style/responsividade.css">
     <link rel="stylesheet" href="../style/resp-cadastro-login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
@@ -38,17 +39,23 @@
                 Cadastro
             </span>
             <div class="labelsInputs">
+                <div class="nome">
+                    <label for="">Nome</label>
+                    <input type="text" name="" placeholder="vanessa campos" id="nome_input">
+                </div>
                 <div class="cnpj">
                     <label for="">CNPJ</label>
-                    <input type="text" name="" placeholder="00.000.000/0001-00" id="">
+                    <input type="text" name="" placeholder="00.000.000/0001-00" id="cnpj_input">
                 </div>
                 <div class="email">
                     <label for="">EMAIL</label>
-                    <input type="email" name="" placeholder="empresa@email.com" id="">
+                    <input type="email" name="" placeholder="empresa@email.com" id="email_cadastro_input">
                 </div>
                 <div class="password">
                     <label for="">SENHA</label>
-                    <input type="password" name="" placeholder="*******" id="">
+                    <input type="password" name="" placeholder="*******" id="senha_cadastro_input">
+                    <!-- <i class="uil uil-lock icon"></i> -->
+                    <i class="uil uil-eye-slash showHidePw"></i>
                 </div>
             </div>
             <button>CADASTRAR</button>
@@ -58,5 +65,6 @@
         COPYRIGHT© 2025
     </footer>
 </body>
-
 </html>
+<script src="../js/cadastro.js"></script>
+<script src="../js/validacao-cadastro.js"></script>
