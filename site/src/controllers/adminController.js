@@ -3,7 +3,7 @@ var database = require("../database/config");
 // Listar todos os usuários (somente admin pode acessar)
 function listar(req, res) {
     console.log("Iniciando listagem de usuários...");
-    var instrucaoSql = `SELECT IdUsuario, nome, email, telefone, tipoUsuario FROM usuario`;
+    var instrucaoSql = `SELECT IdUsuario, nome, email, cnpj, tipoUsuario FROM usuario`;
     console.log("SQL para listar usuários:", instrucaoSql);
 
     database.executar(instrucaoSql)
@@ -22,7 +22,7 @@ function buscarPorIdUsuario(req, res) {
     var IdUsuario = req.params.IdUsuario;
     console.log("Buscando usuário com Id:", IdUsuario);
     
-    var instrucaoSql = `SELECT IdUsuario, nome, email, telefone, tipoUsuario FROM usuario WHERE IdUsuario = ${IdUsuario}`;
+    var instrucaoSql = `SELECT IdUsuario, nome, email, cnpj, tipoUsuario FROM usuario WHERE IdUsuario = ${IdUsuario}`;
     console.log("SQL para buscar usuário:", instrucaoSql);
 
     database.executar(instrucaoSql)
@@ -45,19 +45,19 @@ function buscarPorIdUsuario(req, res) {
 // Atualizar dados do usuário
 function atualizar(req, res) {
     var IdUsuario = req.params.IdUsuario;
-    var { nome, email, tipoUsuario, telefone } = req.body;
+    var { nome, email, tipoUsuario, cnpj } = req.body;
 
     // Log dos dados recebidos
     console.log("Atualizando usuário com ID:", IdUsuario);
-    console.log("Dados recebidos:", { nome, email, tipoUsuario, telefone });
+    console.log("Dados recebidos:", { nome, email, tipoUsuario, cnpj });
 
     // Verificar se todos os dados necessários estão presentes
-    if (!nome || !email || !tipoUsuario || !telefone) {
+    if (!nome || !email || !tipoUsuario || !cnpj) {
         console.error("Todos os campos são obrigatórios!");
         return res.status(400).json({ mensagem: "Todos os campos são obrigatórios!" });
     }
 
-    var instrucaoSql = `UPDATE usuario SET nome = '${nome}', email = '${email}', tipoUsuario = '${tipoUsuario}', telefone = '${telefone}' WHERE IdUsuario = ${IdUsuario}`;
+    var instrucaoSql = `UPDATE usuario SET nome = '${nome}', email = '${email}', tipoUsuario = '${tipoUsuario}', cnpj = '${cnpj}' WHERE IdUsuario = ${IdUsuario}`;
     console.log("SQL para atualizar usuário:", instrucaoSql);
 
     database.executar(instrucaoSql)

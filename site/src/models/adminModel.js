@@ -11,10 +11,10 @@ function buscarPorIdUsuario(IdUsuario) {
 }
 
 
-function atualizar(IdUsuario, nome, email, telefone) {
+function atualizar(IdUsuario, nome, email, cnpj) {
     var instrucao = `
         UPDATE usuario 
-        SET nome = '${nome}', email = '${email}', telefone = '${telefone}'
+        SET nome = '${nome}', email = '${email}', cnpj = '${cnpj}'
         WHERE IdUsuario = ${IdUsuario};
     `;
     return database.executar(instrucao);

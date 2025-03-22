@@ -5,16 +5,16 @@ function cadastrar(req, res) {
     console.log("Iniciando validação das informações...");
 
     var nome = req.body.nome;
-    var telefone = req.body.telefone;
+    var cnpj = req.body.cnpj;
     var email = req.body.email;
     var senha = req.body.senha;
 
-    if (!nome || !email || !senha || !telefone) {
+    if (!nome || !email || !senha || !cnpj) {
         console.log("Erro: Campos obrigatórios não preenchidos.");
         return res.status(400).json({ erro: "Todos os campos são obrigatórios." });
     }
 
-    var instrucaoSql = `INSERT INTO usuario (nome, telefone, email, senha) VALUES ('${nome}', '${telefone}','${email}', '${senha}')`;
+    var instrucaoSql = `INSERT INTO usuario (nome, cnpj, email, senha) VALUES ('${nome}', '${cnpj}','${email}', '${senha}')`;
 
     console.log("Executando SQL:", instrucaoSql);
 

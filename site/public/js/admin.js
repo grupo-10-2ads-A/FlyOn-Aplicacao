@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${usuario.nome}</td>
                     <td>${usuario.email}</td>
                     <td>${usuario.tipoUsuario}</td>
-                    <td>${usuario.telefone}</td>
+                    <td>${usuario.cnpj}</td>
                     <td>
                         <button onclick="editarUsuario(${usuario.IdUsuario})">Editar</button>
                         <button onclick="deletarUsuario(${usuario.IdUsuario})">Excluir</button>

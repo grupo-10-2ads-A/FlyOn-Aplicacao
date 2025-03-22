@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Gerenciamento de Usuários</title>
+</head>
+<body>
+    <h1>Gerenciamento de Usuários</h1>
+    
+    <button onclick="window.location.href='../auth/`cadastro.html'">Cadastrar Novo Usuário</button>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Nível de Acesso</th>
+                <th>CNPJ</th>
+                <th>Ações</th> 
+            </tr>
+        </thead>
+        <tbody id="tabelaUsuarios">
+        </tbody>
+    </table>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
