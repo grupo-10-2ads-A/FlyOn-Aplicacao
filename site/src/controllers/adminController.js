@@ -1,9 +1,8 @@
 var database = require("../database/config");
 
-// Listar todos os usuários (somente admin pode acessar)
-function listar(req, res) {
+function listarUsuario(req, res) {
     console.log("Iniciando listagem de usuários...");
-    var instrucaoSql = `SELECT IdUsuario, nome, email, cnpj, tipoUsuario FROM usuario`;
+    var instrucaoSql = `SELECT idUsuario, fk_agencia, nome, cargo, email FROM usuario`;
     console.log("SQL para listar usuários:", instrucaoSql);
 
     database.executar(instrucaoSql)
@@ -17,12 +16,11 @@ function listar(req, res) {
         });
 }
 
-// Buscar usuário por IdUsuario
 function buscarPorIdUsuario(req, res) {
     var IdUsuario = req.params.IdUsuario;
     console.log("Buscando usuário com Id:", IdUsuario);
     
-    var instrucaoSql = `SELECT IdUsuario, nome, email, cnpj, tipoUsuario FROM usuario WHERE IdUsuario = ${IdUsuario}`;
+    var instrucaoSql = `SELECT idUsuario, fk_agencia, nome, cargo, email FROM usuario WHERE idUsuario = ${IdUsuario}`;
     console.log("SQL para buscar usuário:", instrucaoSql);
 
     database.executar(instrucaoSql)
@@ -41,54 +39,38 @@ function buscarPorIdUsuario(req, res) {
         });
 }
 
+function atualizarUsuario(req, res) {
+    let { idUsuario, nome, email, cargo, senha } = req.body;
 
-// Atualizar dados do usuário
-function atualizar(req, res) {
-    var IdUsuario = req.params.IdUsuario;
-    var { nome, email, tipoUsuario, cnpj } = req.body;
-
-    // Log dos dados recebidos
-    console.log("Atualizando usuário com ID:", IdUsuario);
-    console.log("Dados recebidos:", { nome, email, tipoUsuario, cnpj });
-
-    // Verificar se todos os dados necessários estão presentes
-    if (!nome || !email || !tipoUsuario || !cnpj) {
-        console.error("Todos os campos são obrigatórios!");
-        return res.status(400).json({ mensagem: "Todos os campos são obrigatórios!" });
+    if (!idUsuario) {
+        return res.status(400).json({ erro: "ID do usuário não fornecido!" });
     }
 
-    var instrucaoSql = `UPDATE usuario SET nome = '${nome}', email = '${email}', tipoUsuario = '${tipoUsuario}', cnpj = '${cnpj}' WHERE IdUsuario = ${IdUsuario}`;
-    console.log("SQL para atualizar usuário:", instrucaoSql);
+    var instrucaoSql = `
+        UPDATE usuario 
+        SET nome = '${nome}', cargo = '${cargo}', email = '${email}', senha = '${senha}' 
+        WHERE idUsuario = ${idUsuario};
+    `;
 
     database.executar(instrucaoSql)
-        .then((resultado) => {
-            // Verifique se a atualização afetou alguma linha
-            if (resultado.affectedRows > 0) {
-                console.log("Usuário atualizado com sucesso!");
-                res.status(200).json({ mensagem: "Usuário atualizado com sucesso!" });
-            } else {
-                console.log("Usuário não encontrado para atualização!");
-                res.status(404).json({ mensagem: "Usuário não encontrado!" });
-            }
-        })
-        .catch((erro) => {
+        .then(resultado => res.status(200).json({ mensagem: "Usuário atualizado com sucesso!" }))
+        .catch(erro => {
             console.error("Erro ao atualizar usuário:", erro);
-            res.status(500).json(erro);
+            res.status(500).json({ erro: "Erro interno ao atualizar usuário." });
         });
 }
 
-// Deletar usuário
-function deletar(req, res) {
+
+function deletarUsuario(req, res) {
     var IdUsuario = req.params.IdUsuario;
     console.log("Iniciando o processo de deleção do usuário com Id:", IdUsuario);
     
-    // Verifica se o IdUsuario é válido
     if (!IdUsuario) {
         console.warn("Id do usuário não fornecido!");
         return res.status(400).json({ mensagem: "Id do usuário não fornecido." });
     }
 
-    var instrucaoSql = `DELETE FROM usuario WHERE IdUsuario = ${IdUsuario}`;
+    var instrucaoSql = `DELETE FROM usuario WHERE idUsuario = ${IdUsuario}`;
     console.log("SQL para deletar usuário:", instrucaoSql);
 
     database.executar(instrucaoSql)
@@ -102,9 +84,66 @@ function deletar(req, res) {
         });
 }
 
+function cadastrarUsuario(req, res) {
+    console.log("Iniciando validação das informações...");
+
+    var { fk_agencia, nome, cargo, email, senha } = req.body;
+
+    if (!fk_agencia || !nome || !cargo || !email || !senha) {
+        console.log("Erro: Campos obrigatórios não preenchidos.");
+        return res.status(400).json({ erro: "Todos os campos são obrigatórios." });
+    }
+
+    var instrucaoSql = `INSERT INTO usuario (fk_agencia, nome, cargo, email, senha) VALUES (${fk_agencia}, '${nome}', '${cargo}', '${email}', '${senha}')`;
+
+    console.log("Executando SQL:", instrucaoSql);
+
+    database.executar(instrucaoSql)
+        .then((resultado) => {
+            console.log("Usuário cadastrado com sucesso:", resultado);
+            res.status(201).json({ mensagem: "Usuário cadastrado com sucesso!", resultado });
+        })
+        .catch((erro) => {
+            console.error("Erro ao cadastrar usuário:", erro);
+            res.status(500).json({ erro: "Erro interno ao cadastrar usuário." });
+        });
+}
+
+function autenticarUsuario(req, res) {
+    console.log("Dados recebidos no backend:", req.body);
+    
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    console.log("E-mail recebido:", email);
+    console.log("Senha recebida:", senha);
+
+    var instrucaoSql = `SELECT * FROM usuario WHERE email = '${email}' AND senha = '${senha}'`;
+    console.log("Query SQL:", instrucaoSql);
+
+    database.executar(instrucaoSql)
+        .then((resultado) => {
+            console.log("Resultado da consulta:", resultado);
+
+            if (resultado.length > 0) {
+                console.log("Usuário autenticado com sucesso:", resultado[0]);
+                res.status(200).json(resultado[0]);
+            } else {
+                console.log("Nenhum usuário encontrado para as credenciais fornecidas.");
+                res.status(401).json({ mensagem: "E-mail ou senha inválidos!" });
+            }
+        })
+        .catch((erro) => {
+            console.error("Erro na execução da consulta:", erro);
+            res.status(500).json(erro);
+        });
+}
+
 module.exports = {
-    listar,
+    listarUsuario,
     buscarPorIdUsuario,
-    atualizar,
-    deletar
+    atualizarUsuario,
+    deletarUsuario,
+    autenticarUsuario,
+    cadastrarUsuario
 };

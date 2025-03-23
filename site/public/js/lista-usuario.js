@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("/admin/") 
         .then(response => response.json())
         .then(usuarios => {
-            console.log("Usuários recebidos:", usuarios);
+            sessionStorage.setItem("LISTA_USUARIOS", JSON.stringify(usuarios));
+            console.log("Usuários armazenados no sessionStorage:", usuarios);
+
             let tabela = document.getElementById("tabelaUsuarios");
             tabela.innerHTML = ""; 
 
@@ -12,32 +14,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 linha.innerHTML = `
                     <td>${usuario.nome}</td>
                     <td>${usuario.email}</td>
-                    <td>${usuario.tipoUsuario}</td>
+                    <td>${usuario.cargo}</td>
                     <td>${usuario.cnpj}</td>
                     <td>
-                        <button onclick="editarUsuario(${usuario.IdUsuario})">Editar</button>
-                        <button onclick="deletarUsuario(${usuario.IdUsuario})">Excluir</button>
+                        <button onclick="editarUsuario(${usuario.idUsuario})">Editar</button>
+                        <button onclick="deletarUsuario(${usuario.idUsuario})">Excluir</button>
                     </td>
                 `;
                 tabela.appendChild(linha);
+
+            
+                sessionStorage.setItem(`USUARIO_${usuario.idUsuario}`, JSON.stringify(usuario));
             });
         })
         .catch(error => console.error("Erro ao buscar usuários:", error));
 });
+
 
 function editarUsuario(IdUsuario) {
     window.location.href = `/editar-usuario.html?IdUsuario=${IdUsuario}`;
 }
 
 
-function deletarUsuario(IdUsuario) {
-    if (confirm("Tem certeza que deseja excluir este usuário?")) {
-        fetch(`/admin/deletar/${IdUsuario}`, { method: "DELETE" })
-        .then(response => {
-            if (!response.ok) throw new Error("Erro ao excluir usuário");
-            return response.json();
-        })
-        .then(() => location.reload())
-        .catch(error => console.error("Erro ao excluir usuário:", error));
-    }
-}

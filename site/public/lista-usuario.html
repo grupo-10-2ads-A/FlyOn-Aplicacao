@@ -8,15 +8,14 @@
 <body>
     <h1>Gerenciamento de Usuários</h1>
     
-    <button onclick="window.location.href='../auth/`cadastro.html'">Cadastrar Novo Usuário</button>
+    <button onclick="window.location.href='cadastro-usuario.html'">Cadastrar Novo Usuário</button>
     
     <table border="1">
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Email</th>
-                <th>Nível de Acesso</th>
-                <th>CNPJ</th>
+                <th>Cargo</th>
                 <th>Ações</th> 
             </tr>
         </thead>
@@ -24,6 +23,7 @@
         </tbody>
     </table>
 
-    <script src="../js/admin.js"></script>
+    <script src="js/lista-usuario.js" defer></script>
+    <script src="js/deletar-usuario.js"></script>
 </body>
 </html>

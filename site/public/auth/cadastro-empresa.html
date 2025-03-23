@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlyOn | Cadastro Empresarial</title>
+    <link rel="stylesheet" href="../style/cadastro.css">
+    <link rel="stylesheet" href="../style/responsividade.css">
+    <link rel="stylesheet" href="../style/resp-cadastro-login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+        <script src="../js/menuresponsivo.js"></script>
+</head>
+    
+<body>
+    <header>
+        <div class="leftside">
+            <a href="../index.html"><img src="../img/logoicon.png" alt=""></a>
+            <span>FlyOn</span>
+        </div>
+        <div class="rigthside">
+            <span><a href="../index.html">INÍCIO</a></span>
+            <span><a href="#aboutus">SOBRE NÓS</a></span>
+            <span><a href="#contactus">CONTATO</a></span>
+            <span><a href="cadastro.html">CADASTRO</a></span>
+            <span><a href="login.html">LOGIN</a></span>
+        </div>
+    </header>
+
+    <main>
+        <div class="form">
+            <span class="formTitle">Cadastro</span>
+            <div class="labelsInputs">
+                <div class="nome_fantasia">
+                    <label for="nome_fantasia_input">Nome Fantasia</label>
+                    <input type="text" id="nome_fantasia_input" placeholder="Vanessa Campos">
+                </div>
+                <div class="razao_social">
+                    <label for="razao_social_input">Razão Social</label>
+                    <input type="text" id="razao_social_input" placeholder="Razão Social Ltda">
+                </div>
+                <div class="codigo">
+                    <label for="codigo_input">Código</label>
+                    <input type="number" id="codigo_input" placeholder="12345">
+                </div>
+                <div class="cnpj">
+                    <label for="cnpj_input">CNPJ</label>
+                    <input type="text" id="cnpj_input" placeholder="00.000.000/0001-00">
+                </div>
+                <div class="representante_legal">
+                    <label for="representante_legal_input">Representante Legal</label>
+                    <input type="text" id="representante_legal_input" placeholder="João Silva">
+                </div>
+                <div class="email">
+                    <label for="email_cadastro_input">Email</label>
+                    <input type="email" id="email_cadastro_input" placeholder="empresa@email.com">
+                </div>
+                <div class="senha">
+                    <label for="senha_cadastro_input">Senha</label>
+                    <input type="password" id="senha_cadastro_input" placeholder="*******">
+                    <i class="uil uil-eye-slash showHidePw"></i>
+                </div>
+                
+                <!-- Campos de endereço -->
+                <div class="cep">
+                    <label for="cep_input">CEP</label>
+                    <input type="text" id="cep_input" placeholder="00000-000" maxlength="8">
+                </div>
+                <div class="numero">
+                    <label for="numero_input">Número</label>
+                    <input type="number" id="numero_input" placeholder="123">
+                </div>
+                <div class="logradouro">
+                    <label for="logradouro_input">Logradouro</label>
+                    <input type="text" id="logradouro_input" placeholder="Rua das Flores">
+                </div>
+                <div class="bairro">
+                    <label for="bairro_input">Bairro</label>
+                    <input type="text" id="bairro_input" placeholder="Centro">
+                </div>
+                <div class="cidade">
+                    <label for="cidade_input">Cidade</label>
+                    <input type="text" id="cidade_input" placeholder="São Paulo">
+                </div>
+                <div class="estado">
+                    <label for="estado_input">Estado</label>
+                    <input type="text" id="estado_input" placeholder="SP" maxlength="2">
+                </div>
+            </div>
+            <button onclick="cadastrarEmpresa(event)">CADASTRAR</button>
+        </div>
+    </main>
+
+    <footer>
+        COPYRIGHT© 2025
+    </footer>
+
+    <script src="../js/cadastro-empresa.js" defer></script>
+    <script src="../js/esconde-senha.js" defer></script>
+    <script src="../js/validacao-cadastro-empresa.js" defer></script>
+</body>
+
+</html>

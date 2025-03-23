@@ -1,37 +1,42 @@
 create database flyon;
-
 use flyon;
 
+-- Tabela de Agência
 create table agencia (
-id int primary key auto_increment,
-codigo int not null,
-cnpj char(14) unique not null,
-nome_fantasia varchar(100) unique not null,
-razao_social varchar(100) unique not null,
-representante_legal varchar(100) not null
+    idAgencia int primary key auto_increment,
+    codigo int not null,
+    cnpj char(14) unique not null,
+    nome_fantasia varchar(100) unique not null,
+    razao_social varchar(100) unique not null,
+    representante_legal varchar(100) not null
 );
 
+-- Tabela de Endereço com relação 1:1 com Agência
 create table endereco (
-id int auto_increment,
-fk_agencia int,
-cep char(8) not null,
-numero int not null,
-logradouro varchar(100) not null,
-bairro varchar(100) not null,
-cidade varchar(100) not null,
-estado char(2) not null,
-constraint pk_composta_agencia_endereco primary key (id, fk_agencia)
+    id int auto_increment,
+    fk_agencia int unique,
+    cep char(8) not null,
+    numero int not null,
+    logradouro varchar(100) not null,
+    bairro varchar(100) not null,
+    cidade varchar(100) not null,
+    estado char(2) not null,
+    constraint pk_agencia_endereco primary key (id),
+    constraint fk_endereco_agencia foreign key (fk_agencia) references agencia(idAgencia) on delete cascade
 );
 
+-- Tabela de Usuário com relação 1:N com Agência
 create table usuario (
-id int auto_increment,
-fk_agencia int,
-nome varchar(100) not null,
-cargo varchar(100) not null,
-email varchar(100) unique not null,
-senha varchar(100) not null,
-constraint pk_composta_agencia_usuario primary key (id, fk_agencia)
+    idUsuario int auto_increment,
+    fk_agencia int, 
+    nome varchar(100) not null,
+    cargo varchar(100) not null,
+    email varchar(100) unique not null,
+    senha varchar(100) not null,
+    constraint pk_usuario primary key (idUsuario),
+    constraint fk_usuario_agencia foreign key (fk_agencia) references agencia(idAgencia) on delete cascade
 );
+
 
 create table historico_passagens (
 id int primary key auto_increment,
@@ -55,3 +60,7 @@ constraint chk_mais_barato check (mais_barato in (0, 1)),
 constraint chk_menos_cancelamentos check (menos_cancelamentos in (0, 1)),
 constraint chk_menos_atrasos check (menos_atrasos in (0, 1))
 );
+
+select * from agencia;
+select * from endereco where fk_agencia = 1;
+select * from usuario;
