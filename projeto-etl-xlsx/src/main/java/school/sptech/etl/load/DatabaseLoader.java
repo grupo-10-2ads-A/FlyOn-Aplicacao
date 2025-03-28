@@ -7,34 +7,43 @@ import java.util.List;
 
 public class DatabaseLoader {
 
-    public static void loadData(String natureza, List<Integer> numeros) {
+    public static void loadData(List<String> extractedData) {
         // Conectar ao banco de dados (exemplo com JDBC)
-        String url = "jdbc:mysql://localhost:3306/teste";
-        String username = "seuusuario";
-        String password = "suasenha";
-        String query = "INSERT INTO tabela_dados (natureza, janeiro, fevereiro, marco, abril, maio, junho, julho, agosto, setembro, outubro, novembro, dezembro, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String url = "jdbc:mysql://localhost:3306/flyon";
+        String username = "root";
+        String password = "Suave2004@";
+        String query = "INSERT INTO historico_passagens (ano, mes, empresa_aerea, origem, destino, tarifa, assentos_comercializados) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setString(1, natureza);
-            stmt.setInt(2, numeros.get(0));
-            stmt.setInt(3, numeros.get(1));
-            stmt.setInt(4, numeros.get(2));
-            stmt.setInt(5, numeros.get(3));
-            stmt.setInt(6, numeros.get(4));
-            stmt.setInt(7, numeros.get(5));
-            stmt.setInt(8, numeros.get(6));
-            stmt.setInt(9, numeros.get(7));
-            stmt.setInt(10, numeros.get(8));
-            stmt.setInt(11, numeros.get(9));
-            stmt.setInt(12, numeros.get(10));
-            stmt.setInt(13, numeros.get(11));
-            stmt.setInt(14, numeros.get(12));
+            // Só alguns exemplos mockados aqui.
+            int ano = 2023;
+            int mes = 11;
+            String empresa_aerea = "Exemplo Airlines";
+            String origem = "GRU";
+            String destino = "GIG";
+            double tarifa = 500.00;
+
+
+            int assentos_comercializados = Integer.parseInt(extractedData.get(4));
+
+            stmt.setInt(1, ano);
+            stmt.setInt(2, mes);
+            stmt.setString(3, empresa_aerea);
+            stmt.setString(4, origem);
+            stmt.setString(5, destino);
+            stmt.setDouble(6, tarifa);
+            stmt.setInt(7, assentos_comercializados);
 
             stmt.executeUpdate();
+
+            System.out.println("Dados carregados com sucesso!");
+
         } catch (Exception e) {
-            e.printStackTrace();
+                System.err.println("Erro ao carregar dados: " + e.getMessage());
+                e.printStackTrace();
         }
     }
 }
