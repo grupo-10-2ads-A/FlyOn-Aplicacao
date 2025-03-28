@@ -40,14 +40,18 @@ create table usuario (
 
 create table historico_passagens (
 id int primary key auto_increment,
-ano int not null,
-mes int not null,
+data_hora_partida_prevista datetime not null,
+data_hora_partida_real datetime not null,
+data_hora_chegada_prevista datetime not null,
+data_hora_chegada_real datetime not null,
+sigla_empresa_aerea char(3) not null,
 empresa_aerea varchar(100) not null,
-origem varchar(100) not null,
-destino varchar(100) not null,
-tarifa double not null,
-assentos_comercializados int not null,
-constraint chk_mes check (mes > 0 and mes < 13)
+origem varchar(500) not null,
+destino varchar(500) not null,
+situacao_voo varchar(14) not null,
+situacao_partida varchar(14) not null,
+situacao_chegada varchar(14) not null,
+assentos_comercializados int not null
 );
 
 create table prefil_cliente (
