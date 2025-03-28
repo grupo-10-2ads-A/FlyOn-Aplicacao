@@ -37,9 +37,9 @@ public class XlsxExtractor {
             String data_hora_chegada_prevista = formatarDataHoraCelula(row.getCell(13));
             String data_hora_chegada_real = formatarDataHoraCelula(row.getCell(14));
 //            String sigla_empresa_aerea = row.getCell(0).getStringCellValue();
-//            String empresa_aerea = row.getCell(1).getStringCellValue();
-//            String origem = row.getCell(8).getStringCellValue();
-//            String destino = row.getCell(12).getStringCellValue();
+            String empresa_aerea = row.getCell(1).getStringCellValue();
+            String origem = formatarLocal(row.getCell(8).getStringCellValue());
+            String destino = formatarLocal(row.getCell(12).getStringCellValue());
 //            String situacao_voo = row.getCell(15).getStringCellValue();
 //            String situacao_partida = row.getCell(18).getStringCellValue();
 //            String situacao_chegada = row.getCell(19).getStringCellValue();
@@ -49,13 +49,15 @@ public class XlsxExtractor {
             res.add(data_hora_partida_real);
             res.add(data_hora_chegada_prevista);
             res.add(data_hora_chegada_real);
-//            res.add(sigla_empresa_aerea);
-//            res.add(empresa_aerea);
-//            res.add(origem);
-//            res.add(destino);
-//            res.add(situacao_voo);
-//            res.add(situacao_partida);
-//            res.add(situacao_chegada);
+            //res.add(sigla_empresa_aerea);
+            res.add(empresa_aerea);
+            res.add(origem);
+            res.add(destino);
+/*
+            res.add(situacao_voo);
+            res.add(situacao_partida);
+            res.add(situacao_chegada);
+*/
             res.add(assentos_comercializados);
 
             i++;
@@ -84,5 +86,24 @@ public class XlsxExtractor {
 
         // Se não for uma data, retorna o valor como string
         return cell.toString();
+
+    }
+
+    public static String formatarLocal(String formatarLocal) {
+        if (formatarLocal == null || formatarLocal.isEmpty()) {
+            return "N/A";
+        }
+
+        // Correção dos caracteres quebrados
+        String local = formatarLocal.replace("Ã‰", "É")
+                .replace("Ã", "Â");
+
+        // Extração apenas do nome principal do aeroporto
+        String[] partes = local.split("-");
+        if (partes.length > 0) {
+            local = partes[0].trim();
+        }
+
+        return local.trim();
     }
 }

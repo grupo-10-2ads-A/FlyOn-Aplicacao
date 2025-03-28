@@ -21,7 +21,9 @@ public class EtlProcess {
             // 2. Transformação
 
             // 3. Carga
+            System.out.println("\nDados inseridos no banco");
             DatabaseLoader.loadData(rawData);
+
 
 
 
