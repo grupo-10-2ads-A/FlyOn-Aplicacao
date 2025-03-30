@@ -7,34 +7,54 @@ import java.util.List;
 
 public class DatabaseLoader {
 
-    public static void loadData(String natureza, List<Integer> numeros) {
+    public static void loadData(List<String> extractedData) {
         // Conectar ao banco de dados (exemplo com JDBC)
-        String url = "jdbc:mysql://localhost:3306/teste";
-        String username = "seuusuario";
-        String password = "suasenha";
-        String query = "INSERT INTO tabela_dados (natureza, janeiro, fevereiro, marco, abril, maio, junho, julho, agosto, setembro, outubro, novembro, dezembro, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String url = "jdbc:mysql://localhost:3306/flyon";
+        String username = "root";
+        String password = "Suave2004@";
+        String query = "INSERT INTO historico_passagens (ano, empresa_aerea, origem, destino, assentos_comercializados) " +
+                "VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setString(1, natureza);
-            stmt.setInt(2, numeros.get(0));
-            stmt.setInt(3, numeros.get(1));
-            stmt.setInt(4, numeros.get(2));
-            stmt.setInt(5, numeros.get(3));
-            stmt.setInt(6, numeros.get(4));
-            stmt.setInt(7, numeros.get(5));
-            stmt.setInt(8, numeros.get(6));
-            stmt.setInt(9, numeros.get(7));
-            stmt.setInt(10, numeros.get(8));
-            stmt.setInt(11, numeros.get(9));
-            stmt.setInt(12, numeros.get(10));
-            stmt.setInt(13, numeros.get(11));
-            stmt.setInt(14, numeros.get(12));
+            String dataPartida = extractedData.get(0); // "01/01/2022 00:05"
+            int ano = Integer.parseInt(dataPartida.split("/")[2].split(" ")[0]);
+
+            // Só alguns exemplos mockados aqui.
+//                int ano = 2023;
+//            int mes = 11;
+//            String empresa_aerea = "Exemplo Airlines";
+//            String origem = "GRU";
+//            String destino = "GIG";
+//            double tarifa = 500.00;
+
+
+            String empresa_aerea = extractedData.get(4);
+            String origem = extractedData.get(5);
+            String destino = extractedData.get(6);
+            int assentos_comercializados = Integer.parseInt(extractedData.get(7));
+
+            stmt.setInt(1, ano);
+            stmt.setString(2, empresa_aerea);
+            stmt.setString(3, origem);
+            stmt.setString(4, destino);
+            stmt.setInt(5, assentos_comercializados);
+
+            System.out.println("Dados a serem inseridos:");
+            System.out.println("Ano: " + ano);
+            System.out.println("Empresa: " + empresa_aerea);
+            System.out.println("Origem: " + origem);
+            System.out.println("Destino: " + destino);
+            System.out.println("Assentos: " + assentos_comercializados);
 
             stmt.executeUpdate();
+
+            System.out.println("Dados carregados com sucesso!");
+
         } catch (Exception e) {
-            e.printStackTrace();
+                System.err.println("Erro ao carregar dados: " + e.getMessage());
+                e.printStackTrace();
         }
     }
 }
