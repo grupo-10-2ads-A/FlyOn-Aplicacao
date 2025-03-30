@@ -2,37 +2,51 @@ package school.sptech.etl.transform;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DataTransformer {
 
-    public static List<String> transformDataDateTime(List<String> dateTimes) {
-        String data_hora_partida_prevista = dateTimes.get(0);
-        String data_hora_partida_real = dateTimes.get(1);
-        String data_hora_chegada_prevista = dateTimes.get(2);
-        String data_hora_chegada_real = dateTimes.get(3);
+    public static List<String> returnDateTimes(List<String> rawData) {
+        List<String> dateTimes = new ArrayList<>();
 
-        String data_hora_partida_prevista_formatada =
-                data_hora_partida_prevista.substring(6, 10) + "-" + data_hora_partida_prevista.substring(3, 6) + data_hora_partida_prevista.substring(0, 2) + data_hora_partida_prevista.substring(10);
-        String data_hora_partida_real_formatada =
-                data_hora_partida_real.substring(6, 10) + "-" + data_hora_partida_real.substring(3, 6) + data_hora_partida_real.substring(0, 2) + data_hora_partida_real.substring(10);
-        String data_hora_chegada_prevista_formatada =
-                data_hora_chegada_prevista.substring(6, 10) + "-" + data_hora_chegada_prevista.substring(3, 6) + data_hora_chegada_prevista.substring(0, 2) + data_hora_chegada_prevista.substring(10);
-        String data_hora_chegada_real_formatada =
-                data_hora_chegada_real.substring(6, 10) + "-" + data_hora_chegada_real.substring(3, 6) + data_hora_chegada_real.substring(0, 2) + data_hora_chegada_real.substring(10);
+        dateTimes.add(rawData.get(0));
+        dateTimes.add(rawData.get(1));
+        dateTimes.add(rawData.get(2));
+        dateTimes.add(rawData.get(3));
 
-        data_hora_partida_prevista_formatada = data_hora_partida_prevista_formatada.replaceAll("/", "-");
-        data_hora_partida_real_formatada = data_hora_partida_real_formatada.replaceAll("/", "-");
-        data_hora_chegada_prevista_formatada = data_hora_chegada_prevista_formatada.replaceAll("/", "-");
-        data_hora_chegada_real_formatada = data_hora_chegada_real_formatada.replaceAll("/", "-");
+        return transformDateTime(dateTimes);
+    }
 
-        List<String> dateTimesFormat = new ArrayList<>();
-        dateTimesFormat.add(data_hora_partida_prevista_formatada);
-        dateTimesFormat.add(data_hora_partida_real_formatada);
-        dateTimesFormat.add(data_hora_chegada_prevista_formatada);
-        dateTimesFormat.add(data_hora_chegada_real_formatada);
+    public static List<String> transformDateTime(List<String> datasHoras) {
+        if (datasHoras == null || datasHoras.size() != 4) {
+            throw new IllegalArgumentException("Lista deve conter exatamente 4 elementos");
+        }
 
-        System.out.println("Success - Transformação da data e hora bem sucedidas");
-        return dateTimesFormat;
+        List<String> formatadas = new ArrayList<>();
+        DateTimeFormatter entrada = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter saida = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        for (String dh : datasHoras) {
+            if (dh == null || dh.trim().isEmpty()) {
+                formatadas.add("");
+                continue;
+            }
+            LocalDateTime dataHora = LocalDateTime.parse(dh, entrada);
+            formatadas.add(dataHora.format(saida));
+        }
+
+        System.out.println("Sucesso - Transformação das datas e horas concluída");
+        return formatadas;
+    }
+
+    public static List<String> transformData(List<String> rawData) {
+        rawData.remove(3);
+        rawData.remove(2);
+        rawData.remove(1);
+        rawData.remove(0);
+
+        return rawData;
     }
 
     public static Integer transfomDataInt(String assentos_comercializados) {
