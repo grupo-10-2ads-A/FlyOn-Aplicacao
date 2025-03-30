@@ -11,7 +11,7 @@ public class DatabaseLoader {
         // Conectar ao banco de dados (exemplo com JDBC)
         String url = "jdbc:mysql://localhost:3306/flyon";
         String username = "root";
-        String password = "MAXSTEEl08#";
+        String password = "Suave2004@";
         String query = "INSERT INTO historico_passagens(data_hora_partida_prevista, data_hora_partida_real, data_hora_chegada_prevista, data_hora_chegada_real, sigla_empresa_aerea, empresa_aerea, origem, destino, situacao_voo, situacao_partida, situacao_chegada, assentos_comercializados) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
@@ -44,7 +44,8 @@ public class DatabaseLoader {
 
             stmt.executeUpdate();
 
-            System.out.println("Dados carregados com sucesso!");
+//            System.out.println("Dados carregados com sucesso!");
+
 
         } catch (Exception e) {
             System.err.println("Erro ao carregar dados: " + e.getMessage());

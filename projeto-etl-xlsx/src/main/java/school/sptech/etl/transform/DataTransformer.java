@@ -29,7 +29,7 @@ public class DataTransformer {
 
         for (String dh : datasHoras) {
             if (dh == null || dh.trim().isEmpty()) {
-                formatadas.add("");
+                formatadas.add(null);
                 continue;
             }
             LocalDateTime dataHora = LocalDateTime.parse(dh, entrada);
