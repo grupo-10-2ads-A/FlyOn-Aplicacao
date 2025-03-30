@@ -29,15 +29,20 @@ public class DataTransformer {
 
         for (String dh : datasHoras) {
             if (dh == null || dh.trim().isEmpty()) {
-                formatadas.add("");
+                formatadas.add(null);
                 continue;
             }
             LocalDateTime dataHora = LocalDateTime.parse(dh, entrada);
             formatadas.add(dataHora.format(saida));
         }
 
-        System.out.println("Sucesso - Transformação das datas e horas concluída");
+//        System.out.println("Sucesso - Transformação das datas e horas concluída");
         return formatadas;
+    }
+
+    public static Integer transfomDataInt(String assentos_comercializados) {
+//        System.out.println("Success - Transformação do número de assentos bem sucedida");
+        return Integer.parseInt(assentos_comercializados);
     }
 
     public static List<String> transformData(List<String> rawData) {
@@ -45,12 +50,8 @@ public class DataTransformer {
         rawData.remove(2);
         rawData.remove(1);
         rawData.remove(0);
+        rawData.remove(rawData.size() - 1);
 
         return rawData;
-    }
-
-    public static Integer transfomDataInt(String assentos_comercializados) {
-        System.out.println("Success - Transformação do número de assentos bem sucedida");
-        return Integer.parseInt(assentos_comercializados);
     }
 }
