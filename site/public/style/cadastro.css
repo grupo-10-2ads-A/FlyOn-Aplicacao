@@ -33,6 +33,11 @@ header .leftside {
     align-items: center;
 }
 
+.leftside-icon{
+    padding: 5px;
+    width: 20px;
+}
+
 header .leftside span {
     color: #fff;
     padding-left: 1rem;
@@ -75,11 +80,14 @@ main {
 }
 
 .form {
+    display: flex;
+    flex-direction: column;
     background-color: #efeae4;
     border-radius: 30px;
-    padding: 2.5rem;
+    padding-inline: 2.5rem ;
     width: 100%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: -10px;
 }
 
 .formTitle {
@@ -88,8 +96,8 @@ main {
     font-size: 2rem;
     color: #10004f;
     text-align: center;
-    margin-bottom: 1.5rem;
-    margin-left: 40%;
+    
+
 }
 
 .form-columns {
@@ -107,7 +115,6 @@ main {
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
 }
 
 .form-group label {
@@ -159,10 +166,9 @@ main {
     font-family: "Poppins", sans-serif;
     font-weight: bold;
     font-size: 1rem;
-    padding: 0.75rem;
-    width: 100%;
-    max-width: 200px;
-    margin: 1.5rem auto 0;
+    padding: 0.55rem;
+    width: 20%;
+    margin: 0.5rem auto 5px;
     display: block;
     cursor: pointer;
     transition: background-color 0.3s;

@@ -21,7 +21,7 @@
 <body>
     <header>
         <div class="leftside">
-            <a href="../index.html"><img src="../img/logoicon.png" alt=""></a>
+            <a class="leftside-icon" href="../index.html"><img src="../img/logoicon.png" alt=""></a>
             <span>FlyOn</span>
         </div>
         <div class="rigthside">
@@ -39,10 +39,10 @@
                 <span class="formTitle">Cadastro</span>
                 <div class="form-columns">
                     <div class="form-column">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="nome_fantasia_input">Nome Fantasia</label>
                             <input type="text" id="nome_fantasia_input" placeholder="Vanessa Campos">
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="razao_social_input">Razão Social</label>
                             <input type="text" id="razao_social_input" placeholder="Razão Social Ltda">
@@ -60,6 +60,10 @@
                             <label for="email_cadastro_input">Email</label>
                             <input type="email" id="email_cadastro_input" placeholder="empresa@email.com">
                         </div>
+                        <div class="form-group">
+                            <label for="estado_input">Estado</label>
+                            <input type="text" id="estado_input" placeholder="SP" maxlength="2">
+                        </div>
                         <div class="form-group password-group">
                             <label for="senha_cadastro_input">Senha</label>
                             <div class="password-input">
@@ -67,6 +71,7 @@
                                 <i class="uil uil-eye-slash showHidePw"></i>
                             </div>
                         </div>
+                        
                     </div>
 
                     <div class="form-column">
@@ -90,9 +95,13 @@
                             <label for="cidade_input">Cidade</label>
                             <input type="text" id="cidade_input" placeholder="São Paulo">
                         </div>
-                        <div class="form-group">
-                            <label for="estado_input">Estado</label>
-                            <input type="text" id="estado_input" placeholder="SP" maxlength="2">
+                        
+                        <div class="form-group password-group">
+                            <label for="senha_cadastro_input">Confirmar Senha</label>
+                            <div class="password-input">
+                                <input type="password" id="senha_cadastro_input" placeholder="*******">
+                                <i class="uil uil-eye-slash showHidePw"></i>
+                            </div>
                         </div>
                         <!-- <div class="form-group">
                             <label for="codigo_input">Código</label>
