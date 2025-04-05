@@ -21,7 +21,7 @@
 <body>
     <header>
         <div class="leftside">
-            <a href="../index.html"><img src="../img/logoicon.png" alt=""></a>
+            <a class="leftside-icon" href="../index.html"><img src="../img/logoicon.png" alt=""></a>
             <span>FlyOn</span>
         </div>
         <div class="rigthside">
@@ -34,71 +34,83 @@
     </header>
 
     <main>
-        <div class="form">
-            <span class="formTitle">Cadastro</span>
-            <div class="labelsInputs">
-                <div class="cadastro-leftside">
-                    <div class="nome_fantasia">
-                        <label for="nome_fantasia_input">Nome Fantasia</label>
-                        <input type="text" id="nome_fantasia_input" placeholder="Vanessa Campos">
+        <div class="form-container">
+            <form class="form">
+                <span class="formTitle">Cadastro</span>
+                <div class="form-columns">
+                    <div class="form-column">
+                        <!-- <div class="form-group">
+                            <label for="nome_fantasia_input">Nome Fantasia</label>
+                            <input type="text" id="nome_fantasia_input" placeholder="Vanessa Campos">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="razao_social_input">Razão Social</label>
+                            <input type="text" id="razao_social_input" placeholder="Razão Social Ltda">
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="cnpj_input">CNPJ</label>
+                            <input type="text" id="cnpj_input" placeholder="00.000.000/0001-00">
+                        </div>
+                        <div class="form-group">
+                            <label for="representante_legal_input">Representante Legal</label>
+                            <input type="text" id="representante_legal_input" placeholder="João Silva">
+                        </div>
+                        <div class="form-group">
+                            <label for="email_cadastro_input">Email</label>
+                            <input type="email" id="email_cadastro_input" placeholder="empresa@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="estado_input">Estado</label>
+                            <input type="text" id="estado_input" placeholder="SP" maxlength="2">
+                        </div>
+                        <div class="form-group password-group">
+                            <label for="senha_cadastro_input">Senha</label>
+                            <div class="password-input">
+                                <input type="password" id="senha_cadastro_input" placeholder="*******">
+                                <i class="uil uil-eye-slash showHidePw"></i>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <div class="razao_social">
-                        <label for="razao_social_input">Razão Social</label>
-                        <input type="text" id="razao_social_input" placeholder="Razão Social Ltda">
-                    </div>
-                    <div class="codigo">
-                        <label for="codigo_input">Código</label>
-                        <input type="number" id="codigo_input" placeholder="12345">
-                    </div>
-                    <div class="cnpj">
-                        <label for="cnpj_input">CNPJ</label>
-                        <input type="text" id="cnpj_input" placeholder="00.000.000/0001-00">
-                    </div>
-                    <div class="representante_legal">
-                        <label for="representante_legal_input">Representante Legal</label>
-                        <input type="text" id="representante_legal_input" placeholder="João Silva">
-                    </div>
-                    <div class="email">
-                        <label for="email_cadastro_input">Email</label>
-                        <input type="email" id="email_cadastro_input" placeholder="empresa@email.com">
-                    </div>
-                    <div class="senha">
-                        <label for="senha_cadastro_input">Senha</label>
-                        <input type="password" id="senha_cadastro_input" placeholder="*******">
-                        <i class="uil uil-eye-slash showHidePw"></i>
+
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="cep_input">CEP</label>
+                            <input type="text" id="cep_input" placeholder="00000-000" maxlength="8">
+                        </div>
+                        <div class="form-group">
+                            <label for="numero_input">Número</label>
+                            <input type="number" id="numero_input" placeholder="123">
+                        </div>
+                        <div class="form-group">
+                            <label for="logradouro_input">Logradouro</label>
+                            <input type="text" id="logradouro_input" placeholder="Rua das Flores">
+                        </div>
+                        <div class="form-group">
+                            <label for="bairro_input">Bairro</label>
+                            <input type="text" id="bairro_input" placeholder="Centro">
+                        </div>
+                        <div class="form-group">
+                            <label for="cidade_input">Cidade</label>
+                            <input type="text" id="cidade_input" placeholder="São Paulo">
+                        </div>
+                        
+                        <div class="form-group password-group">
+                            <label for="senha_cadastro_input">Confirmar Senha</label>
+                            <div class="password-input">
+                                <input type="password" id="senha_cadastro_input" placeholder="*******">
+                                <i class="uil uil-eye-slash showHidePw"></i>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label for="codigo_input">Código</label>
+                            <input type="number" id="codigo_input" placeholder="12345">
+                        </div> -->
                     </div>
                 </div>
-                
-                <!-- Campos de endereço -->
-                <div class="cadastro-rigthside">
-                    <div class="cep">
-                        <label for="cep_input">CEP</label>
-                        <input type="text" id="cep_input" placeholder="00000-000" maxlength="8">
-                    </div>
-                    <div class="numero">
-                        <label for="numero_input">Número</label>
-                        <input type="number" id="numero_input" placeholder="123">
-                    </div>
-                    <div class="logradouro">
-                        <label for="logradouro_input">Logradouro</label>
-                        <input type="text" id="logradouro_input" placeholder="Rua das Flores">
-                    </div>
-                    <div class="bairro">
-                        <label for="bairro_input">Bairro</label>
-                        <input type="text" id="bairro_input" placeholder="Centro">
-                    </div>
-                    <div class="cidade">
-                        <label for="cidade_input">Cidade</label>
-                        <input type="text" id="cidade_input" placeholder="São Paulo">
-                    </div>
-                    <div class="estado">
-                        <label for="estado_input">Estado</label>
-                        <input type="text" id="estado_input" placeholder="SP" maxlength="2">
-                    </div>
-                    <button onclick="cadastrarEmpresa(event)">CADASTRAR</button>
-                </div>
-            </div>
-           
+                <button type="button" onclick="cadastrarEmpresa(event)" class="submit-btn">CADASTRAR</button>
+            </form>
         </div>
     </main>
 

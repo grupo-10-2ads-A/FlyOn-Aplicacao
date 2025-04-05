@@ -1,207 +1,182 @@
-html,
-body {
-    height: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* HEADER  */
+body {
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
 
+/* HEADER */
 header {
     background-color: #10004f;
     display: flex;
-    height: 80px;
+    height: 70px;
     border-bottom: 1px solid #efeae4;
     width: 100%;
     position: sticky;
     top: 0;
     left: 0;
     z-index: 1000;
+    padding: 0 2rem;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header .leftside {
     display: flex;
-    padding: 2%;
     align-items: center;
-    width: 50%;
-    justify-content: flex-start;
+}
+
+.leftside-icon{
+    padding: 5px;
+    width: 20px;
 }
 
 header .leftside span {
     color: #fff;
-    padding-left: 2%;
+    padding-left: 1rem;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
-    font-style: normal;
     font-size: 24px;
 }
 
 header .rigthside {
     display: flex;
-    align-items: center;
-    width: 50%;
-    justify-content: space-evenly;
+    gap: 2rem;
 }
 
 header .rigthside a {
     text-decoration: none;
     color: #fff;
-    font-family: "DM Sans", serif;
-    font-optical-sizing: auto;
+    font-family: "DM Sans", sans-serif;
     font-weight: 400;
-    font-style: normal;
     transition: text-decoration 0.3s ease;
 }
 
 header .rigthside a:hover {
-    cursor: pointer;
     text-decoration: underline;
 }
 
 /* MAIN */
 main {
+    flex: 1;
     display: flex;
     justify-content: center;
-    flex-grow: 1;
-    padding: 2%;
-    overflow: hidden;
+    align-items: center;
+    padding: 2rem;
 }
 
-main .form {
+.form-container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
     display: flex;
     flex-direction: column;
     background-color: #efeae4;
-    width: 50rem;
-    align-items: center;
     border-radius: 30px;
-    justify-content: center;
-    height: 70vh;
+    padding-inline: 2.5rem ;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: -10px;
 }
 
-main .form .formTitle {
-    display: flex;
-    justify-content: center;
+.formTitle {
     font-family: "Poppins", sans-serif;
     font-weight: bold;
-    font-style: normal;
-    font-size: 42px;
+    font-size: 2rem;
     color: #10004f;
-    /* padding: 5%; */
+    text-align: center;
+    
+
 }
 
-main .form .labelsInputs {
+.form-columns {
     display: flex;
-    flex-direction: row;
-    margin: 10px;
-    width: 50%;
-    /* padding-bottom: 5%; */
+    gap: 2rem;
 }
 
-.cadastro-rigthside, .cadastro-leftside{
-    width: 20rem;
-    margin: 10px;
+.form-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.form input{
-    width: 50px;
-}
-
-
-main .form .labelsInputs .cnpj {
+.form-group {
     display: flex;
     flex-direction: column;
 }
 
-main .form .labelsInputs label {
-    font-family: "DM Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
-    font-size: 11px;
-    padding-bottom: 2%;
+.form-group label {
+    font-size: 0.875rem;
+    color: #333;
+    font-weight: 500;
 }
 
-main .form .labelsInputs input {
-    font-family: "DM Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
+.form-group input {
+    padding: 0.50rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: border-color 0.3s;
     width: 100%;
-    padding: 3%;
 }
 
-main .form .labelsInputs .email {
+.form-group input:focus {
+    outline: none;
+    border-color: #10004f;
+}
+
+.password-group {
+    position: relative;
+}
+
+.password-input {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    /* padding-top: 5%; */
+    align-items: center;
 }
 
-main .form .labelsInputs .email label {
-    font-family: "DM Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
-    font-size: 11px;
-    padding-bottom: 2%;
+.password-input input {
+    padding-right: 2.5rem;
 }
 
-main .form .labelsInputs .email input {
-    font-family: "DM Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
-    width: 100%;
-    padding: 3%;
-
+.password-input .showHidePw {
+    position: absolute;
+    right: 0.75rem;
+    cursor: pointer;
+    color: #666;
 }
 
-main .form .labelsInputs .password {
-    display: flex;
-    flex-direction: column;
-    padding-top: 5%;
-}
-
-main .form .labelsInputs .password label {
-    font-family: "DM Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
-    font-size: 11px;
-    padding-top: 2%;
-}
-
-main .form .labelsInputs .password input {
-    font-family: "DM Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: bold;
-    font-style: normal;
-    width: 100%;
-    padding: 3%;
-}
-
-
-main .form button {
+.submit-btn {
     background-color: #ff004d;
     border: none;
     border-radius: 10px;
-    width: 10rem;
     color: #fff;
     font-family: "Poppins", sans-serif;
     font-weight: bold;
-    font-style: normal;
-    font-size: 15px;
-    padding: 10px;
-    align-self: center;
-    margin: 10px;
+    font-size: 1rem;
+    padding: 0.55rem;
+    width: 20%;
+    margin: 0.5rem auto 5px;
+    display: block;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-
+.submit-btn:hover {
+    background-color: #e00045;
+}
 
 /* FOOTER */
 footer {
@@ -209,12 +184,32 @@ footer {
     color: #fff;
     height: 60px;
     display: flex;
-    font-family: "DM Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: bold;
-    font-style: normal;
-    text-align: center;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+    font-family: "DM Sans", sans-serif;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .form-columns {
+        flex-direction: column;
+    }
+    
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+    }
+    
+    header .rigthside {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .form {
+        padding: 1.5rem;
+    }
 }
