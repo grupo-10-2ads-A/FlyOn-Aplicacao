@@ -70,10 +70,10 @@ create table registro (
 	constraint chk_classificacao check (classificacao in ('TRACE', 'WARN', 'INFO', 'SUCCESS'))
 );
 
-create table notificações (
+create table notificacoes (
 	id int primary key auto_increment,
-    data_hora datetime,
-    mensagem varchar(255)
+    	data_hora datetime,
+    	mensagem varchar(255)
 );
 
 -- select * from agencia;
