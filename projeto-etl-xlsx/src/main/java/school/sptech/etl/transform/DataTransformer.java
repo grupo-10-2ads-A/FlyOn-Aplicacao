@@ -2,28 +2,56 @@ package school.sptech.etl.transform;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DataTransformer {
 
-    public static List<Integer> transformData(List<String> numeros) {
-        // Aqui você pode aplicar regras de transformação, se necessário.
-        // Por exemplo: converter valores, formatar "strings", ou aplicar validações.
-        List<Integer> dados = new ArrayList<>();
+    public static List<String> returnDateTimes(List<String> rawData) {
+        List<String> dateTimes = new ArrayList<>();
 
-        for (String numero : numeros) {
+        dateTimes.add(rawData.get(0));
+        dateTimes.add(rawData.get(1));
+        dateTimes.add(rawData.get(2));
+        dateTimes.add(rawData.get(3));
 
-            try {
-                if(numero.contains(".")) {
-                    numero = numero.replace(".", "");
-                }
-                dados.add(Integer.parseInt(numero));
-            } catch (NumberFormatException e) {
-                System.err.println("Erro ao converter '" + numero + "' para inteiro. Ignorando esse valor.");
-            }
+        return transformDateTime(dateTimes);
+    }
+
+    public static List<String> transformDateTime(List<String> datasHoras) {
+        if (datasHoras == null || datasHoras.size() != 4) {
+            throw new IllegalArgumentException("Lista deve conter exatamente 4 elementos");
         }
 
-        System.out.println("Passei no DataTransformer");
-        System.out.println(dados);
-        return dados;
+        List<String> formatadas = new ArrayList<>();
+        DateTimeFormatter entrada = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter saida = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        for (String dh : datasHoras) {
+            if (dh == null || dh.trim().isEmpty()) {
+                formatadas.add(null);
+                continue;
+            }
+            LocalDateTime dataHora = LocalDateTime.parse(dh, entrada);
+            formatadas.add(dataHora.format(saida));
+        }
+
+//        System.out.println("Sucesso - Transformação das datas e horas concluída");
+        return formatadas;
+    }
+
+    public static Integer transfomDataInt(String assentos_comercializados) {
+//        System.out.println("Success - Transformação do número de assentos bem sucedida");
+        return Integer.parseInt(assentos_comercializados);
+    }
+
+    public static List<String> transformData(List<String> rawData) {
+        rawData.remove(3);
+        rawData.remove(2);
+        rawData.remove(1);
+        rawData.remove(0);
+        rawData.remove(rawData.size() - 1);
+
+        return rawData;
     }
 }
