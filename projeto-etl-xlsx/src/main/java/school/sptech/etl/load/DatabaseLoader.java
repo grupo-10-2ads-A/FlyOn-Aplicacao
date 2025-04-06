@@ -4,52 +4,85 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.List;
+import java.sql.SQLException;
 
 public class DatabaseLoader {
 
-    public static void loadData(List<String> cleanedDateTime, List<String> rawData, int assentos_comercializados) {
-        // Conectar ao banco de dados (exemplo com JDBC)
-        String url = "jdbc:mysql://localhost:3306/flyon";
-        String username = "root";
-        String password = "Suave2004@";
-        String query = "INSERT INTO historico_passagens(data_hora_partida_prevista, data_hora_partida_real, data_hora_chegada_prevista, data_hora_chegada_real, sigla_empresa_aerea, empresa_aerea, origem, destino, situacao_voo, situacao_partida, situacao_chegada, assentos_comercializados) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String URL = "jdbc:mysql://localhost:3306/flyon";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "Suave2004@";
+    private static final int BATCH_SIZE = 5;
 
-        try (Connection conn = DriverManager.getConnection(url, username, password);
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+    public static void loadData(List<List<String>> batchCleanedDateTime,
+                                List<List<String>> batchRawData,
+                                List<Integer> batchAssentos) {
 
-            String data_hora_partida_prevista = cleanedDateTime.get(0);
-            String data_hora_partida_real = cleanedDateTime.get(1);
-            String data_hora_chegada_prevista = cleanedDateTime.get(2);
-            String data_hora_chegada_real = cleanedDateTime.get(3);
-            String sigla_empresa_aerea = rawData.get(0);
-            String empresa_aerea = rawData.get(1);
-            String origem = rawData.get(2);
-            String destino = rawData.get(3);
-            String situacao_voo = rawData.get(4);
-            String situacao_partida = rawData.get(5);
-            String situacao_chegada = rawData.get(6);
+        Connection conn = null;
+        PreparedStatement stmt = null;
 
-            stmt.setString(1, data_hora_partida_prevista);
-            stmt.setString(2, data_hora_partida_real);
-            stmt.setString(3, data_hora_chegada_prevista);
-            stmt.setString(4, data_hora_chegada_real);
-            stmt.setString(5, sigla_empresa_aerea);
-            stmt.setString(6, empresa_aerea);
-            stmt.setString(7, origem);
-            stmt.setString(8, destino);
-            stmt.setString(9, situacao_voo);
-            stmt.setString(10, situacao_partida);
-            stmt.setString(11, situacao_chegada);
-            stmt.setInt(12, assentos_comercializados);
+        try {
+            // 1. Obter conexão e desabilitar autocommit
+            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            conn.setAutoCommit(false);
 
-            stmt.executeUpdate();
+            String query = "INSERT INTO historico_passagens(data_hora_partida_prevista, data_hora_partida_real, " +
+                    "data_hora_chegada_prevista, data_hora_chegada_real, sigla_empresa_aerea, " +
+                    "empresa_aerea, origem, destino, situacao_voo, situacao_partida, " +
+                    "situacao_chegada, assentos_comercializados) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            stmt = conn.prepareStatement(query);
 
-//            System.out.println("Dados carregados com sucesso!");
+            for (int i = 0; i < batchCleanedDateTime.size(); i++) {
+                List<String> cleanedDateTime = batchCleanedDateTime.get(i);
+                List<String> rawData = batchRawData.get(i);
+                Integer assentos = batchAssentos.get(i);
 
+                stmt.setString(1, cleanedDateTime.get(0));
+                stmt.setString(2, cleanedDateTime.get(1));
+                stmt.setString(3, cleanedDateTime.get(2));
+                stmt.setString(4, cleanedDateTime.get(3));
+                stmt.setString(5, rawData.get(0));
+                stmt.setString(6, rawData.get(1));
+                stmt.setString(7, rawData.get(2));
+                stmt.setString(8, rawData.get(3));
+                stmt.setString(9, rawData.get(4));
+                stmt.setString(10, rawData.get(5));
+                stmt.setString(11, rawData.get(6));
+                stmt.setInt(12, assentos);
 
-        } catch (Exception e) {
-            System.err.println("Erro ao carregar dados: " + e.getMessage());
+                stmt.addBatch(); // Adiciona ao batch
+
+                // Executa o batch quando atingir o tamanho definido
+                if (i > 0 && i % BATCH_SIZE == 0) {
+                    stmt.executeBatch();
+                    conn.commit();
+                    System.out.println("Commit parcial realizado - " + i + " registros inseridos");
+                }
+            }
+
+            // Executa o restante do batch
+            stmt.executeBatch();
+            conn.commit();
+            System.out.println("Commit final realizado - " + batchCleanedDateTime.size() + " registros inseridos");
+
+        } catch (SQLException e) {
+            // Rollback em caso de erro
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                    System.err.println("Transação revertida devido a erro");
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao reverter transação: " + ex.getMessage());
+                }
+            }
             e.printStackTrace();
+        } finally {
+            // Fechar recursos
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                System.err.println("Erro ao fechar conexão: " + e.getMessage());
+            }
         }
     }
 }
