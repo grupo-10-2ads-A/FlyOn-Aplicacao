@@ -1,7 +1,7 @@
 function cadastrarEmpresa(event) {
     event.preventDefault();
 
-    const nomeFantasia = document.getElementById("nome_fantasia_input").value;
+    
     const razaoSocial = document.getElementById("razao_social_input").value;
     const codigo = document.getElementById("codigo_input").value;
     const cnpj = document.getElementById("cnpj_input").value;
@@ -17,7 +17,7 @@ function cadastrarEmpresa(event) {
     const cidade = document.getElementById("cidade_input").value;
     const estado = document.getElementById("estado_input").value;
 
-    console.log(nomeFantasia, razaoSocial, codigo, cnpj, representanteLegal, email, senha, cep, numero, logradouro, bairro, cidade, estado);
+    console.log(razaoSocial, codigo, cnpj, representanteLegal, email, senha, cep, numero, logradouro, bairro, cidade, estado);
 
     fetch("/agencia/cadastrar", {
         method: "POST",
@@ -25,7 +25,6 @@ function cadastrarEmpresa(event) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            nome_fantasia: nomeFantasia,
             razao_social: razaoSocial,
             codigo: codigo,
             cnpj: cnpj,
