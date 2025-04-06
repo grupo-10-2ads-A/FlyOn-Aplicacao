@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
       let senha = document.getElementById("senha_cadastro_input").value;
       let representanteLegal = document.getElementById("representante_legal_input").value;
       let razaoSocial = document.getElementById("razao_social_input").value;
-      let codigo = document.getElementById("codigo_input").value;
 
        // Dados de endereço
        let cep = document.getElementById("cep_input").value;
@@ -25,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
        validarSenha(senha);
        validarRepresentanteLegal(representanteLegal);
        validarRazaoSocial(razaoSocial);
-       validarCodigo(codigo);
        validarEndereco(cep, numero, logradouro, bairro, cidade, estado);
   });
 });
@@ -121,15 +119,6 @@ function validarRazaoSocial(razaoSocial) {
       return true;
   } else {
       exibirMensagemErro("Erro: Razão social deve conter mais de 2 caracteres.");
-      return false;
-  }
-}
-
-function validarCodigo(codigo) {
-  if (codigo.trim().length > 0 && !isNaN(codigo)) {
-      return true;
-  } else {
-      exibirMensagemErro("Erro: Código deve ser um número válido.");
       return false;
   }
 }

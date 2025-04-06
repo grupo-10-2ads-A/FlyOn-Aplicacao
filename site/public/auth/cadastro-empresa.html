@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../style/popup.css">
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
         rel="stylesheet">
@@ -19,6 +20,13 @@
 </head>
     
 <body>
+    <div id="popup-sucesso" class="popup hidden">
+        <div class="popup-content">
+          <span class="popup-icon"><img src="../img/check (1).png" alt=""></span>
+          <p id="popup-mensagem">Cadastro realizado com sucesso!</p>
+        </div>
+      </div>
+          
     <header>
         <div class="leftside">
             <a class="leftside-icon" href="../index.html"><img src="../img/logoicon.png" alt=""></a>
@@ -40,6 +48,10 @@
                 <div class="form-columns">
                     <div class="form-column">
                         <div class="form-group">
+                            <label for="nome_fantasia_input">Nome Fantasia</label>
+                            <input type="text" id="nome_fantasia_input" placeholder="mc donalds">
+                        </div>
+                        <div class="form-group">
                             <label for="razao_social_input">Razão Social</label>
                             <input type="text" id="razao_social_input" placeholder="Razão Social Ltda">
                         </div>
@@ -60,13 +72,7 @@
                             <label for="estado_input">Estado</label>
                             <input type="text" id="estado_input" placeholder="SP" maxlength="2">
                         </div>
-                        <div class="form-group password-group">
-                            <label for="senha_cadastro_input">Senha</label>
-                            <div class="password-input">
-                                <input type="password" id="senha_cadastro_input" placeholder="*******">
-                                <i class="uil uil-eye-slash showHidePw"></i>
-                            </div>
-                        </div>
+                     
                         
                     </div>
 
@@ -93,12 +99,13 @@
                         </div>
                         
                         <div class="form-group password-group">
-                            <label for="senha_cadastro_input">Confirmar Senha</label>
+                            <label for="senha_cadastro_input">Senha</label>
                             <div class="password-input">
                                 <input type="password" id="senha_cadastro_input" placeholder="*******">
                                 <i class="uil uil-eye-slash showHidePw"></i>
                             </div>
                         </div>
+                    
                     </div>
                 </div>
                 <button type="button" onclick="cadastrarEmpresa(event)" class="submit-btn">CADASTRAR</button>

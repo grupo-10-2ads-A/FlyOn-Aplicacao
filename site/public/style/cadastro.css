@@ -178,6 +178,31 @@ main {
     background-color: #e00045;
 }
 
+.showHidePw {
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.showHidePw:active {
+    transform: scale(1.2);
+}
+
+.uil-eye,
+.uil-eye-slash {
+    transition: all 0.3s ease;
+}
+
+.blink {
+    animation: blinkAnim 0.15s ease-in-out;
+}
+
+@keyframes blinkAnim {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+
 /* FOOTER */
 footer {
     background-color: #10004f;

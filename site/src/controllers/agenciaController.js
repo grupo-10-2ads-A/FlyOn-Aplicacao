@@ -3,18 +3,18 @@ var database = require("../database/config");
 function cadastrarAgencia(req, res) {
     console.log("Iniciando validação das informações...");
 
-    var { representante_legal, codigo, razao_social, cnpj, email, senha, endereco } = req.body;
+    var { nome_fantasia, representante_legal, codigo, razao_social, cnpj, email, senha, endereco } = req.body;
     var { cep, numero, logradouro, bairro, cidade, estado } = endereco;
 
-    if ( !email || !senha || !cnpj || !codigo || !representante_legal || !razao_social || !cep || !numero || !logradouro || !bairro || !cidade || !estado) {
+    if (!nome_fantasia || !email || !senha || !cnpj || !codigo || !representante_legal || !razao_social || !cep || !numero || !logradouro || !bairro || !cidade || !estado) {
         console.log("Erro: Campos obrigatórios não preenchidos.");
         return res.status(400).json({ erro: "Todos os campos são obrigatórios." });
     }
 
     // Primeira Query: Inserção na tabela agencia
     var instrucaoSqlAgencia = `
-        INSERT INTO agencia (codigo, cnpj, razao_social, representante_legal) 
-        VALUES ('${codigo}', '${cnpj}', '${razao_social}', '${representante_legal}');
+        INSERT INTO agencia (codigo, cnpj, nome_fantasia, razao_social, representante_legal) 
+        VALUES ('${codigo}', '${cnpj}', '${nome_fantasia}', '${razao_social}', '${representante_legal}');
     `;
 
     database.executar(instrucaoSqlAgencia)
