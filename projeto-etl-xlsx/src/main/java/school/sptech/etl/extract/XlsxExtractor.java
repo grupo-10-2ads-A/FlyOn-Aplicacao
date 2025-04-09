@@ -2,63 +2,102 @@ package school.sptech.etl.extract;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.text.SimpleDateFormat;
 
 public class XlsxExtractor {
 
-    public static List<String> extractData(String filePath) throws IOException {
+    public static Integer returnTotalRows(String filePath) throws IOException {
         FileInputStream file = new FileInputStream(new File(filePath));
         Workbook workbook = new XSSFWorkbook(file);
         Sheet sheet = workbook.getSheetAt(0);  // Assumindo que os dados estão na primeira aba
 
         Iterator<Row> rowIterator = sheet.iterator();
-        List<String> res = new ArrayList();
+        int totalRow = 0;
+
         while (rowIterator.hasNext()) {
-            Row row = rowIterator.next();
-
-            // A primeira linha pode conter os cabeçalhos
-            if (row.getRowNum() == 0) continue;
-
-            String natureza = row.getCell(0).getStringCellValue();
-            String janeiro = row.getCell(1).getStringCellValue();
-            String fevereiro = row.getCell(2).getStringCellValue();
-            String marco = row.getCell(3).getStringCellValue();
-            String abril = row.getCell(4).getStringCellValue();
-            String maio = row.getCell(5).getStringCellValue();
-            String junho = row.getCell(6).getStringCellValue();
-            String julho = row.getCell(7).getStringCellValue();
-            String agosto = row.getCell(8).getStringCellValue();
-            String setembro = row.getCell(9).getStringCellValue();
-            String outubro = row.getCell(10).getStringCellValue();
-            String novembro = row.getCell(11).getStringCellValue();
-            String dezembro = row.getCell(12).getStringCellValue();
-            String total = row.getCell(13).getStringCellValue();
-
-            res.add(natureza);
-            res.add(janeiro);
-            res.add(fevereiro);
-            res.add(marco);
-            res.add(abril);
-            res.add(maio);
-            res.add(junho);
-            res.add(julho);
-            res.add(agosto);
-            res.add(setembro);
-            res.add(outubro);
-            res.add(novembro);
-            res.add(dezembro);
-            res.add(total);
-
-            System.out.println("passou");
+            rowIterator.next();
+            totalRow++;
         }
+
+        workbook.close();
+        file.close();
+
+        return totalRow;
+    }
+
+    public static List<String> extractData(String filePath, int currentRow) throws IOException {
+        FileInputStream file = new FileInputStream(new File(filePath));
+        Workbook workbook = new XSSFWorkbook(file);
+        Sheet sheet = workbook.getSheetAt(0);  // Assumindo que os dados estão na primeira aba
+
+        List<String> res = new ArrayList();
+        Row row = sheet.getRow(currentRow);
+
+        row.getCell(6).setCellType(CellType.STRING);
+
+        String data_hora_partida_prevista = formatarDataHoraCelula(row.getCell(9));
+        String data_hora_partida_real = formatarDataHoraCelula(row.getCell(10));
+        String data_hora_chegada_prevista = formatarDataHoraCelula(row.getCell(13));
+        String data_hora_chegada_real = formatarDataHoraCelula(row.getCell(14));
+        String sigla_empresa_aerea = formatarSeNulo(row.getCell(0));
+        String empresa_aerea = formatarSeNulo(row.getCell(1));
+        String origem = formatarSeNulo(row.getCell(8));
+        String destino = formatarSeNulo(row.getCell(12));
+        String situacao_voo = formatarSeNulo(row.getCell(15));
+        String situacao_partida = formatarSeNulo(row.getCell(18));
+        String situacao_chegada = formatarSeNulo(row.getCell(19));
+        String assentos_comercializados = formatarSeNulo(row.getCell(6));
+
+        Collections.addAll(res,
+                data_hora_partida_prevista,
+                data_hora_partida_real,
+                data_hora_chegada_prevista,
+                data_hora_chegada_real,
+                sigla_empresa_aerea,
+                empresa_aerea,
+                origem,
+                destino,
+                situacao_voo,
+                situacao_partida,
+                situacao_chegada,
+                assentos_comercializados
+        );
+
         workbook.close();
         file.close();
 
         return res;
+    }
+
+    private static String formatarSeNulo(Cell cell) {
+        if (cell == null) {
+            return null;
+        }
+
+        return cell.getStringCellValue();
+    }
+
+    public static String formatarDataHoraCelula(Cell cell) {
+        if (cell == null) {
+            return null;
+        }
+
+        // Verifica se a célula contém uma data
+        if (cell.getCellType() == CellType.NUMERIC && DateUtil.isCellDateFormatted(cell)) {
+            // Cria um formatador de data
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+            // Obtém o valor da data e formata
+            Date data = cell.getDateCellValue();
+            return dateFormat.format(data);
+        }
+
+        // Se não for uma data, retorna o valor como string
+        return cell.toString();
     }
 }

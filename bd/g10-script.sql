@@ -37,17 +37,20 @@ create table usuario (
     constraint fk_usuario_agencia foreign key (fk_agencia) references agencia(idAgencia) on delete cascade
 );
 
-
 create table historico_passagens (
 id int primary key auto_increment,
-ano int not null,
-mes int not null,
+data_hora_partida_prevista datetime,
+data_hora_partida_real datetime,
+data_hora_chegada_prevista datetime,
+data_hora_chegada_real datetime,
+sigla_empresa_aerea char(3) not null,
 empresa_aerea varchar(100) not null,
-origem varchar(100) not null,
-destino varchar(100) not null,
-tarifa double not null,
-assentos_comercializados int not null,
-constraint chk_mes check (mes > 0 and mes < 13)
+origem varchar(500) not null,
+destino varchar(500) not null,
+situacao_voo varchar(14),
+situacao_partida varchar(14),
+situacao_chegada varchar(14),
+assentos_comercializados int
 );
 
 create table prefil_cliente (

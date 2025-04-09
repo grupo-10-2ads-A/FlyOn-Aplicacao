@@ -3,7 +3,7 @@ function cadastrarEmpresa(event) {
 
     const nomeFantasia = document.getElementById("nome_fantasia_input").value;
     const razaoSocial = document.getElementById("razao_social_input").value;
-    const codigo = document.getElementById("codigo_input").value;
+    const codigo = Math.floor(10000 + Math.random() * 90000);
     const cnpj = document.getElementById("cnpj_input").value;
     const representanteLegal = document.getElementById("representante_legal_input").value;
     const email = document.getElementById("email_cadastro_input").value;
@@ -46,7 +46,7 @@ function cadastrarEmpresa(event) {
         if (resposta.ok) {
             exibirMensagemSucesso("Cadastro realizado com sucesso! Redirecionando...");
             setTimeout(() => {
-                window.location.href = "./auth/login.html"; 
+                window.location.href = "login.html"; 
             }, 2000); 
             limparFormularioCadastro();
         } else {
@@ -57,4 +57,37 @@ function cadastrarEmpresa(event) {
     .catch((erro) => {
         exibirMensagemErro("Erro ao realizar o cadastro. Tente novamente.");
     });
+}
+
+
+function exibirMensagemSucesso(mensagem) {
+    const popup = document.getElementById("popup-sucesso");
+    const mensagemElemento = document.getElementById("popup-mensagem");
+
+    mensagemElemento.textContent = mensagem;
+    popup.classList.remove("hidden");
+    popup.classList.add("show");
+
+
+    setTimeout(() => {
+        popup.classList.remove("show");
+        popup.classList.add("hidden");
+        window.location.href = "login.html";
+    }, 2000);
+}
+
+function exibirMensagemErro(mensagem) {
+    const popup = document.getElementById("popup");
+    const popupMsg = document.getElementById("popup-message");
+
+    popupMsg.innerText = mensagem;
+    popup.classList.add("show");
+
+    setTimeout(() => {
+        popup.classList.remove("show");
+    }, 3000);
+}
+
+function limparFormularioCadastro() {
+    document.querySelector(".form").reset();
 }
