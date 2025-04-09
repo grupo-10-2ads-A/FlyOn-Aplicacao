@@ -11,7 +11,6 @@ public class DatabaseLoader {
     private static final String URL = "jdbc:mysql://localhost:3306/flyon";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "Suave2004@";
-    private static final int BATCH_SIZE = 5;
 
     public static void loadData(List<List<String>> batchCleanedDateTime,
                                 List<List<String>> batchRawData,
@@ -21,7 +20,7 @@ public class DatabaseLoader {
         PreparedStatement stmt = null;
 
         try {
-            // 1. Obter conexão e desabilitar autocommit
+            // Conexão e desabilita autocommit
             conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             conn.setAutoCommit(false);
 
@@ -49,20 +48,12 @@ public class DatabaseLoader {
                 stmt.setString(11, rawData.get(6));
                 stmt.setInt(12, assentos);
 
-                stmt.addBatch(); // Adiciona ao batch
-
-                // Executa o batch quando atingir o tamanho definido
-                if (i > 0 && i % BATCH_SIZE == 0) {
-                    stmt.executeBatch();
-                    conn.commit();
-                    System.out.println("Commit parcial realizado - " + i + " registros inseridos");
-                }
+                stmt.addBatch(); // Adiciona tudo de uma vez
             }
 
-            // Executa o restante do batch
-            stmt.executeBatch();
-            conn.commit();
-            System.out.println("Commit final realizado - " + batchCleanedDateTime.size() + " registros inseridos");
+            stmt.executeBatch(); // Executa todo o lote
+            conn.commit();       // Commit único
+            System.out.println("Commit realizado - " + batchCleanedDateTime.size() + " registros inseridos");
 
         } catch (SQLException e) {
             // Rollback em caso de erro
@@ -76,7 +67,7 @@ public class DatabaseLoader {
             }
             e.printStackTrace();
         } finally {
-            // Fechar recursos
+            // Fecha tudo
             try {
                 if (stmt != null) stmt.close();
                 if (conn != null) conn.close();

@@ -18,7 +18,7 @@ public class XlsxExtractor {
     public static Integer returnTotalRows(String filePath) throws IOException {
         initWorkbookCache(filePath);
         Sheet sheet = cachedWorkbook.getSheetAt(0);
-        return sheet.getLastRowNum() + 1; // +1 porque é 0-based
+        return sheet.getLastRowNum();
     }
 
     public static List<String> extractData(String filePath, int currentRow) throws IOException {
@@ -26,7 +26,7 @@ public class XlsxExtractor {
         Sheet sheet = cachedWorkbook.getSheetAt(0);
         Row row = sheet.getRow(currentRow);
 
-        // Seu código original mantido exatamente igual a partir daqui
+
         List<String> res = new ArrayList();
 
         if (row != null) {

@@ -9,9 +9,9 @@ import java.util.List;
 
 public class EtlProcess {
 
-    private static final int TEST_LIMIT = 10000;       // 100 linhas
-    private static final int EXTRACT_BATCH_SIZE = 100; // Lê 50 linhas do Excel por vez
-        private static final int  DB_BATCH_SIZE = 50;      // Insere 10 linhas no banco por lote
+    private static final int TEST_LIMIT = 500;       // Limite de 500 linhas
+    private static final int EXTRACT_BATCH_SIZE = 50; // Lê 50 linhas do Excel por vez
+    private static final int  DB_BATCH_SIZE = 10;      // Insere 10 linhas no banco por lote
 
     public static void main(String[] args) {
 
