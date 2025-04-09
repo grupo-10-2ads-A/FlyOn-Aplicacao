@@ -31,11 +31,12 @@ header {
 header .leftside {
     display: flex;
     align-items: center;
+    justify-content: space-around;
+    width: 150px;
 }
 
 .leftside-icon{
-    padding: 5px;
-    width: 20px;
+    width: 50px;
 }
 
 header .leftside span {
@@ -49,6 +50,8 @@ header .leftside span {
 header .rigthside {
     display: flex;
     gap: 2rem;
+    width: 40vw;
+    justify-content: space-evenly;
 }
 
 header .rigthside a {
@@ -96,8 +99,6 @@ main {
     font-size: 2rem;
     color: #10004f;
     text-align: center;
-    
-
 }
 
 .form-columns {
