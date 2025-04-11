@@ -23,8 +23,8 @@ public class EtlProcess {
 
             // Baixar arquivo do S3
             S3Downloader.downloadFile(
-                    "nome-do-seu-bucket",         // <- Trocar pelo nome real do bucket
-                    "caminho/no/bucket/VRA_2022_01.xlsx", // <- Caminho/Key no S3
+                    "s3-raw-flyon",         // <- Trocar pelo nome real do bucket
+                    "VRA_2022_01.xlsx", // <- Caminho/Key no S3
                     localFilePath
             );
 
