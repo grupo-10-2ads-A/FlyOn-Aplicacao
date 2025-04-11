@@ -1,6 +1,6 @@
 package school.sptech.etl.extract;
 
-import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
+import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
@@ -18,7 +18,7 @@ public class S3Downloader {
         // Cria e inicializa um cliente S3 com a região e credenciais do perfil local da AWS
         try (S3Client s3 = S3Client.builder()
                 .region(region)
-                .credentialsProvider(ProfileCredentialsProvider.create()) // Usa as credenciais configuradas localmente (no ~/.aws/credentials)
+                .credentialsProvider(DefaultCredentialsProvider.create()) // Usa as credenciais configuradas localmente (no ~/.aws/credentials)
                 .build()) {
 
             // Cria uma requisição para pegar o objeto (arquivo) no bucket com o nome da chave fornecida
