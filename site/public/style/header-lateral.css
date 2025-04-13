@@ -10,6 +10,16 @@ body {
     min-height: 100vh;
 }
 
+main {
+    margin: 0;
+    padding: 0;
+    background-color: #EDEDED;
+}
+
+a {
+    text-decoration: none;
+}
+
   /*======================= HEADER LATERAL ======================*/
 
 header {
@@ -48,6 +58,7 @@ header button {
     align-items: center;
     padding: 0 10px;
     transition: background 0.3s;
+    cursor: pointer;
 }
 
 /* item mostrando na página */

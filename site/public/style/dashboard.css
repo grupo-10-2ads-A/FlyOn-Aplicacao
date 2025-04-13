@@ -6,6 +6,10 @@ main {
     background-color: #EDEDED;
 }
 
+a{
+    text-decoration: none;
+}
+
 /* INICIO CABEÇALHO ================================================================================== */
   
 .cabecalho {

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+            rel="stylesheet">
+    <link rel="stylesheet" href="./style/header-lateral.css">
+    <link rel="stylesheet" href="./style/./gerenciamento.css">
+    
+    
+    <script src="./js/menuLateral.js"></script>
+    
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <title>FlyOn | Central de Gerenciamento</title>
+</head>
+<body>
+
+    <header>
+        
+        <div>
+        <button onclick="mostrarItenMenu()">
+            <img src="./img/icons8-hamburguer.svg" alt="Menu" />
+        </button>
+        </div>
+        
+        <div class="menu-itens">
+            <a class="menu-item">
+            <img src="./img/icons-menu-lateral/home.png" alt="Voltar para o início" />
+            <span>Início</span>
+            </a>
+        
+            <a class="menu-item" href="./dashboard.html">
+                <img src="./img/icons-menu-lateral/aviao.png" alt="Dados de vôos" />
+                 <span>Voos</span>
+            </a>
+        
+            <a class="menu-item">
+            <img src="./img/icons-menu-lateral/sino.png" alt="Notificações" />
+            <span>Notificações</span>
+            </a>
+        
+            <a class="menu-item ativo">
+            <img src="./img/icons-menu-lateral/config-engrenagem.png" alt="Configurações" />
+            <span>Configurações</span>
+            </a>
+        
+            <a class="menu-item">
+            <img src="./img/icons-menu-lateral/logout.png" alt="Sair" />
+            <span>Sair</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="cabecalho">
+            <div class="filtro-branco"></div>
+            <div class="conteudo-cabecalho">
+              <h2 class="titulo">CENTRAL DE GERENCIAMENTO <img class="titulo-icone" src="./img/icon-quatro-quadrados-100px.png" alt=""> </h2>
+              <span></span>
+            </div>
+        </div>
+        
+        <div class="cards">
+            <div class="card">
+                <img src="./img/avatar-100px.png" alt="">
+                <h3>Gerenciamento de Usuários</h3>
+            </div>
+
+            <div class="card">
+                <img src="./img/carteira-de-identidade.png" alt="">
+                <h3>Gerenciamento de Perfis</h3>
+            </div>
+
+            <div class="card">
+                <img src="./img/sino-rosa.png" alt="">
+                <h3>Gerenciamento de Notificações</h3>
+            </div>
+
+            <div class="card">
+                <img src="./img/carteira-de-identidade.png" alt="">
+                <h3>CRUD 3 AINDA NÃO DEFINIDO</h3>
+            </div>
+        </div>
+
+    </main>
+
+
+
+    
+</body>
+</html>
