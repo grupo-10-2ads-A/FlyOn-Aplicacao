@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    min-height: 100vh;
+}
+
+  /*======================= HEADER LATERAL ======================*/
+
+header {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    background-color: #10004f;
+    width: 80px;
+    transition: width 0.4s ease;
+    overflow-x: hidden;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+header.expandido {
+    width: 200px;
+}
+
+header button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.menu-itens {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 90px); /* 60px é a altura do botão menu no topo */
+}
+  
+.menu-item {
+    flex: 1; /* Cada item ocupa o mesmo espaço vertical */
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    transition: background 0.3s;
+}
+
+/* item mostrando na página */
+.ativo{
+    background-color: #ff004d;
+}
+/* ========================= */
+
+.menu-item:hover {
+    background-color: #f3497ced;
+}
+
+.menu-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    margin-left: 15px;
+    flex-shrink: 0;
+}
+
+.menu-item span {
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+header.expandido .menu-item span {
+    opacity: 1;
+    transform: translateX(0);
+    color: #FFFFFF;
+}
+  
+header.expandido ~ main {
+    margin-right: 200px;
+}
+/* ================= FIM DO HEADER LATERAL====================== */
+    
+main {
+    flex: 1;
+    padding: 20px;
+    margin-right: 60px;
+    transition: margin-right 0.4s ease;
+}
