@@ -35,7 +35,7 @@ create table usuario (
     constraint fk_usuario_agencia foreign key (fk_agencia) references agencia(idAgencia) on delete cascade
 );
 
-create table prefil_cliente (
+create table perfil_cliente (
 	id int auto_increment,
     fk_agencia int,
 	perfil varchar(45) not null,
@@ -49,7 +49,7 @@ create table prefil_cliente (
 	constraint chk_menos_atrasos check (menos_atrasos in (0, 1))
 );
 
-create table notificações (
+create table notificacoes (
 	id int auto_increment,
     fk_agencia int,
     data_hora datetime not null,
