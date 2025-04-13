@@ -1,0 +1,225 @@
+body {
+    font: 100% system-ui, sans-serif;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    transition: background-color 0.4s ease, box-shadow 0.3s ease;
+    background-color: transparent;
+}
+
+.navbar.scrolled {
+    background-color: #10004f; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.leftside,
+.rightside {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.leftside img {
+    height: 40px;
+}
+
+.brand {
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: white;
+}
+
+.rightside a {
+    text-decoration: none;
+    font-weight: 500;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.rightside a:hover {
+    color: #ff004d;
+}
+
+@media screen and (min-width: 640px) {
+.cabecalho_mobile-menu-icon{
+    display: none;
+}
+.cabecalho_mobile-menu{
+    display: none;
+}
+
+}
+
+@media screen and (max-width: 630px) {
+
+    .rightside{
+        display: none;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+    /* HEADER RESPONSIVO */
+        
+    header {
+        height: 17vh;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
+        text-align: center;
+        position: relative;
+        font-family: "Poppins", sans-serif;
+        font-weight: bold;
+        font-style: normal;
+    }
+    
+    header .rigthside {
+        display: none;
+    }
+    
+    .cabecalho_mobile-menu-icon {
+        display: block;
+        padding: 2%;
+    }
+    
+    .cabecalho_mobile-menu-button {
+        height: 50px;
+        margin-top: 20px;
+        background-color: transparent;
+        border: solid 2px #fff;
+        border-radius: 10px;
+        padding-inline: 2px;
+    }    
+        
+    .cabecalho_menu-icon-img {
+        width: 3rem;
+    }
+    
+    .cabecalho_mobile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #333;
+        padding: 10px;
+        z-index: 10;
+    }
+    
+    .cabecalho_mobile-menu.open {
+        display: block; 
+        background-color: #0986cb;
+        border-top: white 1px solid;
+        border-bottom: white 1px solid;
+        border-radius: 5px;
+    }
+    
+    .cabecalho_mobile-menu .rigthside_responsivo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cabecalho_mobile-menu .rigthside_responsivo a{
+        text-decoration: none;
+        color: #fff;
+    }
+    
+    .cabecalho_mobile-menu .rigthside_responsivo span {
+        margin: 10px 0;
+    }
+}
+
+.branco {
+    color: #ff004d;
+}
+
+.hero {
+    position: relative;
+    background-image: url(../img/asa-1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 850px;
+}
+
+.hero_content {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    right: 65%;
+    transform: translate(0%, -50%);
+    transition: all ease 0.3s;
+}
+
+.hero_content h1 {
+    font-size: 60px;
+    margin: 0;
+    font-weight: 900;
+    color: #0986cb;
+}
+
+.explore {
+    text-align: right;
+}
+
+
+.explore-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.saiba_mais {
+    cursor: pointer;
+    margin: 1rem;
+    color: white;
+    font-weight: bolder;
+    border: none;
+    background-color: #ff004d;
+    border-radius: 30px;
+    width: 120px;
+    height: 50px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+p {
+    margin: 0;
+    font-size: 15px;
+}
+
+a {
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width: 1090px) {
+    h1 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 700px) {
+    .hero_content {
+        background-color: #fcfcfc93;
+        width: 400px;
+        padding: 20px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .explore {
+        text-align: center;
+    }
+}
