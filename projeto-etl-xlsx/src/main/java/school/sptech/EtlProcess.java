@@ -22,18 +22,24 @@ public class EtlProcess {
     public static void main(String[] args) {
 
         try {
-            // 1. Definir caminho absoluto explicitamente
-            String localFilePath = Paths.get("base_dados/VRA_2022_01.xlsx")
-                    .toAbsolutePath()
-                    .toString();
+            String localFilePath = Paths.get("base_dados/VRA_2022_01.xlsx").toAbsolutePath().toString();
+            System.out.println("[ETL] Caminho absoluto: " + localFilePath);
 
-            System.out.println("[ETL] Caminho absoluto definido: " + localFilePath);
+            // Verifica/Cria diretório
+            Files.createDirectories(Paths.get(localFilePath).getParent());
 
-            // 2. Forçar limpeza prévia do diretório
-            Path path = Paths.get(localFilePath);
-            if (Files.exists(path)) {
-                System.out.println("[ETL] Removendo arquivo existente...");
-                Files.delete(path);
+            // Download do S3 (adicione logs)
+            System.out.println("[ETL] Iniciando download do S3...");
+            S3Downloader.downloadFile(
+                    "s3-raw-flyon",
+                    "VRA_2022_01.xlsx",
+                    localFilePath
+            );
+            System.out.println("[ETL] Download concluído. Verificando arquivo...");
+
+            // Verifica se o arquivo existe
+            if (!Files.exists(Paths.get(localFilePath))) {
+                throw new RuntimeException("Arquivo não foi baixado corretamente");
             }
 
                 try {
@@ -94,9 +100,10 @@ public class EtlProcess {
                     System.err.println("Erro no ETL:");
                     e.printStackTrace();
                 }
-            } catch (Exception e){
-                throw new RuntimeException(e);
-            }
+        } catch (Exception e) {
+            System.err.println("[ERRO] Falha no processo: " + e.getMessage());
+            e.printStackTrace();
+        }
         }
     }
 

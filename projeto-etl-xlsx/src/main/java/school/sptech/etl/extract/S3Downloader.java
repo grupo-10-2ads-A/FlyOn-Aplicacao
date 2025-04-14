@@ -23,22 +23,20 @@ public class S3Downloader {
 
 
         try {
-            // 1. Garantir que o diretório existe
+            Path path = Paths.get(destinationPath);
+            System.out.println("[S3] Tentando salvar em: " + path.toAbsolutePath());
+
+            // Verifica diretório
             Files.createDirectories(path.getParent());
+            System.out.println("[S3] Diretório verificado/criado");
 
-            // 2. Deletar arquivo existente se houver
-            if (Files.exists(path)) {
-                System.out.println("[DEBUG] Arquivo existente encontrado, deletando...");
-                Files.delete(path);
-            }
-
-            // 3. Configurar cliente S3
+            // Download
             S3Client s3 = S3Client.builder()
-                    .region(region)
+                    .region(Region.US_EAST_1)
                     .credentialsProvider(DefaultCredentialsProvider.create())
                     .build();
 
-            // 4. Fazer download com tratamento explícito de sobrescrita
+            System.out.println("[S3] Iniciando download...");
             s3.getObject(
                     GetObjectRequest.builder()
                             .bucket(bucketName)
@@ -46,8 +44,8 @@ public class S3Downloader {
                             .build(),
                     ResponseTransformer.toFile(path)
             );
-
-            System.out.println("[SUCESSO] Arquivo baixado para: " + path);
+            System.out.println("[S3] Download concluído. Tamanho: " +
+                    Files.size(path) + " bytes");
 
         } catch (S3Exception e) {
             System.err.println("[ERRO S3] " + e.awsErrorDetails().errorMessage());
