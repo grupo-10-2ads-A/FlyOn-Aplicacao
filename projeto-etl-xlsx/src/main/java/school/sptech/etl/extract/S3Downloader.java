@@ -10,52 +10,47 @@ import software.amazon.awssdk.services.s3.model.S3Exception;
 import java.io.IOException;
 import java.nio.file.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class S3Downloader {
 
     // Método responsável por baixar um arquivo do S3 para um caminho local
     public static void downloadFile(String bucketName, String key, String destinationPath) {
-        // Define a região onde seu bucket está hospedado
+        // Define a região onde seu bucket está hospedado — US_EAST_1 = EUA - Norte da Virginia
         Region region = Region.US_EAST_1;
 
         // Cria e inicializa um cliente S3 com a região e credenciais do perfil local da AWS
-        Path path = Paths.get(destinationPath).toAbsolutePath();
-        System.out.println("[DEBUG] Tentando salvar em: " + path);
+        try (S3Client s3 = S3Client.builder()
+                .region(region)
+                .credentialsProvider(DefaultCredentialsProvider.create()) // Usa as credenciais configuradas localmente (no ~/.aws/credentials)
+                .build()) {
 
-
-        try {
+            // Deleta o arquivo local caso ele já exista
             Path path = Paths.get(destinationPath);
-            System.out.println("[S3] Tentando salvar em: " + path.toAbsolutePath());
+            if (Files.exists(path)) {
+                Files.delete(path);
+            }
 
-            // Verifica diretório
-            Files.createDirectories(path.getParent());
-            System.out.println("[S3] Diretório verificado/criado");
-
-            // Download
-            S3Client s3 = S3Client.builder()
-                    .region(Region.US_EAST_1)
-                    .credentialsProvider(DefaultCredentialsProvider.create())
+            // Cria uma requisição para pegar o objeto (arquivo) no bucket com o nome da chave fornecida
+            GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+                    .bucket(bucketName) // Nome do bucket no S3
+                    .key(key)           // Nome do arquivo dentro do bucket (ex: pasta/arquivo.xlsx)
                     .build();
 
-            System.out.println("[S3] Iniciando download...");
-            s3.getObject(
-                    GetObjectRequest.builder()
-                            .bucket(bucketName)
-                            .key(key)
-                            .build(),
-                    ResponseTransformer.toFile(path)
-            );
-            System.out.println("[S3] Download concluído. Tamanho: " +
-                    Files.size(path) + " bytes");
+            // Executa o download do arquivo, salvando localmente no caminho especificado
+            s3.getObject(getObjectRequest, path);
+
+            // Mensagem de sucesso no console
+            System.out.println("Arquivo baixado do S3 com sucesso para: " + destinationPath);
 
         } catch (S3Exception e) {
-            System.err.println("[ERRO S3] " + e.awsErrorDetails().errorMessage());
-            throw new RuntimeException("Falha no download do S3", e);
-        } catch (FileAlreadyExistsException e) {
-            System.err.println("[ERRO] Arquivo já existe e não pôde ser sobrescrito: " + path);
-            throw new RuntimeException("Conflito de arquivo existente", e);
+            // Captura e exibe erros relacionados ao S3 (como arquivo não encontrado, sem permissão, etc.)
+            System.err.println("Erro ao baixar arquivo do S3: " + e.awsErrorDetails().errorMessage());
         } catch (IOException e) {
-            System.err.println("[ERRO IO] " + e.getMessage());
-            throw new RuntimeException("Falha ao manipular arquivo local", e);
+            // Captura e exibe erros ao tentar deletar o arquivo existente
+            System.err.println("Erro ao deletar arquivo existente: " + e.getMessage());
         }
     }
 }
