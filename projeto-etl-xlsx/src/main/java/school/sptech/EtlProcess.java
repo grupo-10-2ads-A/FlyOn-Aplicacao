@@ -6,6 +6,7 @@ import school.sptech.etl.transform.DataTransformer;
 import school.sptech.etl.extract.S3Downloader;
 
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -21,19 +22,19 @@ public class EtlProcess {
     public static void main(String[] args) {
 
         try {
-            // 1. Configuração do caminho do arquivo
-            String localFilePath = "base_dados/VRA_2022_01.xlsx";
-            Path absolutePath = Paths.get(localFilePath).toAbsolutePath();
+            // 1. Definir caminho absoluto explicitamente
+            String localFilePath = Paths.get("base_dados/VRA_2022_01.xlsx")
+                    .toAbsolutePath()
+                    .toString();
 
-            System.out.println("[ETL] Iniciando processo...");
-            System.out.println("[DEBUG] Arquivo será salvo em: " + absolutePath);
+            System.out.println("[ETL] Caminho absoluto definido: " + localFilePath);
 
-            // 2. Download do arquivo do S3
-            S3Downloader.downloadFile(
-                    "s3-raw-flyon",          // Nome do bucket
-                    "VRA_2022_01.xlsx",       // Chave do arquivo no S3
-                    localFilePath             // Caminho local de destino
-            );
+            // 2. Forçar limpeza prévia do diretório
+            Path path = Paths.get(localFilePath);
+            if (Files.exists(path)) {
+                System.out.println("[ETL] Removendo arquivo existente...");
+                Files.delete(path);
+            }
 
                 try {
                     String filePath = localFilePath;
