@@ -20,7 +20,7 @@ public class EtlProcess {
 
         try {
             // Caminho local temporário
-            String localFilePath = "/tmp/VRA_2022_01.xlsx";  // Caminho do arquivo
+            String localFilePath = "/home/ubuntu/downloads/VRA_2022_01.xlsx";  // Caminho do arquivo
 
             // Faz download diretamente (a classe S3Downloader já cuida de deletar se existir)
             S3Downloader.downloadFile(
