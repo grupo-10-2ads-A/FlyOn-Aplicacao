@@ -22,7 +22,7 @@ public class EtlProcess {
     public static void main(String[] args) {
 
         try {
-            String localFilePath = "~/flyon/FlyOn/projeto-etl-xlsx/base_dados/VRA_2022_01.xlsx";
+            String localFilePath = "~/flyon/FlyOn/projeto-etl-xlsx/base_dados";
             System.out.println("[ETL] Caminho absoluto: " + localFilePath);
 
             Path path = Paths.get(localFilePath);
