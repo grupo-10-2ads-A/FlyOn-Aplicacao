@@ -5,6 +5,7 @@ import school.sptech.etl.transform.DataTransformer;
 import school.sptech.etl.load.DatabaseLoader;
 import school.sptech.etl.extract.S3Downloader;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,19 +24,28 @@ public class EtlProcess {
 
         try {
             // Caminho local temporário
-            String localFilePath = "/tmp/VRA_2022_01.xlsx";
+            String localFilePath = "/tmp/VRA_2022_01.xlsx";  // Caminho do arquivo
 
             // Verifica se o arquivo já existe
             Path path = Paths.get(localFilePath);
-            if (!Files.exists(path)) {
-                S3Downloader.downloadFile(
-                        "s3-raw-flyon", // <- Trocar pelo nome real do bucket
-                        "VRA_2022_01.xlsx",     // <- Caminho/Key no S3
-                        localFilePath
-                );
-            } else {
-                System.out.println("Arquivo já existe localmente, pulando download.");
+
+            if (Files.exists(path)) {
+                System.out.println("Arquivo já existe, deletando...");
+                try {
+                    // Deleta o arquivo existente
+                    Files.delete(path);
+                    System.out.println("Arquivo deletado com sucesso.");
+                } catch (IOException e) {
+                    System.out.println("Erro ao deletar o arquivo: " + e.getMessage());
+                }
             }
+
+            System.out.println("Baixando o arquivo do S3...");
+            S3Downloader.downloadFile(
+                    "s3-raw-flyon", // Nome real do bucket
+                    "VRA_2022_01.xlsx", // Caminho/Key no S3
+                    localFilePath // Caminho local para onde o arquivo será salvo
+            );
 
                 try {
                     String filePath = localFilePath;
