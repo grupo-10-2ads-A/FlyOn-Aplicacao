@@ -22,8 +22,11 @@ public class EtlProcess {
     public static void main(String[] args) {
 
         try {
-            String localFilePath = "/home/ubuntu/flyon/FlyOn/projeto-etl-xlsx/base_dados/VRA_2022_01.xlsx";
+            String localFilePath = "~/flyon/FlyOn/projeto-etl-xlsx/base_dados/VRA_2022_01.xlsx";
             System.out.println("[ETL] Caminho absoluto: " + localFilePath);
+
+            Path path = Paths.get(localFilePath);
+            System.out.println("Caminho absoluto real: " + path.toAbsolutePath());
 
             // Download do S3 (adicione logs)
             System.out.println("[ETL] Iniciando download do S3...");
