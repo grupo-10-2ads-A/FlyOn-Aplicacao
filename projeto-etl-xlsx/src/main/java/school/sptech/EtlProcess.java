@@ -6,6 +6,7 @@ import school.sptech.etl.transform.DataTransformer;
 import school.sptech.etl.extract.S3Downloader;
 
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,17 +21,18 @@ public class EtlProcess {
     public static void main(String[] args) {
 
         try {
-            // Caminho local temporário
+            // 1. Configuração do caminho do arquivo
             String localFilePath = "base_dados/VRA_2022_01.xlsx";
+            Path absolutePath = Paths.get(localFilePath).toAbsolutePath();
 
-            System.out.println("[DEBUG] Caminho de destino: " +
-                    Paths.get(localFilePath).toAbsolutePath());
+            System.out.println("[ETL] Iniciando processo...");
+            System.out.println("[DEBUG] Arquivo será salvo em: " + absolutePath);
 
-            // Faz download diretamente
+            // 2. Download do arquivo do S3
             S3Downloader.downloadFile(
-                    "s3-raw-flyon", // Nome do bucket
-                    "VRA_2022_01.xlsx",    // Caminho/Key no S3
-                    localFilePath          // Caminho local
+                    "s3-raw-flyon",          // Nome do bucket
+                    "VRA_2022_01.xlsx",       // Chave do arquivo no S3
+                    localFilePath             // Caminho local de destino
             );
 
                 try {
