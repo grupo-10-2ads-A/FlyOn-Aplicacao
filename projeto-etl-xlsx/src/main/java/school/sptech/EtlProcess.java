@@ -26,26 +26,25 @@ public class EtlProcess {
             // Caminho local temporário
             String localFilePath = "/tmp/VRA_2022_01.xlsx";  // Caminho do arquivo
 
-            // Verifica se o arquivo já existe
             Path path = Paths.get(localFilePath);
 
-            if (Files.exists(path)) {
-                System.out.println("Arquivo já existe, deletando...");
-                try {
-                    // Deleta o arquivo existente
+            try {
+                if (Files.exists(path)) {
+                    System.out.println("Arquivo já existe, removendo antes de baixar novamente...");
                     Files.delete(path);
-                    System.out.println("Arquivo deletado com sucesso.");
-                } catch (IOException e) {
-                    System.out.println("Erro ao deletar o arquivo: " + e.getMessage());
+                } else {
+                    System.out.println("Arquivo não encontrado localmente. Baixando do S3...");
                 }
-            }
 
-            System.out.println("Baixando o arquivo do S3...");
-            S3Downloader.downloadFile(
-                    "s3-raw-flyon", // Nome real do bucket
-                    "VRA_2022_01.xlsx", // Caminho/Key no S3
-                    localFilePath // Caminho local para onde o arquivo será salvo
-            );
+                S3Downloader.downloadFile(
+                        "s3-raw-flyon",        // Nome do bucket
+                        "VRA_2022_01.xlsx",    // Caminho/Key no S3
+                        localFilePath          // Caminho local
+                );
+
+            } catch (IOException e) {
+                System.err.println("Erro ao lidar com o arquivo local: " + e.getMessage());
+            }
 
                 try {
                     String filePath = localFilePath;
