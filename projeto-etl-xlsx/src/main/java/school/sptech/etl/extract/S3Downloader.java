@@ -6,6 +6,9 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.S3Exception;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class S3Downloader {
@@ -21,6 +24,12 @@ public class S3Downloader {
                 .credentialsProvider(DefaultCredentialsProvider.create()) // Usa as credenciais configuradas localmente (no ~/.aws/credentials)
                 .build()) {
 
+            // Deleta o arquivo local caso ele já exista
+            Path path = Paths.get(destinationPath);
+            if (Files.exists(path)) {
+                Files.delete(path);
+            }
+
             // Cria uma requisição para pegar o objeto (arquivo) no bucket com o nome da chave fornecida
             GetObjectRequest getObjectRequest = GetObjectRequest.builder()
                     .bucket(bucketName) // Nome do bucket no S3
@@ -28,7 +37,7 @@ public class S3Downloader {
                     .build();
 
             // Executa o download do arquivo, salvando localmente no caminho especificado
-            s3.getObject(getObjectRequest, Paths.get(destinationPath));
+            s3.getObject(getObjectRequest, path);
 
             // Mensagem de sucesso no console
             System.out.println("Arquivo baixado do S3 com sucesso para: " + destinationPath);
@@ -36,6 +45,9 @@ public class S3Downloader {
         } catch (S3Exception e) {
             // Captura e exibe erros relacionados ao S3 (como arquivo não encontrado, sem permissão, etc.)
             System.err.println("Erro ao baixar arquivo do S3: " + e.awsErrorDetails().errorMessage());
+        } catch (IOException e) {
+            // Captura e exibe erros ao tentar deletar o arquivo existente
+            System.err.println("Erro ao deletar arquivo existente: " + e.getMessage());
         }
     }
 }

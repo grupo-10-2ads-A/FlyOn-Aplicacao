@@ -2,13 +2,9 @@ package school.sptech;
 
 import school.sptech.etl.extract.XlsxExtractor;
 import school.sptech.etl.transform.DataTransformer;
-import school.sptech.etl.load.DatabaseLoader;
+//import school.sptech.etl.load.DatabaseLoader;
 import school.sptech.etl.extract.S3Downloader;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,25 +22,12 @@ public class EtlProcess {
             // Caminho local temporário
             String localFilePath = "/tmp/VRA_2022_01.xlsx";  // Caminho do arquivo
 
-            Path path = Paths.get(localFilePath);
-
-            try {
-                if (Files.exists(path)) {
-                    System.out.println("Arquivo já existe, removendo antes de baixar novamente...");
-                    Files.delete(path);
-                } else {
-                    System.out.println("Arquivo não encontrado localmente. Baixando do S3...");
-                }
-
-                S3Downloader.downloadFile(
-                        "s3-raw-flyon",        // Nome do bucket
-                        "VRA_2022_01.xlsx",    // Caminho/Key no S3
-                        localFilePath          // Caminho local
-                );
-
-            } catch (IOException e) {
-                System.err.println("Erro ao lidar com o arquivo local: " + e.getMessage());
-            }
+            // Faz download diretamente (a classe S3Downloader já cuida de deletar se existir)
+            S3Downloader.downloadFile(
+                    "s3-raw-flyon",        // Nome do bucket
+                    "VRA_2022_01.xlsx",    // Caminho/Key no S3
+                    localFilePath          // Caminho local
+            );
 
                 try {
                     String filePath = localFilePath;
@@ -71,7 +54,7 @@ public class EtlProcess {
                             int assentos_comercializados = DataTransformer.transfomDataInt(rawData.get(rawData.size() - 1));
                             List<String> cleanedData = DataTransformer.transformData(rawData);
 
-//                        // Adiciona aos lotes de banco de dados
+                        // Adiciona aos lotes de banco de dados
 //                        batchCleanedDateTime.add(cleanedDateTime);
 //                        batchCleanedData.add(cleanedData);
 //                        batchAssentos.add(assentos_comercializados);
