@@ -11,9 +11,9 @@ import java.util.List;
 
 public class EtlProcess {
 
-    private static final int TEST_LIMIT = 100;       // Limite de 500 linhas
-    private static final int EXTRACT_BATCH_SIZE = 50; // Lê 50 linhas do Excel por vez
-    private static final int  DB_BATCH_SIZE = 10;      // Insere 10 linhas no banco por lote
+    private static final int TEST_LIMIT = 50;       // Limite de 500 linhas
+    private static final int EXTRACT_BATCH_SIZE = 10; // Lê 50 linhas do Excel por vez
+//    private static final int  DB_BATCH_SIZE = 10;      // Insere 10 linhas no banco por lote
 
 
     public static void main(String[] args) {
@@ -37,9 +37,9 @@ public class EtlProcess {
                     System.out.println("Iniciando ETL para " + rowsToProcess + " linhas...");
 
                     // Listas para acumular os lotes
-                    List<List<String>> batchCleanedDateTime = new ArrayList<>(DB_BATCH_SIZE);
-                    List<List<String>> batchCleanedData = new ArrayList<>(DB_BATCH_SIZE);
-                    List<Integer> batchAssentos = new ArrayList<>(DB_BATCH_SIZE);
+//                    List<List<String>> batchCleanedDateTime = new ArrayList<>(DB_BATCH_SIZE);
+//                    List<List<String>> batchCleanedData = new ArrayList<>(DB_BATCH_SIZE);
+//                    List<Integer> batchAssentos = new ArrayList<>(DB_BATCH_SIZE);
 
                     // Processa em blocos maiores de extração
                     for (int startRow = 1; startRow <= rowsToProcess; startRow += EXTRACT_BATCH_SIZE) {

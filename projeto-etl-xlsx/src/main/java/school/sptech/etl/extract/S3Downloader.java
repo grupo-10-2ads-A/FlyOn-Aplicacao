@@ -15,13 +15,13 @@ public class S3Downloader {
 
     // Método responsável por baixar um arquivo do S3 para um caminho local
     public static void downloadFile(String bucketName, String key, String destinationPath) {
-        // Define a região onde seu bucket está hospedado — US_EAST_1 = EUA - Norte da Virginia
+        // Define a região onde seu bucket está hospedado
         Region region = Region.US_EAST_1;
 
         // Cria e inicializa um cliente S3 com a região e credenciais do perfil local da AWS
         try (S3Client s3 = S3Client.builder()
                 .region(region)
-                .credentialsProvider(DefaultCredentialsProvider.create()) // Usa as credenciais configuradas localmente (no ~/.aws/credentials)
+                .credentialsProvider(DefaultCredentialsProvider.create()) // Usa as credencias definidas no IMA lá na instancia.
                 .build()) {
 
             // Deleta o arquivo local caso ele já exista
