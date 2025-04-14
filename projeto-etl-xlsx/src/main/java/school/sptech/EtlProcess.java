@@ -22,11 +22,8 @@ public class EtlProcess {
     public static void main(String[] args) {
 
         try {
-            String localFilePath = Paths.get("base_dados/VRA_2022_01.xlsx").toAbsolutePath().toString();
+            String localFilePath = "base_dados/VRA_2022_01.xlsx";
             System.out.println("[ETL] Caminho absoluto: " + localFilePath);
-
-            // Verifica/Cria diretório
-            Files.createDirectories(Paths.get(localFilePath).getParent());
 
             // Download do S3 (adicione logs)
             System.out.println("[ETL] Iniciando download do S3...");
