@@ -100,10 +100,12 @@ aside .sidebar img:hover{
 .search .passagem{
     display: flex;
     flex-direction: column;
+    width: 50%;
+    padding: 20px;
+    justify-content: space-around;
 }
 
 .search .passagem .labelPassagem{
-    padding-top: 10px;
     display: flex;
     align-items: center;
     width: 38%;
@@ -120,18 +122,15 @@ aside .sidebar img:hover{
 .search .passagem .preencherPassagem{
     display: flex;
     align-items: center;
-    padding-left: 30px;
-    padding-top: 20px;
 }
 
 .search .passagem .preencherPassagem input{
     display: flex;
-    height: 50px;
-    width: 290px;
+    height: 30px;
+    width: 50%;
     border: none;
     background-color: #cfcad4;
-    font-size: 20px;
-    padding: 1p;
+    font-size: 15px;
     font-family: 'Poppins', sans-serif;
     padding: 10px;
 }
@@ -139,4 +138,75 @@ aside .sidebar img:hover{
 .search .passagem .preencherPassagem img{
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.search .dataPassagem{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: space-around;
+}
+
+.search .dataPassagem .labelDataPassagem{
+    display: flex;
+    align-items: center;
+    width: 55%;
+    justify-content: flex-start;
+    font-family: "Poppins", sans-serif;
+    
+}
+
+.search .dataPassagem .labelDataPassagem span{
+    margin-left: 5px;
+}
+
+.search .dataPassagem .labelDataPassagem img{
+
+    width: 26px;
+}
+.search .dataPassagem input{
+    display: flex;
+    height: 30px;
+    width: 50%;
+    border: none;
+    background-color: #cfcad4;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    padding: 10px;
+
+}
+
+.search .dataPassagem .preencherPassagem{
+    display: flex;
+    align-items: center;
+}
+
+.search .dataPassagem .preencherPassagem img{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.containerBotao {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.containerBotao button {
+    cursor: pointer;
+    background-color: #5271ff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    position: relative;
 }
