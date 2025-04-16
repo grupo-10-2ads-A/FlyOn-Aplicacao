@@ -3,7 +3,7 @@ package school.sptech;
 import school.sptech.etl.extract.XlsxExtractor;
 import school.sptech.etl.transform.DataTransformer;
 //import school.sptech.etl.load.DatabaseLoader;
-import school.sptech.etl.extract.S3Downloader;
+//import school.sptech.etl.extract.S3Downloader;
 
 
 import java.nio.file.Files;
@@ -22,32 +22,32 @@ public class EtlProcess {
     public static void main(String[] args) {
 
         try {
-            String localFilePath = "/tmp/VRA_2022_01.xlsx";
-            System.out.println("[ETL] Caminho absoluto: " + localFilePath);
-
-            Path path = Paths.get(localFilePath);
-            System.out.println("Caminho absoluto real: " + path.toAbsolutePath());
-
-            // Download do S3
-            System.out.println("[ETL] Iniciando download do S3...");
-            S3Downloader.downloadFile(
-                    "s3-raw-flyon",
-                    "VRA_2022_01.xlsx",
-                    localFilePath
-            );
-            System.out.println("[ETL] Download concluído. Verificando arquivo...");
-
-            // Verifica se o arquivo existe
-            if (!Files.exists(Paths.get(localFilePath))) {
-                throw new RuntimeException("Arquivo não foi baixado corretamente");
-            }
+            String localFilePath = "C:\\Users\\vit_o\\FlyOn\\projeto-etl-xlsx\\src\\main\\resources\\VRA_2022_01.xlsx";
+//            System.out.println("[ETL] Caminho absoluto: " + localFilePath);
+//
+//            Path path = Paths.get(localFilePath);
+//            System.out.println("Caminho absoluto real: " + path.toAbsolutePath());
+//
+//            // Download do S3
+//            System.out.println("[ETL] Iniciando download do S3...");
+//            S3Downloader.downloadFile(
+//                    "s3-raw-flyon",
+//                    "VRA_2022_01.xlsx",
+//                    localFilePath
+//            );
+//            System.out.println("[ETL] Download concluído. Verificando arquivo...");
+//
+//            // Verifica se o arquivo existe
+//            if (!Files.exists(Paths.get(localFilePath))) {
+//                throw new RuntimeException("Arquivo não foi baixado corretamente");
+//            }
 
                 try {
                     String filePath = localFilePath;
                     int totalRows = XlsxExtractor.returnTotalRows(filePath);
                     int rowsToProcess = Math.min(totalRows, TEST_LIMIT);
 
-                    System.out.println("Iniciando ETL para " + rowsToProcess + " linhas...");
+                    System.out.println("[ETL] INICIANDO: para " + rowsToProcess + " linhas...");
 
                     // Listas para acumular os lotes
 //                    List<List<String>> batchCleanedDateTime = new ArrayList<>(DB_BATCH_SIZE);
@@ -83,7 +83,7 @@ public class EtlProcess {
 //                        }
                         }
 
-                        System.out.println("Processado: " + Math.min(startRow + currentBatchSize - 1, rowsToProcess) + " de " + rowsToProcess);
+                        System.out.println("[ETL LINHAS PROCESSADAS]: " + Math.min(startRow + currentBatchSize - 1, rowsToProcess) + " de " + rowsToProcess);
                     }
 
                     // Envia quaisquer registros restantes
@@ -94,7 +94,7 @@ public class EtlProcess {
                     // Fecha o workbook
                     XlsxExtractor.closeWorkbook();
 
-                    System.out.println("ETL concluído com sucesso!");
+                    System.out.println("[ETL CONCLUÍDO]");
 
                 } catch (Exception e) {
                     System.err.println("Erro no ETL:");
