@@ -48,29 +48,173 @@
                         <div class="containerBotao">
                             <button><img src="../public/img/icone-home/lupa.png" alt="">Pesquisar</button>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="lowerContent">
                     <div class="filtros">
-                        
+
+                        <div class="filtroTitulo">
+                            <img src="img/icone-home/filtro.png" alt="">
+                            <span>Filtros</span>
+                        </div>
+
+                        <div class="filtro">
+                            <button class="cabecalho" onclick="toggle(this)">Valor</button>
+                            <div class="conteudo">
+                                <label><input type="checkbox">
+                                    Menor(es) preço(s)</label>
+                                <label><input type="checkbox">
+                                    Até R$ 599,99</label>
+                                <label><input type="checkbox">
+                                    Até R$ 999,99</label>
+                                <label><input type="checkbox">
+                                    Até R$ 1999,99</label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="filtro">
+                            <button class="cabecalho" onclick="toggle(this)">Experiência do cliente</button>
+                            <div class="conteudo">Conteúdo da experiência</div>
+                        </div>
+                        <hr>
+                        <div class="filtro">
+                            <button class="cabecalho" onclick="toggle(this)">Taxa de atraso</button>
+                            <div class="conteudo">Conteúdo da taxa de atraso</div>
+                        </div>
+                        <hr>
+                        <div class="filtro">
+                            <button class="cabecalho" onclick="toggle(this)">Companhia aérea</button>
+                            <div class="conteudo">Conteúdo da companhia</div>
+                        </div>
+                        <hr>
                     </div>
-                    <div class="destinosVisitados"></div>
+
+                    <div class="destinosVisitados">
+                        <h2>Destinos mais visitados</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Origem</th>
+                                    <th>Destino</th>
+                                    <th>Cia Aérea</th>
+                                    <th>Valor</th>
+                                    <th>Temporada</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>GRU–SP</td>
+                                    <td>SSA–BA</td>
+                                    <td>LATAM</td>
+                                    <td>R$199,90</td>
+                                    <td>Baixa</td>
+                                    <td>&#8250;</td>
+                                </tr>
+                                <tr>
+                                    <td>GRU–SP</td>
+                                    <td>SSA–BA</td>
+                                    <td>LATAM</td>
+                                    <td>R$199,90</td>
+                                    <td>Baixa</td>
+                                    <td>&#8250;</td>
+                                </tr>
+                                <tr>
+                                    <td>GRU–SP</td>
+                                    <td>SSA–BA</td>
+                                    <td>LATAM</td>
+                                    <td>R$199,90</td>
+                                    <td>Baixa</td>
+                                    <td>&#8250;</td>
+                                </tr>
+                                <tr>
+                                    <td>GRU–SP</td>
+                                    <td>SSA–BA</td>
+                                    <td>LATAM</td>
+                                    <td>R$199,90</td>
+                                    <td>Baixa</td>
+                                    <td>&#8250;</td>
+                                </tr>
+                                <tr>
+                                    <td>GRU–SP</td>
+                                    <td>SSA–BA</td>
+                                    <td>LATAM</td>
+                                    <td>R$199,90</td>
+                                    <td>Baixa</td>
+                                    <td>&#8250;</td>
+                                </tr>
+                                <tr>
+                                    <td>GRU–SP</td>
+                                    <td>SSA–BA</td>
+                                    <td>LATAM</td>
+                                    <td>R$199,90</td>
+                                    <td>Baixa</td>
+                                    <td>&#8250;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <aside>
-            <div class="sidebar">
-                <img style="padding-top: 35px" src="img/icone-home/hamburger.png" alt="">
-                <img src="img/icone-home/home.png" alt="">
-                <img src="img/icone-home/aviao.png" alt="">
-                <img src="img/icone-home/notificacoes.png" alt="">
-                <img src="img/icone-home/config.png" alt="">
-                <img src="img/icone-home/linha.png" alt="">
-                <img style="padding-bottom: 35px" src="img/icone-home/sair.png" alt="">
+        <header>
+
+            <div>
+                <button onclick="mostrarItenMenu()">
+                    <img src="../public/img/icons8-hamburguer.svg" alt="Menu"/>
+                </button>
             </div>
-        </aside>
+
+            <div class="menu-itens">
+
+                <a class="menu-item ativo">
+                    <img src="../public/img/icone-home/home.png" alt="Voltar para o início"/>
+                    <span>Início</span>
+                </a>
+
+                <a class="menu-item " href="./dashboard.html">
+                    <img src="../public/img/icone-home/aviao.png" alt="Dados de vôos"/>
+                    <span>Voos</span>
+                </a>
+
+                <a class="menu-item">
+                    <img src="../public/img/icone-home/notificacoes.png" alt="Notificações"/>
+                    <span>Notificações</span>
+                </a>
+
+                <a class="menu-item" href="./central-gerenciamento.html">
+                    <img src="../public/img/icone-home/config.png" alt="Configurações"/>
+                    <span>Configurações</span>
+                </a>
+
+                <a class="menu-item">
+                    <img src="../public/img/icone-home/sair.png" alt="Sair"/>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </header>
+
     </main>
 </body>
 </html>
+
+<script>
+function toggle(botao) {
+    botao
+        .classList
+        .toggle("ativofiltro");
+    var conteudo = botao.nextElementSibling;
+    if (conteudo.style.maxHeight) {
+        conteudo.style.maxHeight = null;
+    } else {
+        conteudo.style.maxHeight = conteudo.scrollHeight + "px";
+    }
+}
+
+function mostrarItenMenu() {
+    const header = document.querySelector("header");
+    header.classList.toggle("expandido");
+  }
+</script>

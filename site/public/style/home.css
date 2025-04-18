@@ -210,3 +210,202 @@ aside .sidebar img:hover{
     font-size: 16px;
     position: relative;
 }
+
+.lowerContent{
+    background-color: #ededed;
+    display: flex;
+}
+
+.filtros {
+    width: 20%;
+    padding: 16px;
+    font-family: "Poppins", sans-serif;
+    border-radius: 8px;
+  }
+  
+  .filtroTitulo{
+        display: flex;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        margin-bottom: 12px;
+  }
+
+  .filtroTitulo span{
+    padding-left: 20px;
+    color: #ff004d;
+    font-weight: bold;
+}
+  
+  .filtro {
+    margin-bottom: 12px;
+  }
+  
+  .cabecalho {
+    background: none;
+    border: none;
+    font-weight: bold;
+    width: 100%;
+    text-align: left;
+    padding: 8px 0;
+    cursor: pointer;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .cabecalho::after {
+    content: "▼";
+    position: absolute;
+    right: 0;
+    transition: transform 0.3s;
+  }
+  
+  .cabecalho.ativofiltro::after {
+    transform: rotate(-180deg);
+  }
+  
+  .conteudo {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-left: 10px;
+  }
+  
+  .conteudo label {
+    display: block;
+    margin: 4px 0;
+  }
+  
+  .destinosVisitados {
+    width: 80%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 16px;
+    padding-bottom: 1.5rem;
+  }
+  
+  .destinosVisitados h2 {
+    color: #ff004d;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .destinosVisitados table {
+    width: 100%;
+    border-collapse: collapse;
+    border: #10004f 3px solid;
+    background-color: #fff;
+  }
+  
+  .destinosVisitados thead {
+    color: #10004f;
+    font-family: "Poppins", sans-serif;
+    font-size: 19px;
+  }
+
+  .destinosVisitados th, .destinosVisitados td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  
+  .destinosVisitados th {
+    font-weight: bold;
+  }
+  
+  .destinosVisitados td {
+    color: #ff004d;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+}
+  
+  .destinosVisitados td:last-child {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ff004d;
+    cursor: pointer;
+  }
+  
+  .destinosVisitados tr:hover {
+    background-color: #f9f9f9;
+  }
+
+  header {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    background-color: #10004f;
+    width: 80px;
+    transition: width 0.4s ease;
+    overflow-x: hidden;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+header.expandido {
+    width: 200px;
+}
+
+header button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.menu-itens {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 90px); /* 60px é a altura do botão menu no topo */
+}
+  
+.menu-item {
+    flex: 1; /* Cada item ocupa o mesmo espaço vertical */
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+/* item mostrando na página */
+.ativo{
+    background-color: #ff004d;
+}
+/* ========================= */
+
+.menu-item:hover {
+    background-color: #f3497ced;
+}
+
+.menu-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    margin-left: 15px;
+    flex-shrink: 0;
+}
+
+.menu-item span {
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+header.expandido .menu-item span {
+    opacity: 1;
+    transform: translateX(0);
+    color: #FFFFFF;
+}
+  
+header.expandido ~ main {
+    margin-right: 200px;
+}
+
+a {
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+}
