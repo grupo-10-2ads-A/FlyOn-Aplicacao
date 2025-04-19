@@ -27,7 +27,7 @@ create table endereco (
 -- Tabela de Usuário com relação 1:N com Agência
 create table usuario (
     idUsuario int primary key auto_increment,
-    fk_agencia int, 
+    fk_agencia int,
     nome varchar(100) not null,
     cargo varchar(100) not null,
     email varchar(100) unique not null,
@@ -58,7 +58,7 @@ create table notificacoes (
     constraint fk_notificacao_agencia foreign key (fk_agencia) references agencia(idAgencia) on delete cascade
 );
 
-create table historico_passagens (
+create table voo_status_historico (
 	id int primary key auto_increment,
 	data_hora_partida_prevista datetime,
 	data_hora_partida_real datetime,
@@ -74,14 +74,26 @@ create table historico_passagens (
 	assentos_comercializados int
 );
 
+create table voo_tarifa_historico (
+	id int primary key auto_increment,
+    ano int not null,
+    mes int not null,
+    sigla_empresa_aerea char(3) not null,
+    sigla_origem char(4) not null,
+    sigla_destino char(4) not null,
+    tarifa decimal(10,2)
+);
+
 create table sugestao (
 	id int auto_increment,
-    fk_agencia int,
-    fk_passagem int,
+    fk_usuario int,
+    fk_passagem_status int,
+    fk_passagem_tarifa int,
     descricao varchar(100),
-    constraint pk_sugestao_passagem_agencia primary key(id, fk_agencia, fk_passagem),
-    constraint fk_sugestao_agencia foreign key (fk_agencia) references agencia(idAgencia) on delete cascade,
-    constraint fk_sugestao_passagem foreign key (fk_passagem) references historico_passagens(id) on delete cascade
+    constraint pk_sugestao_passagem_usuario primary key(id, fk_usuario, fk_passagem_status, fk_passagem_tarifa),
+    constraint fk_sugestao_usuario foreign key (fk_usuario) references usuario(idUsuario) on delete cascade,
+    constraint fk_sugestao_passagem_status foreign key (fk_passagem_status) references voo_status_historico(id) on delete cascade,
+    constraint fk_sugestao_passagem_tarifa foreign key (fk_passagem_tarifa) references voo_tarifa_historico(id) on delete cascade
 );
 
 create table registro (
@@ -92,6 +104,13 @@ create table registro (
 	constraint chk_classificacao check (classificacao in ('TRACE', 'WARN', 'INFO', 'SUCCESS'))
 );
 
+show tables;
 -- select * from agencia;
--- select * from endereco where fk_agencia = 1;
+-- select * from endereco;
 -- select * from usuario;
+-- Select * from perfil_cliente;
+-- Select * from notificacoes;
+-- Select * from voo_status_historico;
+-- Select * from voo_tarifa_historico;
+-- Select * from sugestao
+-- Select * from registro
