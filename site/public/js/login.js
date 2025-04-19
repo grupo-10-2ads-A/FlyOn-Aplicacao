@@ -48,11 +48,11 @@ function entrar() {
      
        if (json.cargo === "admin") {
           setTimeout(() => {
-            window.location.href = "../lista-usuario.html";
+            window.location.href = "../central-gerenciamento.html";
           }, 1000);
         } else {
           setTimeout(() => {
-            window.location.href = "../bem-vindo.html";
+            window.location.href = "../home.html";
           }, 1000);
         }
       })

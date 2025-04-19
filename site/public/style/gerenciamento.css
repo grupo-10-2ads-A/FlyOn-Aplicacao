@@ -33,6 +33,11 @@ a{
     background-position: top 60px;
     overflow: hidden;
 }
+
+a{
+    all: unset;
+    cursor: pointer;
+}
   
 .filtro-branco {
     position: absolute;
