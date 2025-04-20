@@ -49,6 +49,12 @@ public class DataTransformer {
         return rawData;
     }
 
+    public static List<String> otherTransformData(List<String> rawData) {
+        rawData.get(rawData.size() - 1).replaceAll(",", ".");
+        System.out.println("Success - Transformação das vírgulas em pontos bem sucedida");
+        return rawData;
+    }
+
     public static Integer transfomDataInt(String assentos_comercializados) {
         System.out.println("Success - Transformação do número de assentos bem sucedida");
         return Integer.parseInt(assentos_comercializados);

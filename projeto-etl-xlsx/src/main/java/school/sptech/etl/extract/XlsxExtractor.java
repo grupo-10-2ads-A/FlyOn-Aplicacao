@@ -49,42 +49,65 @@ public class XlsxExtractor {
         return sheet.getLastRowNum();
     }
 
-//     Versão para testar localmente
+    //     Versão para testar localmente
     public static List<String> extractData(String filePath, int currentRow) throws IOException {
         if (!usandoStream) initWorkbookCache(filePath);
         Sheet sheet = cachedWorkbook.getSheetAt(0);
         Row row = sheet.getRow(currentRow);
         List<String> res = new ArrayList<>();
+
         if (row != null) {
-            row.getCell(6).setCellType(CellType.STRING);
+            if (filePath.contains("VRA")) {
+                if (row.getCell(8).getStringCellValue().contains("BRASIL") && row.getCell(12).getStringCellValue().contains("BRASIL")) {
+                    row.getCell(6).setCellType(CellType.STRING);
 
-            String data_hora_partida_prevista = formatarDataHoraCelula(row.getCell(9));
-            String data_hora_partida_real = formatarDataHoraCelula(row.getCell(10));
-            String data_hora_chegada_prevista = formatarDataHoraCelula(row.getCell(13));
-            String data_hora_chegada_real = formatarDataHoraCelula(row.getCell(14));
-            String sigla_empresa_aerea = formatarSeNulo(row.getCell(0));
-            String empresa_aerea = formatarSeNulo(row.getCell(1));
-            String origem = formatarSeNulo(row.getCell(8));
-            String destino = formatarSeNulo(row.getCell(12));
-            String situacao_voo = formatarSeNulo(row.getCell(15));
-            String situacao_partida = formatarSeNulo(row.getCell(18));
-            String situacao_chegada = formatarSeNulo(row.getCell(19));
-            String assentos_comercializados = formatarSeNulo(row.getCell(6));
+                    String data_hora_partida_prevista = formatarDataHoraCelula(row.getCell(9));
+                    String data_hora_partida_real = formatarDataHoraCelula(row.getCell(10));
+                    String data_hora_chegada_prevista = formatarDataHoraCelula(row.getCell(13));
+                    String data_hora_chegada_real = formatarDataHoraCelula(row.getCell(14));
+                    String sigla_empresa_aerea = formatarSeNulo(row.getCell(0));
+                    String empresa_aerea = formatarSeNulo(row.getCell(1));
+                    String origem = formatarSeNulo(row.getCell(8));
+                    String destino = formatarSeNulo(row.getCell(12));
+                    String situacao_voo = formatarSeNulo(row.getCell(15));
+                    String situacao_partida = formatarSeNulo(row.getCell(18));
+                    String situacao_chegada = formatarSeNulo(row.getCell(19));
+                    String assentos_comercializados = formatarSeNulo(row.getCell(6));
 
-            Collections.addAll(res,
-                    data_hora_partida_prevista,
-                    data_hora_partida_real,
-                    data_hora_chegada_prevista,
-                    data_hora_chegada_real,
-                    sigla_empresa_aerea,
-                    empresa_aerea,
-                    origem,
-                    destino,
-                    situacao_voo,
-                    situacao_partida,
-                    situacao_chegada,
-                    assentos_comercializados
-            );
+                    Collections.addAll(res,
+                            data_hora_partida_prevista,
+                            data_hora_partida_real,
+                            data_hora_chegada_prevista,
+                            data_hora_chegada_real,
+                            sigla_empresa_aerea,
+                            empresa_aerea,
+                            origem,
+                            destino,
+                            situacao_voo,
+                            situacao_partida,
+                            situacao_chegada,
+                            assentos_comercializados
+                    );
+                }
+            } else {
+                String ano = String.valueOf(row.getCell(0).getNumericCellValue());
+                String mes = String.valueOf(row.getCell(1).getNumericCellValue());
+                String sigla_empresa_aerea = formatarSeNulo(row.getCell(2));
+                String sigla_origem = formatarSeNulo(row.getCell(3));
+                String sigla_destino = formatarSeNulo(row.getCell(4));
+                String tarifa = String.valueOf(row.getCell(5).getNumericCellValue());
+
+                Collections.addAll(res,
+                        ano,
+                        mes,
+                        sigla_empresa_aerea,
+                        sigla_origem,
+                        sigla_destino,
+                        tarifa
+                );
+            }
+
+
         }
         return res;
     }

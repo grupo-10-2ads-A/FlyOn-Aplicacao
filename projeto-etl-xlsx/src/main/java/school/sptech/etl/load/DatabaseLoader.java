@@ -1,5 +1,7 @@
 package school.sptech.etl.load;
 
+import software.amazon.awssdk.services.s3.endpoints.internal.Value;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,7 +12,59 @@ public class DatabaseLoader {
 
     private static final String URL = "jdbc:mysql://localhost:3306/flyon";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "Suave2004@";
+    private static final String PASSWORD = "";
+
+    public static void loadData(List<List<String>> otherBatchCleanedData) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            // Conexão e desabilita autocommit
+            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            conn.setAutoCommit(false);
+
+            String query = "INSERT INTO voo_tarifa_historico (ano, mes, sigla_empresa_aerea, sigla_origem, sigla_destino, tarifa) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
+            stmt = conn.prepareStatement(query);
+
+            for (int i = 0; i < otherBatchCleanedData.size(); i++) {
+                List<String> cleanedDate = otherBatchCleanedData.get(i);
+
+                stmt.setString(1, cleanedDate.get(0));
+                stmt.setString(2, cleanedDate.get(1));
+                stmt.setString(3, cleanedDate.get(2));
+                stmt.setString(4, cleanedDate.get(3));
+                stmt.setString(5, cleanedDate.get(4));
+                stmt.setString(6, cleanedDate.get(5));
+
+                stmt.addBatch(); // Adiciona tudo de uma vez
+            }
+
+            stmt.executeBatch(); // Executa todo o lote
+            conn.commit();       // Commit único
+            System.out.println("Commit realizado - " + otherBatchCleanedData.size() + " registros inseridos");
+
+        } catch (SQLException e) {
+            // Rollback em caso de erro
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                    System.err.println("Transação revertida devido a erro");
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao reverter transação: " + ex.getMessage());
+                }
+            }
+            e.printStackTrace();
+        } finally {
+            // Fecha tudo
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                System.err.println("Erro ao fechar conexão: " + e.getMessage());
+            }
+        }
+    }
 
     public static void loadData(List<List<String>> batchCleanedDateTime,
                                 List<List<String>> batchRawData,
@@ -24,7 +78,7 @@ public class DatabaseLoader {
             conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             conn.setAutoCommit(false);
 
-            String query = "INSERT INTO historico_passagens(data_hora_partida_prevista, data_hora_partida_real, " +
+            String query = "INSERT INTO voo_status_historico(data_hora_partida_prevista, data_hora_partida_real, " +
                     "data_hora_chegada_prevista, data_hora_chegada_real, sigla_empresa_aerea, " +
                     "empresa_aerea, origem, destino, situacao_voo, situacao_partida, " +
                     "situacao_chegada, assentos_comercializados) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
