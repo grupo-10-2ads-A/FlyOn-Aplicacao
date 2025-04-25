@@ -11,7 +11,7 @@ import software.amazon.awssdk.services.s3.model.S3Exception;
 
 import java.io.InputStream;
 
-public class S3Downloader {
+public class S3Acess {
 
     /*
      * Retorna um InputStream do arquivo no S3, sem salvar localmente.

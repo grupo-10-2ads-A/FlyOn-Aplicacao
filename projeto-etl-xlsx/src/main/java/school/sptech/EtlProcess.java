@@ -3,9 +3,8 @@ package school.sptech;
 import school.sptech.etl.extract.XlsxExtractor;
 import school.sptech.etl.transform.DataTransformer;
 import school.sptech.etl.load.DatabaseLoader;
-import school.sptech.etl.extract.S3Downloader;
+import school.sptech.etl.extract.S3Acess;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class EtlProcess {
 
 
             // Obtém InputStream diretamente do S3
-//            InputStream s3InputStream = S3Downloader.getFileStream("s3-raw-flyon", s3FilePath);
+//            InputStream s3InputStream = S3Acess.getFileStream("s3-raw-flyon", s3FilePath);
 
             // Carrega o workbook com o InputStream S3
 //          XlsxExtractor.loadWorkbook(s3InputStream);
