@@ -11,35 +11,35 @@ import software.amazon.awssdk.services.s3.model.S3Exception;
 
 import java.io.InputStream;
 
-public class S3Acess {
+public class AcessoS3 {
 
     /*
      * Retorna um InputStream do arquivo no S3, sem salvar localmente.
      */
-    public static InputStream getFileStream(String bucketName, String key) {
-        Region region = Region.US_EAST_1;
+    public static InputStream obterArquivoComoStream(String nomeDoBucket, String caminhoDoArquivo) {
+        Region regiao = Region.US_EAST_1;
 
         try {
             // Inicializa o cliente S3
-            S3Client s3 = S3Client.builder()
-                    .region(region)
+            S3Client clienteS3 = S3Client.builder()
+                    .region(regiao)
                     .credentialsProvider(DefaultCredentialsProvider.create())
                     .build();
 
             // Cria a requisição
-            GetObjectRequest getObjectRequest = GetObjectRequest.builder()
-                    .bucket(bucketName)
-                    .key(key)
+            GetObjectRequest requisicao = GetObjectRequest.builder()
+                    .bucket(nomeDoBucket)
+                    .key(caminhoDoArquivo)
                     .build();
 
             // Retorna o stream do arquivo
-            ResponseInputStream<GetObjectResponse> s3InputStream = s3.getObject(
-                    getObjectRequest,
+            ResponseInputStream<GetObjectResponse> streamDeEntrada = clienteS3.getObject(
+                    requisicao,
                     ResponseTransformer.toInputStream()
             );
 
             System.out.println("Stream do arquivo obtido com sucesso do S3.");
-            return s3InputStream;
+            return streamDeEntrada;
 
         } catch (S3Exception e) {
             System.err.println("Erro ao acessar arquivo no S3: " + e.awsErrorDetails().errorMessage());
