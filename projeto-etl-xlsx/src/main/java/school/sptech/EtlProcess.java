@@ -2,7 +2,7 @@ package school.sptech;
 
 import school.sptech.etl.extract.ExtratorPlanilhaXlsx;
 import school.sptech.etl.transform.TransformadorDados;
-import school.sptech.etl.load.PersistenciaDados;
+import school.sptech.etl.load.CarregadorDados;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +76,7 @@ public class EtlProcess {
 
                         if (loteDatasFormatadas.size() >= TAMANHO_LOTE_BANCO) {
                             if (caminhoArquivo.contains("VRA")) {
-                                PersistenciaDados.carregarStatusVoos(loteDatasFormatadas, loteDadosLimpos, loteAssentos);
+                                CarregadorDados.carregarStatusVoos(loteDatasFormatadas, loteDadosLimpos, loteAssentos);
                                 loteDatasFormatadas.clear();
                                 loteDadosLimpos.clear();
                                 loteAssentos.clear();
@@ -84,7 +84,7 @@ public class EtlProcess {
                         }
 
                         if (loteTarifas.size() >= TAMANHO_LOTE_BANCO) {
-                            PersistenciaDados.carregarTarifas(loteTarifas);
+                            CarregadorDados.carregarTarifas(loteTarifas);
                         }
                     }
 
@@ -93,7 +93,7 @@ public class EtlProcess {
 
                 // Envia lotes restantes
                 if (!loteDatasFormatadas.isEmpty()) {
-                    PersistenciaDados.carregarStatusVoos(loteDatasFormatadas, loteDadosLimpos, loteAssentos);
+                    CarregadorDados.carregarStatusVoos(loteDatasFormatadas, loteDadosLimpos, loteAssentos);
                 }
 
                 // Libera recursos

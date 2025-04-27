@@ -6,11 +6,11 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.sql.SQLException;
 
-public class PersistenciaDados {
+public class CarregadorDados {
 
     private static final String URL = "jdbc:mysql://localhost:3306/flyon";
     private static final String USUARIO = "root";
-    private static final String SENHA = "";
+    private static final String SENHA = "MAXSTEEl08#";
 
     public static void carregarTarifas(List<List<String>> dadosTarifas) {
         Connection conexao = null;
@@ -76,8 +76,8 @@ public class PersistenciaDados {
 
             String query = "INSERT INTO voo_status_historico(data_hora_partida_prevista, data_hora_partida_real, " +
                     "data_hora_chegada_prevista, data_hora_chegada_real, sigla_empresa_aerea, " +
-                    "empresa_aerea, origem, destino, situacao_voo, situacao_partida, " +
-                    "situacao_chegada, assentos_comercializados) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "empresa_aerea, sigla_origem,origem, sigla_destino,destino, situacao_voo, situacao_partida, " +
+                    "situacao_chegada, assentos_comercializados) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             instrucao = conexao.prepareStatement(query);
 
             for (int i = 0; i < dadosHorarios.size(); i++) {
@@ -96,7 +96,9 @@ public class PersistenciaDados {
                 instrucao.setString(9, rawData.get(4));
                 instrucao.setString(10, rawData.get(5));
                 instrucao.setString(11, rawData.get(6));
-                instrucao.setInt(12, assentos);
+                instrucao.setString(12, rawData.get(7));
+                instrucao.setString(13, rawData.get(8));
+                instrucao.setInt(14, assentos);
 
                 instrucao.addBatch(); // Adiciona tudo de uma vez
             }

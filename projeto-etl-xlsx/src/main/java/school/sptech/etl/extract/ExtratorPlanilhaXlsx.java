@@ -64,14 +64,16 @@ public class ExtratorPlanilhaXlsx {
                     String partidaReal = formatarDataOuTexto(linha.getCell(10));
                     String chegadaPrevista = formatarDataOuTexto(linha.getCell(13));
                     String chegadaReal = formatarDataOuTexto(linha.getCell(14));
-                    String siglaEmpresa = formatarTexto(linha.getCell(0));
-                    String nomeEmpresa = formatarTexto(linha.getCell(1));
-                    String origem = formatarTexto(linha.getCell(8));
-                    String destino = formatarTexto(linha.getCell(12));
-                    String situacaoVoo = formatarTexto(linha.getCell(15));
-                    String situacaoPartida = formatarTexto(linha.getCell(18));
-                    String situacaoChegada = formatarTexto(linha.getCell(19));
-                    String assentosVendidos = formatarTexto(linha.getCell(6));
+                    String siglaEmpresa = formatarDataOuTexto(linha.getCell(0));
+                    String nomeEmpresa = formatarDataOuTexto(linha.getCell(1));
+                    String sigla_origem = formatarDataOuTexto(linha.getCell(7));
+                    String origem = formatarDataOuTexto(linha.getCell(8));
+                    String sigla_destino = formatarDataOuTexto(linha.getCell(11));
+                    String destino = formatarDataOuTexto(linha.getCell(12));
+                    String situacaoVoo = formatarDataOuTexto(linha.getCell(15));
+                    String situacaoPartida = formatarDataOuTexto(linha.getCell(18));
+                    String situacaoChegada = formatarDataOuTexto(linha.getCell(19));
+                    String assentosVendidos = formatarDataOuTexto(linha.getCell(6));
 
                     Collections.addAll(dados,
                             partidaPrevista,
@@ -80,7 +82,9 @@ public class ExtratorPlanilhaXlsx {
                             chegadaReal,
                             siglaEmpresa,
                             nomeEmpresa,
+                            sigla_origem,
                             origem,
+                            sigla_destino,
                             destino,
                             situacaoVoo,
                             situacaoPartida,
@@ -91,9 +95,9 @@ public class ExtratorPlanilhaXlsx {
             } else {
                 String ano = String.valueOf((int) linha.getCell(0).getNumericCellValue());
                 String mes = String.valueOf((int) linha.getCell(1).getNumericCellValue());
-                String siglaEmpresa = formatarTexto(linha.getCell(2));
-                String origem = formatarTexto(linha.getCell(3));
-                String destino = formatarTexto(linha.getCell(4));
+                String siglaEmpresa = formatarDataOuTexto(linha.getCell(2));
+                String origem = formatarDataOuTexto(linha.getCell(3));
+                String destino = formatarDataOuTexto(linha.getCell(4));
                 String tarifa = String.valueOf(linha.getCell(5).getNumericCellValue());
 
                 Collections.addAll(dados,
@@ -186,11 +190,6 @@ public class ExtratorPlanilhaXlsx {
             caminhoArquivoEmCache = null;
             usandoStream = false;
         }
-    }
-
-    private static String formatarTexto(Cell celula) {
-        if (celula == null) return null;
-        return celula.getStringCellValue();
     }
 
     private static String formatarDataOuTexto(Cell celula) {
