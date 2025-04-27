@@ -1,16 +1,15 @@
 package school.sptech.etl.load;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import school.sptech.ConstrutorLogs;
+
+import java.sql.*;
 import java.util.List;
-import java.sql.SQLException;
 
 public class CarregadorDados {
 
     private static final String URL = "jdbc:mysql://localhost:3306/flyon";
     private static final String USUARIO = "root";
-    private static final String SENHA = "MAXSTEEl08#";
+    private static final String SENHA = "";
 
     public static void carregarTarifas(List<List<String>> dadosTarifas) {
         Connection conexao = null;
@@ -39,6 +38,7 @@ public class CarregadorDados {
             instrucao.executeBatch(); // Executa todo o lote
             conexao.commit();       // Commit único
             System.out.println("Commit realizado - " + dadosTarifas.size() + " registros inseridos");
+            ConstrutorLogs.MontarLog("SUCCES", "Commit realizado - " + dadosTarifas.size() + " registros inseridos");
 
         } catch (SQLException e) {
             // Rollback em caso de erro
@@ -46,8 +46,11 @@ public class CarregadorDados {
                 try {
                     conexao.rollback();
                     System.err.println("Transação revertida devido a erro");
+                    ConstrutorLogs.MontarLog("WARN", "Transação revertida devido a erro");
+
                 } catch (SQLException ex) {
                     System.err.println("Erro ao reverter transação: " + ex.getMessage());
+                    ConstrutorLogs.MontarLog("ERROR", "Erro ao reverter transação: " + ex.getMessage());
                 }
             }
             e.printStackTrace();
@@ -56,8 +59,10 @@ public class CarregadorDados {
             try {
                 if (instrucao != null) instrucao.close();
                 if (conexao != null) conexao.close();
+                ConstrutorLogs.MontarLog("SUCCESS", "Conexão fechada");
             } catch (SQLException e) {
                 System.err.println("Erro ao fechar conexão: " + e.getMessage());
+                ConstrutorLogs.MontarLog("ERROR", "Erro ao fechar conexão: " + e.getMessage());
             }
         }
     }
@@ -125,6 +130,55 @@ public class CarregadorDados {
                 if (conexao != null) conexao.close();
             } catch (SQLException e) {
                 System.err.println("Erro ao fechar conexão: " + e.getMessage());
+            }
+        }
+    }
+
+    public static void carregarRegistros(List<String[]> logs) {
+        Connection conexao = null;
+        PreparedStatement instrucao = null;
+
+        try {
+            // Conexão e desabilita autocommit
+            conexao = DriverManager.getConnection(URL, USUARIO, SENHA);
+            conexao.setAutoCommit(false);
+
+            String query = "INSERT INTO registro (data_hora, classificacao, mensagem) VALUES (?, ?, ?)";
+            instrucao = conexao.prepareStatement(query);
+
+            for (String[] log : logs) {
+                instrucao.setString(1, log[0]);
+                instrucao.setString(2, log[1]);
+                instrucao.setString(3, log[2]);
+
+                instrucao.addBatch();
+            }
+
+            System.out.println("Commit realizado - " + logs.size() + " logs inseridos");
+
+            instrucao.executeBatch();
+            conexao.commit();       // Commit único
+        } catch (SQLException e) {
+            // Rollback em caso de erro
+            if (conexao != null) {
+                try {
+                    conexao.rollback();
+                    System.err.println("Transação revertida devido a erro");
+
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao reverter transação: " + ex.getMessage());
+                }
+            }
+            e.printStackTrace();
+        } finally {
+            // Fecha tudo
+            try {
+                if (instrucao != null) instrucao.close();
+                if (conexao != null) conexao.close();
+                // FormatadorLogs.MontarLog("SUCCESS", "Conexão fechada");
+            } catch (SQLException e) {
+                System.err.println("Erro ao fechar conexão: " + e.getMessage());
+                // FormatadorLogs.MontarLog("ERROR", "Erro ao fechar conexão: " + e.getMessage());
             }
         }
     }
