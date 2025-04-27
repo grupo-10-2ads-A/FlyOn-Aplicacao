@@ -8,6 +8,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ExtratorPlanilhaXlsx {
 
@@ -47,8 +50,8 @@ public class ExtratorPlanilhaXlsx {
 //        Sheet aba = planilhaEmCache.getSheetAt(0);
 //        return aba.getLastRowNum();
 //    }
-
-    //     Versão para testar localmente
+//
+//    //     Versão para testar localmente
 //    public static List<String> extrairDadosDaLinha(String caminhoArquivo, int numeroLinha) throws IOException {
 //        if (!usandoStream) inicializarCache(caminhoArquivo);
 //        Sheet aba = planilhaEmCache.getSheetAt(0);
@@ -128,7 +131,7 @@ public class ExtratorPlanilhaXlsx {
             List<String> dados = new ArrayList<>();
 
             if (linha != null) {
-            if (caminhoArquivo.contains("VRA")) {
+            if (planilhaEmCache != null && caminhoArquivoEmCache.contains("VRA")) {
                 if (linha.getCell(8).getStringCellValue().contains("BRASIL") && linha.getCell(12).getStringCellValue().contains("BRASIL")) {
                     linha.getCell(6).setCellType(CellType.STRING);
 
@@ -189,19 +192,19 @@ public class ExtratorPlanilhaXlsx {
         return loteDeDados;
     }
 
-    public static List<List<String>> extrairDadosEmLote(String caminhoArquivo, int linhaInicial, int quantidade) throws IOException {
-        if (!usandoStream) inicializarCache(caminhoArquivo);
-        Sheet aba = planilhaEmCache.getSheetAt(0);
-        List<List<String>> loteDeDados = new ArrayList<>(quantidade);
-
-        int linhaFinal = Math.min(linhaInicial + quantidade - 1, aba.getLastRowNum());
-
-        for (int numeroLinha = linhaInicial; numeroLinha <= linhaFinal; numeroLinha++) {
-            loteDeDados.add(extrairDadosDaLinha(caminhoArquivo, numeroLinha));
-        }
-
-        return loteDeDados;
-    }
+//    public static List<List<String>> extrairDadosEmLote(String caminhoArquivo, int linhaInicial, int quantidade) throws IOException {
+//        if (!usandoStream) inicializarCache(caminhoArquivo);
+//        Sheet aba = planilhaEmCache.getSheetAt(0);
+//        List<List<String>> loteDeDados = new ArrayList<>(quantidade);
+//
+//        int linhaFinal = Math.min(linhaInicial + quantidade - 1, aba.getLastRowNum());
+//
+//        for (int numeroLinha = linhaInicial; numeroLinha <= linhaFinal; numeroLinha++) {
+//            loteDeDados.add(extrairDadosDaLinha(caminhoArquivo, numeroLinha));
+//        }
+//
+//        return loteDeDados;
+//    }
 
     public static void fecharPlanilha() throws IOException {
         if (planilhaEmCache != null) {

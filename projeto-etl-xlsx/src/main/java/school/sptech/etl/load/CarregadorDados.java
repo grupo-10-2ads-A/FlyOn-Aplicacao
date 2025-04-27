@@ -7,9 +7,9 @@ import java.util.List;
 
 public class CarregadorDados {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/flyon";
+    private static final String URL = "jdbc:mysql://172.17.0.2:3306/flyon";
     private static final String USUARIO = "root";
-    private static final String SENHA = "";
+    private static final String SENHA = "urubu100";
 
     public static void carregarTarifas(List<List<String>> dadosTarifas) {
         Connection conexao = null;
@@ -38,7 +38,7 @@ public class CarregadorDados {
             instrucao.executeBatch(); // Executa todo o lote
             conexao.commit();       // Commit único
             System.out.println("Commit realizado - " + dadosTarifas.size() + " registros inseridos");
-            ConstrutorLogs.MontarLog("SUCCES", "Commit realizado - " + dadosTarifas.size() + " registros inseridos");
+            ConstrutorLogs.montarLog("SUCCESS", "Carregador", "Commit realizado - " + dadosTarifas.size() + " registros inseridos");
 
         } catch (SQLException e) {
             // Rollback em caso de erro
@@ -46,11 +46,11 @@ public class CarregadorDados {
                 try {
                     conexao.rollback();
                     System.err.println("Transação revertida devido a erro");
-                    ConstrutorLogs.MontarLog("WARN", "Transação revertida devido a erro");
+                    ConstrutorLogs.montarLog("WARN", "Carregador", "Transação revertida devido a erro");
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao reverter transação: " + ex.getMessage());
-                    ConstrutorLogs.MontarLog("ERROR", "Erro ao reverter transação: " + ex.getMessage());
+                    ConstrutorLogs.montarLog("ERROR", "Carregador", "Erro ao reverter transação: " + ex.getMessage());
                 }
             }
             e.printStackTrace();
@@ -59,10 +59,10 @@ public class CarregadorDados {
             try {
                 if (instrucao != null) instrucao.close();
                 if (conexao != null) conexao.close();
-                ConstrutorLogs.MontarLog("SUCCESS", "Conexão fechada");
+                ConstrutorLogs.montarLog("SUCCESS", "Carregador", "Conexão fechada");
             } catch (SQLException e) {
                 System.err.println("Erro ao fechar conexão: " + e.getMessage());
-                ConstrutorLogs.MontarLog("ERROR", "Erro ao fechar conexão: " + e.getMessage());
+                ConstrutorLogs.montarLog("ERROR", "Carregador", "Erro ao fechar conexão: " + e.getMessage());
             }
         }
     }
@@ -111,6 +111,7 @@ public class CarregadorDados {
             instrucao.executeBatch(); // Executa todo o lote
             conexao.commit();       // Commit único
             System.out.println("Commit realizado - " + dadosHorarios.size() + " registros inseridos");
+            ConstrutorLogs.montarLog("SUCCESS", "Carregador", "Commit realizado - " + dadosHorarios.size() + " registros inseridos");
 
         } catch (SQLException e) {
             // Rollback em caso de erro
@@ -118,8 +119,10 @@ public class CarregadorDados {
                 try {
                     conexao.rollback();
                     System.err.println("Transação revertida devido a erro");
+                    ConstrutorLogs.montarLog("WARN", "Carregador", "Transação revertida devido a erro");
                 } catch (SQLException ex) {
                     System.err.println("Erro ao reverter transação: " + ex.getMessage());
+                    ConstrutorLogs.montarLog("ERROR", "Carregador", "Erro ao reverter transação: " + ex.getMessage());
                 }
             }
             e.printStackTrace();
@@ -128,8 +131,10 @@ public class CarregadorDados {
             try {
                 if (instrucao != null) instrucao.close();
                 if (conexao != null) conexao.close();
+                ConstrutorLogs.montarLog("SUCCESS", "Carregador", "Conexão fechada");
             } catch (SQLException e) {
                 System.err.println("Erro ao fechar conexão: " + e.getMessage());
+                ConstrutorLogs.montarLog("ERROR", "Carregador", "Erro ao fechar conexão: " + e.getMessage());
             }
         }
     }
@@ -143,13 +148,14 @@ public class CarregadorDados {
             conexao = DriverManager.getConnection(URL, USUARIO, SENHA);
             conexao.setAutoCommit(false);
 
-            String query = "INSERT INTO registro (data_hora, classificacao, mensagem) VALUES (?, ?, ?)";
+            String query = "INSERT INTO registro (data_hora, classificacao, origem, mensagem) VALUES (?, ?, ?, ?)";
             instrucao = conexao.prepareStatement(query);
 
             for (String[] log : logs) {
                 instrucao.setString(1, log[0]);
                 instrucao.setString(2, log[1]);
                 instrucao.setString(3, log[2]);
+                instrucao.setString(4, log[3]);
 
                 instrucao.addBatch();
             }
@@ -175,10 +181,8 @@ public class CarregadorDados {
             try {
                 if (instrucao != null) instrucao.close();
                 if (conexao != null) conexao.close();
-                // FormatadorLogs.MontarLog("SUCCESS", "Conexão fechada");
             } catch (SQLException e) {
                 System.err.println("Erro ao fechar conexão: " + e.getMessage());
-                // FormatadorLogs.MontarLog("ERROR", "Erro ao fechar conexão: " + e.getMessage());
             }
         }
     }
