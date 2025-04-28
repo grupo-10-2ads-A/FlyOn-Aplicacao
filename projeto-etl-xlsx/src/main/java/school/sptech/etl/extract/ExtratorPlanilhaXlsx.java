@@ -19,9 +19,10 @@ public class ExtratorPlanilhaXlsx {
     private static boolean usandoStream = false;
 
     // Carregando a planilha direto do S3
-    public static void carregarPlanilha(InputStream inputStream) throws IOException {
+    public static void carregarPlanilha(InputStream inputStream, String caminhoArquivoS3) throws IOException {
         fecharPlanilha();
         planilhaEmCache = new XSSFWorkbook(inputStream);
+        caminhoArquivoEmCache = caminhoArquivoS3;
         usandoStream = true;
     }
 
@@ -131,7 +132,7 @@ public class ExtratorPlanilhaXlsx {
             List<String> dados = new ArrayList<>();
 
             if (linha != null) {
-            if (planilhaEmCache != null && caminhoArquivoEmCache.contains("VRA")) {
+            if (caminhoArquivoEmCache != null && caminhoArquivoEmCache.contains("VRA")) {
                 if (linha.getCell(8).getStringCellValue().contains("BRASIL") && linha.getCell(12).getStringCellValue().contains("BRASIL")) {
                     linha.getCell(6).setCellType(CellType.STRING);
 

@@ -36,7 +36,7 @@ public class EtlProcess {
             }
 
             // Carrega o workbook com o InputStream S3
-            ExtratorPlanilhaXlsx.carregarPlanilha(s3InputStream);
+            ExtratorPlanilhaXlsx.carregarPlanilha(s3InputStream, caminhoArquivoS3);
 
             System.out.println("[ETL] Iniciando, arquivo recebido: " + caminhoArquivoS3);
             ConstrutorLogs.montarLog("INFO", "Main", "arquivo recebido:" + caminhoArquivoS3);
