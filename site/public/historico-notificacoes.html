@@ -7,16 +7,18 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style/header-lateral.css">
-    <link rel="stylesheet" href="./style/./gerenciamento.css">
+    <link rel="stylesheet" href="./style/./historico-notificacoes.css">
 
     <script src="./js/menuLateral.js"></script>
 
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
-    <title>FlyOn | Central de Gerenciamento</title>
+    <title>FlyOn | Histórico de Notificações</title>
 </head>
 
 <body>
+
     <header>
+
         <div>
             <button id="botaoMenu" onclick="mostrarItenMenu()">
                 <img id="iconeMenu" src="./img/icons8-hamburguer.svg" alt="Menu"/>
@@ -56,38 +58,55 @@
         <div class="cabecalho">
             <div class="filtro-branco"></div>
             <div class="conteudo-cabecalho">
-                <h2 class="titulo">CENTRAL DE GERENCIAMENTO
-                    <img class="titulo-icone" src="./img/icon-quatro-quadrados-100px.png" alt="">
-                </h2>
+                <h2 class="titulo">HISTÓRICO DE NOTIFICAÇÕES <img class="titulo-icone" src="./img/notificacao.png"
+                        alt=""> </h2>
                 <span></span>
             </div>
         </div>
 
-        <div class="cards">
-            <a class="card" href="lista-usuario.html" id="cardUsuarios">
-                <img src="./img/avatar-100px.png" alt="">
-                <h3>Gerenciamento de Usuários</h3>
-            </a>
+        <div class="notificacoes">
+            <div class="datas">
+                <span class="titulo">DATA / HORA</span>
+                <div class="campo data-hora"></div>
+                <div class="campo data-hora"></div>
+                <div class="campo data-hora"></div>
+                <div class="campo data-hora"></div>
+            </div>
 
-            <a class="card" href="lista-perfis.html" id="cardPerfis">
-                <img src="./img/carteira-de-identidade.png" alt="">
-                <h3>Gerenciamento de Perfis</h3>
-            </a>
+            <div class="container-ocorrencias">
+                <span class="titulo">OCORRÊNCIA</span>
 
-            <a class="card" href="lista-notificacao.html" id="cardNotificacoes">
-                <img src="./img/sino-rosa.png" alt="">
-                <h3>Gerenciamento de Notificações</h3>
-            </a>
+                <div class="ocorrencias">
+                    <div class="linha">
+                        <div class="campo ocorrencia"></div>
+                        <div class="exclusao">
+                            <img src="./img/excluir.png" alt="">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="campo ocorrencia"></div>
+                        <div class="exclusao">
+                            <img src="./img/excluir.png" alt="">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="campo ocorrencia"></div>
+                        <div class="exclusao">
+                            <img src="./img/excluir.png" alt="">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="campo ocorrencia"></div>
+                        <div class="exclusao">
+                            <img src="./img/excluir.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <a class="card" href="lista-sugestao.html" id="cardSugestoes">
-                <img src="./img/sugestão.png" alt="">
-                <h3>Gerenciamento de Sugestões</h3>
-            </a>
         </div>
     </main>
-</body>
 
+</body>
 </html>
-<script src="js/sair.js"></script>
-<script src="js/vereficacao-de-cargo.js"></script>
 <script src="js/sair.js"></script>

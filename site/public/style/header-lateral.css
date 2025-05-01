@@ -10,11 +10,6 @@ body {
     min-height: 100vh;
 }
 
-main {
-    margin: 0;
-    padding: 0;
-    background-color: #EDEDED;
-}
 
 a {
     text-decoration: none;
@@ -23,6 +18,7 @@ a {
   /*======================= HEADER LATERAL ======================*/
 
 header {
+    width: 5%;
     position: fixed;
     right: 0;
     top: 0;
@@ -99,7 +95,5 @@ header.expandido ~ main {
     
 main {
     flex: 1;
-    padding: 20px;
-    margin-right: 60px;
     transition: margin-right 0.4s ease;
 }

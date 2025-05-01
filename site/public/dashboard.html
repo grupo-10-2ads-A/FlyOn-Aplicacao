@@ -1,163 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
-            rel="stylesheet">
-    <link rel="stylesheet" href="./style/header-lateral.css">
-    <link rel="stylesheet" href="./style/dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style/header-lateral.css">
+  <link rel="stylesheet" href="./style/dashboard.css">
 
-    <script src="./js/menuLateral.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./js/menuLateral.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
-    <title>FlyOn | Dashboard</title>
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+  <title>FlyOn | Dashboard</title>
 </head>
+
 <body>
 
 
-    <header>
-        
-        <div>
-        <button onclick="mostrarItenMenu()">
-            <img src="./img/icons8-hamburguer.svg" alt="Menu" />
-        </button>
-        </div>
-        
-        <div class="menu-itens">
+  <header>
 
-          <a class="menu-item">
-              <img src="./img/icons-menu-lateral/home.png" alt="Voltar para o início" />
-              <span>Início</span>
-            </a>
-        
-            <a class="menu-item ativo" href="./dashboard.html">
-                <img src="./img/icons-menu-lateral/aviao.png" alt="Dados de vôos" />
-                <span>Voos</span>
-            </a>
-        
-            <a class="menu-item">
-              <img src="./img/icons-menu-lateral/sino.png" alt="Notificações" />
-              <span>Notificações</span>
-            </a>
-        
-            <a class="menu-item" href="./central-gerenciamento.html">
-              <img src="./img/icons-menu-lateral/config-engrenagem.png" alt="Configurações" />
-              <span>Configurações</span>
-            </a>
-        
-            <a class="menu-item">
-              <img src="./img/icons-menu-lateral/logout.png" alt="Sair" />
-              <span>Sair</span>
-            </a>
-        </div>
-      </header>
+    <div>
+      <button id="botaoMenu" onclick="mostrarItenMenu()">
+          <img id="iconeMenu" src="./img/icons8-hamburguer.svg" alt="Menu"/>
+      </button>
+  </div>
 
-    <main>
+  <div class="menu-itens">
+      <a href="home.html" class="menu-item">
+          <img src="./img/icons-menu-lateral/home.png" alt="Voltar para o início"/>
+          <span>Início</span>
+      </a>
 
-        <!-- <div class="cabecalho filtro-branco">
+      <a href="dashboard.html" class="menu-item" href="./dashboard.html">
+          <img src="./img/icons-menu-lateral/aviao.png" alt="Dados de vôos"/>
+          <span>Voos</span>
+      </a>
+
+      <a href="historico-notificacoes.html" class="menu-item">
+          <img src="./img/icons-menu-lateral/sino.png" alt="Notificações"/>
+          <span>Notificações</span>
+      </a>
+
+      <a href="central-gerenciamento.html" class="menu-item ativo">
+          <img src="./img/icons-menu-lateral/config-engrenagem.png" alt="Configurações"/>
+          <span>Configurações</span>
+      </a>
+
+      <a  class="menu-item" onclick=" logout()">
+          <img src="./img/icons-menu-lateral/logout.png" alt="Sair"/>
+          <span >Sair</span>
+      </a>
+  </div>
+  </header>
+
+  <main>
+
+    <!-- <div class="cabecalho filtro-branco">
             <h2 class="titulo">DASHBOARD</h2>
             <span></span>
         </div> -->
 
-        <div class="cabecalho">
-            <div class="filtro-branco"></div>
-            <div class="conteudo-cabecalho">
-              <h2 class="titulo">DASHBOARD </h2>
-              <span></span>
-            </div>
-          </div>
+    <div class="cabecalho">
+      <div class="filtro-branco"></div>
+      <div class="conteudo-cabecalho">
+        <h2 class="titulo">DASHBOARD </h2>
+        <span></span>
+      </div>
+    </div>
 
-        <!-- KPIS ABAIXO -->
-        <div class="linha-kpis">
+    <!-- KPIS ABAIXO -->
+    <div class="linha-kpis">
 
-            <div class="kpi ">
-                <span>Companhia(s) com a menor taxa de atrasos:</span>
-                <h3>1- comapnhia 1</h3>
-                <h3>2- companhia 2</h3>
-                <h3>3- companhia 3</h3>
-            </div>
+      <div class="kpi ">
+        <span>Melhor empresa para a viagem</span>
+        <h3>Latam</h3>
+      </div>
 
-            <div class="kpi">
-                <span>Mês com menor volume de viagens:</span>
-                <h3 class="kpi-mes">Maio</h3>
-            </div>
+      <div class="kpi">
+        <span>Mês com a menor média no valor de passagens</span>
+        <h3 class="kpi-mes">Maio</h3>
+        <h3 class="kpi-mes">299,90</h3>
+      </div>
 
-            <div class="kpi">
-                <span>KPI 3</span>
-                <h3>CONTEÚDO</h3>
-            </div>
+      <div class="kpi">
+        <span>Taxa média de atraso para o destino X</span>
+        <h3>2.58%</h3>
+        <h3>Melhor CIA: Azul (4.12%)</h3>
+      </div>
 
-        </div>
+    </div>
 
-        <!-- GRÁFICO ABAIXO -->
+    <!-- GRÁFICO ABAIXO -->
 
-        <div class="linha-graficos">
-            <div class="grafico-1">
-              <span>Comparativo entre vias aéreas</span>
-              <canvas id="graficoBarras"></canvas>
-            </div>
-          
-            <div class="grafico-2">
-              <span>Tendências de preços ao longo do ano</span>
-              <canvas id="graficoLinhas"></canvas>
-            </div>
-          </div>
+    <div class="linha-graficos">
+      <div class="grafico-1">
+        <span>Comparativo entre vias aéreas</span>
+        <canvas id="graficoBarras"></canvas>
+      </div>
 
-    </main>
-    
+      <div class="grafico-2">
+        <span>Tendências de preços ao longo do ano</span>
+        <canvas id="graficoLinhas"></canvas>
+      </div>
+    </div>
+
+  </main>
+
 </body>
-</html>
 
+</html>
+<script src="js/sair.js"></script>
 <script>
-    // Gráfico de Barras
-    const ctxBarras = document.getElementById('graficoBarras').getContext('2d');
-    new Chart(ctxBarras, {
-      type: 'bar',
-      data: {
-        labels: ['Gol', 'Latam', 'Azul', 'Avianca'],
-        datasets: [{
-          label: 'Quantidade de Voos',
-          data: [120, 90, 150, 80],
-          backgroundColor: ['#4CAF50', '#2196F3', '#FFC107', '#E91E63']
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true
-          }
+  // Gráfico de Barras
+  const ctxBarras = document.getElementById('graficoBarras').getContext('2d');
+  new Chart(ctxBarras, {
+    type: 'bar',
+    data: {
+      labels: ['Gol', 'Latam', 'Azul', 'Avianca'],
+      datasets: [{
+        label: 'Quantidade de Voos',
+        data: [120, 90, 150, 80],
+        backgroundColor: ['#4CAF50', '#2196F3', '#FFC107', '#E91E63']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true
         }
       }
-    });
-  
-    // Gráfico de Linhas
-    const ctxLinhas = document.getElementById('graficoLinhas').getContext('2d');
-    new Chart(ctxLinhas, {
-      type: 'line',
-      data: {
-        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
-        datasets: [{
-          label: 'Preço médio das passagens',
-          data: [400, 380, 420, 390, 450, 470],
-          borderColor: '#FF5722',
-          backgroundColor: 'rgba(255, 87, 34, 0.2)',
-          tension: 0.4,
-          fill: true
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true
-          }
+    }
+  });
+
+  // Gráfico de Linhas
+  const ctxLinhas = document.getElementById('graficoLinhas').getContext('2d');
+  new Chart(ctxLinhas, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+      datasets: [{
+        label: 'Preço médio das passagens',
+        data: [400, 380, 420, 390, 450, 470],
+        borderColor: '#FF5722',
+        backgroundColor: 'rgba(255, 87, 34, 0.2)',
+        tension: 0.4,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true
         }
       }
-    });
-  </script>
-  
+    }
+  });
+</script>

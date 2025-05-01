@@ -3,26 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Usuário</title>
+
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style/cadastro-usuario.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+
+    <title>FlyOn | Editar Usuário</title>
 </head>
 <body>
-    <h1>Editar Usuário</h1>
-    <form id="formEditarUsuario">
-        <input type="hidden" id="IdUsuario" value="">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" required>
-        <br>
-        <label for="cargo">Cargo:</label>
-        <input type="text" id="cargo" required>
-        <br>
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" required>
-        <br>
-        <button type="submit">Atualizar</button>
-    </form>
+
+    <main>
+
+        <div class="filtro-branco"></div>
+
+        <div class="seta-voltar">
+            <a href="./central-gerenciamento.html">
+                <img src="./img/seta-esquerda.png" alt="Seta apontando para a direita">
+                <p>Voltar</p>
+            </a>
+        </div>
+
+
+        <div class="form-container">
+            <div class="form">
+                <span class="formTitle">Editar Usuário</span>
+                <div class="labelsInputs">
+                    <div class="form-informacao">
+                        <input type="hidden" id="IdUsuario" value="">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" placeholder="Nome do funcionário" required>
+                    </div>
+                    <div class="form-informacao">
+                        <label for="cargo">Cargo:</label>
+                        <input type="text" placeholder="Cargo do funcionário" id="cargo" required>
+                    </div>
+                    <div class="form-informacao">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" placeholder="exemplo@email.com" required>
+                    </div>
+                    <div class="form-informacao">
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha_cadastro_input" placeholder="*******" required>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+                </div>
+                <button class="submit-btn" type="submit">ATUALIZAR</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        COPYRIGHT© 2025
+    </footer>
+
 <script src="js/editar-usuario.js" defer></script>
+<script src="js/esconde-senha.js" defer></script>
 </body>
 </html>

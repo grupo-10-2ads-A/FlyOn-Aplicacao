@@ -1,11 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href="central-gerenciamento.html">central-gerenciamento</a>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Home
+        </title>
+        <link rel="stylesheet" href="style/home.css">
+    </head>
+    <body>
+        <main>
+            <header>
+            
+                <div>
+                    <button id="botaoMenu" onclick="mostrarItenMenu()">
+                        <img id="iconeMenu" src="./img/icons8-hamburguer.svg" alt="Menu"/>
+                    </button>
+                </div>
+        
+                <div class="menu-itens">
+                    <a href="home.html" class="menu-item">
+                        <img src="./img/icons-menu-lateral/home.png" alt="Voltar para o início"/>
+                        <span>Início</span>
+                    </a>
+        
+                    <a href="dashboard.html" class="menu-item" href="./dashboard.html">
+                        <img src="./img/icons-menu-lateral/aviao.png" alt="Dados de vôos"/>
+                        <span>Voos</span>
+                    </a>
+        
+                    <a href="historico-notificacoes.html" class="menu-item">
+                        <img src="./img/icons-menu-lateral/sino.png" alt="Notificações"/>
+                        <span>Notificações</span>
+                    </a>
+        
+                    <a href="central-gerenciamento.html" class="menu-item ativo">
+                        <img src="./img/icons-menu-lateral/config-engrenagem.png" alt="Configurações"/>
+                        <span>Configurações</span>
+                    </a>
+        
+                    <a  class="menu-item" onclick=" logout()">
+                        <img src="./img/icons-menu-lateral/logout.png" alt="Sair"/>
+                        <span >Sair</span>
+                    </a>
+                </div>
+            </header>
+            <div class="content">
+                <div class="upperContent">
+                    <div class="pageName">
+                        <span class="title">VIAGENS</span>
+                        <img src="img/icone-home/icon.png" alt="">
+                    </div>
+                    <div class="search">
+                        <div class="passagem">
+                            <div class="labelPassagem">
+                                <img src="img/icone-home/duas-setas.png" alt="">
+                                <select name="" id="">
+                                    <option value="">Ida e Volta</option>
+                                    <option value="">Somente Ida</option>
+                                    <option value="">Somente Volta</option>
+                                </select>
+                            </div>
+                            <div class="preencherPassagem">
+                                <input placeholder="Origem">
+                                <img src="img/icone-home/duas-setas.png">
+                                <input placeholder="Destino">
+                            </div>
+                        </div>
+                        <div class="dataPassagem">
+                            <div class="labelDataPassagem">
+                                <img src="img/icone-home/calendario.png">
+                                <span>Selecione uma data:</span>
+                                <span></span>
+                            </div>
+                            <div class="preencherPassagem">
+                                <input type="date" placeholder="Partida">
+                                <img src="img/icone-home/duas-setas.png">
+                                <input type="date" placeholder="Volta">
+                            </div>
+                        </div>
+                        <div class="containerBotao">
+                            <button><img src="img/icone-home/lupa.png" alt="">Pesquisar</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="lowerContent">
+                    <div class="filtros">
+
+                        <div class="filtroTitulo">
+                            <img src="img/icone-home/filtro.png" alt="">
+                            <span>Filtros</span>
+                        </div>
+
+                        <div class="filtro">
+                            <button class="cabecalho" onclick="toggle(this)">Valor</button>
+                            <div class="conteudo">
+                                <label><input type="checkbox">
+                                    Menor(es) preço(s)</label>
+                                <label><input type="checkbox">
+                                    Até R$ 599,99</label>
+                                <label><input type="checkbox">
+                                    Até R$ 999,99</label>
+                                <label><input type="checkbox">
+                                    Até R$ 1999,99</label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="filtro">
+                            <button class="cabecalho" onclick="toggle(this)">Experiência do cliente</button>
+                            <div class="conteudo">Conteúdo da experiência</div>
+                        </div>
+                        <hr>
+                        <div class="filtro">
+                            <button class="cabecalho" onclick="toggle(this)">Taxa de atraso</button>
+                            <div class="conteudo">Conteúdo da taxa de atraso</div>
+                        </div>
+                        <hr>
+                        <div class="filtro">
+                            <button class="cabecalho" onclick="toggle(this)">Companhia aérea</button>
+                            <div class="conteudo">Conteúdo da companhia</div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="destinosVisitados">
+                        <h2>Destinos mais visitados</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Origem</th>
+                                    <th>Destino</th>
+                                    <th>Cia Aérea</th>
+                                    <th>Valor</th>
+                                    <th>Temporada</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>GRU–SP</td>
+                                    <td>SSA–BA</td>
+                                    <td>LATAM</td>
+                                    <td>R$199,90</td>
+                                    <td>Baixa</td>
+                                    <td>&#8250;</td>
+                                </tr>
+                                <tr>
+                                    <td>GRU–SP</td>
+                                    <td>SSA–BA</td>
+                                    <td>LATAM</td>
+                                    <td>R$199,90</td>
+                                    <td>Baixa</td>
+                                    <td>&#8250;</td>
+                                </tr>
+                                <tr>
+                                    <td>GRU–SP</td>
+                                    <td>SSA–BA</td>
+                                    <td>LATAM</td>
+                                    <td>R$199,90</td>
+                                    <td>Baixa</td>
+                                    <td>&#8250;</td>
+                                </tr>
+                                <tr>
+                                    <td>GRU–SP</td>
+                                    <td>SSA–BA</td>
+                                    <td>LATAM</td>
+                                    <td>R$199,90</td>
+                                    <td>Baixa</td>
+                                    <td>&#8250;</td>
+                                </tr>
+                                <tr>
+                                    <td>GRU–SP</td>
+                                    <td>SSA–BA</td>
+                                    <td>LATAM</td>
+                                    <td>R$199,90</td>
+                                    <td>Baixa</td>
+                                    <td>&#8250;</td>
+                                </tr>
+                                <tr>
+                                    <td>GRU–SP</td>
+                                    <td>SSA–BA</td>
+                                    <td>LATAM</td>
+                                    <td>R$199,90</td>
+                                    <td>Baixa</td>
+                                    <td>&#8250;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
 </body>
 </html>
+<script src="js/sair.js"></script>
+<script>
+function toggle(botao) {
+    botao
+        .classList
+        .toggle("ativofiltro");
+    var conteudo = botao.nextElementSibling;
+    if (conteudo.style.maxHeight) {
+        conteudo.style.maxHeight = null;
+    } else {
+        conteudo.style.maxHeight = conteudo.scrollHeight + "px";
+    }
+}
+
+function mostrarItenMenu() {
+    const header = document.querySelector("header");
+    header.classList.toggle("expandido");
+  }
+</script>
