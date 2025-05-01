@@ -48,17 +48,20 @@
   }
   
   .titulo {
-    font-size: 40px;
-    font-weight: 700;
-    color: #e6007e;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    flex-direction: row;
+    color: #ff004d;
+    font-size: 3rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    margin-left: 10px;
+    text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.29);
   }
   
   .titulo img {
-    height: 30px;
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
   }
   
   /* Container central */
