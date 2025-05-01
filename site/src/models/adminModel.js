@@ -1,52 +1,44 @@
 var database = require("../database/config");
 
 function listarUsuario() {
-    var instrucao = "SELECT * FROM usuario;";
+    var instrucao = "SELECT idUsuario, fk_agencia, nome, cargo, email FROM usuario;";
     return database.executar(instrucao);
 }
 
-function buscarPorIdUsuario(IdUsuario) {
-    var instrucao = `SELECT * FROM usuario WHERE idUsuario = ${IdUsuario};`;
+function buscarPorIdUsuario(idUsuario) {
+    var instrucao = `SELECT idUsuario, fk_agencia, nome, cargo, email FROM usuario WHERE idUsuario = ${idUsuario};`;
     return database.executar(instrucao);
 }
 
-function atualizarUsuario(IdUsuario, nome, cargo, email, senha) {
+function atualizarUsuario(idUsuario, nome, email, cargo, senha) {
     var instrucao = `
         UPDATE usuario 
         SET nome = '${nome}', cargo = '${cargo}', email = '${email}', senha = '${senha}' 
-        WHERE idUsuario = ${IdUsuario};
+        WHERE idUsuario = ${idUsuario};
     `;
     return database.executar(instrucao);
 }
 
-function deletarUsuario(IdUsuario) {
-    var instrucao = `DELETE FROM usuario WHERE idUsuario = ${IdUsuario};`;
+function deletarUsuario(idUsuario) {
+    var instrucao = `DELETE FROM usuario WHERE idUsuario = ${idUsuario};`;
+    return database.executar(instrucao);
+}
+
+function cadastrarUsuario(fk_agencia, nome, cargo, email, senha) {
+    var instrucao = `
+        INSERT INTO usuario (fk_agencia, nome, cargo, email, senha) 
+        VALUES (${fk_agencia}, '${nome}', '${cargo}', '${email}', '${senha}');
+    `;
     return database.executar(instrucao);
 }
 
 function autenticarUsuario(email, senha) {
-    console.log("Usuário Model: Iniciando autenticação para:", email);
-
-    var instrucaoSql = `
+    var instrucao = `
         SELECT idUsuario, fk_agencia, nome, cargo, email, senha
         FROM usuario 
         WHERE email = '${email}' AND senha = '${senha}';
     `;
-    
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function cadastrarUsuario(fk_agencia, nome, cargo, email, senha) {
-    console.log("Usuário Model: Iniciando cadastro para:", nome, email);
-
-    var instrucaoSql = `
-        INSERT INTO usuario (fk_agencia, nome, cargo, email, senha) 
-        VALUES (${fk_agencia}, '${nome}', '${cargo}', '${email}', '${senha}');
-    `;
-    
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+    return database.executar(instrucao);
 }
 
 module.exports = {
@@ -54,6 +46,6 @@ module.exports = {
     buscarPorIdUsuario,
     atualizarUsuario,
     deletarUsuario,
-    autenticarUsuario,
-    cadastrarUsuario
+    cadastrarUsuario,
+    autenticarUsuario
 };
