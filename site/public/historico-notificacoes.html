@@ -20,35 +20,35 @@
     <header>
 
         <div>
-            <button onclick="mostrarItenMenu()">
-                <img src="./img/icons8-hamburguer.svg" alt="Menu" />
+            <button id="botaoMenu" onclick="mostrarItenMenu()">
+                <img id="iconeMenu" src="./img/icons8-hamburguer.svg" alt="Menu"/>
             </button>
         </div>
 
         <div class="menu-itens">
-            <a class="menu-item">
-                <img src="./img/icons-menu-lateral/home.png" alt="Voltar para o início" />
+            <a href="home.html" class="menu-item">
+                <img src="./img/icons-menu-lateral/home.png" alt="Voltar para o início"/>
                 <span>Início</span>
             </a>
 
-            <a class="menu-item" href="./dashboard.html">
-                <img src="./img/icons-menu-lateral/aviao.png" alt="Dados de vôos" />
+            <a href="dashboard.html" class="menu-item" href="./dashboard.html">
+                <img src="./img/icons-menu-lateral/aviao.png" alt="Dados de vôos"/>
                 <span>Voos</span>
             </a>
 
-            <a class="menu-item ativo">
-                <img src="./img/icons-menu-lateral/sino.png" alt="Notificações" />
+            <a href="historico-notificacoes.html" class="menu-item">
+                <img src="./img/icons-menu-lateral/sino.png" alt="Notificações"/>
                 <span>Notificações</span>
             </a>
 
-            <a class="menu-item" href="./central-gerenciamento.html">
-                <img src="./img/icons-menu-lateral/config-engrenagem.png" alt="Configurações" />
+            <a href="central-gerenciamento.html" class="menu-item ativo">
+                <img src="./img/icons-menu-lateral/config-engrenagem.png" alt="Configurações"/>
                 <span>Configurações</span>
             </a>
 
-            <a class="menu-item" onclick=" logout()">
-                <img src="./img/icons-menu-lateral/logout.png" alt="Sair" />
-                <span>Sair</span>
+            <a  class="menu-item" onclick=" logout()">
+                <img src="./img/icons-menu-lateral/logout.png" alt="Sair"/>
+                <span >Sair</span>
             </a>
         </div>
     </header>
@@ -108,5 +108,5 @@
     </main>
 
 </body>
-
 </html>
+<script src="js/sair.js"></script>

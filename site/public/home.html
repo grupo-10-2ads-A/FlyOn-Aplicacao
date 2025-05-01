@@ -10,6 +10,41 @@
     </head>
     <body>
         <main>
+            <header>
+            
+                <div>
+                    <button id="botaoMenu" onclick="mostrarItenMenu()">
+                        <img id="iconeMenu" src="./img/icons8-hamburguer.svg" alt="Menu"/>
+                    </button>
+                </div>
+        
+                <div class="menu-itens">
+                    <a href="home.html" class="menu-item">
+                        <img src="./img/icons-menu-lateral/home.png" alt="Voltar para o início"/>
+                        <span>Início</span>
+                    </a>
+        
+                    <a href="dashboard.html" class="menu-item" href="./dashboard.html">
+                        <img src="./img/icons-menu-lateral/aviao.png" alt="Dados de vôos"/>
+                        <span>Voos</span>
+                    </a>
+        
+                    <a href="historico-notificacoes.html" class="menu-item">
+                        <img src="./img/icons-menu-lateral/sino.png" alt="Notificações"/>
+                        <span>Notificações</span>
+                    </a>
+        
+                    <a href="central-gerenciamento.html" class="menu-item ativo">
+                        <img src="./img/icons-menu-lateral/config-engrenagem.png" alt="Configurações"/>
+                        <span>Configurações</span>
+                    </a>
+        
+                    <a  class="menu-item" onclick=" logout()">
+                        <img src="./img/icons-menu-lateral/logout.png" alt="Sair"/>
+                        <span >Sair</span>
+                    </a>
+                </div>
+            </header>
             <div class="content">
                 <div class="upperContent">
                     <div class="pageName">
@@ -45,7 +80,7 @@
                             </div>
                         </div>
                         <div class="containerBotao">
-                            <button><img src="../public/img/icone-home/lupa.png" alt="">Pesquisar</button>
+                            <button><img src="img/icone-home/lupa.png" alt="">Pesquisar</button>
                         </div>
 
                     </div>
@@ -158,47 +193,11 @@
             </div>
         </div>
 
-        <header>
-
-            <div>
-                <button onclick="mostrarItenMenu()">
-                    <img src="../public/img/icons8-hamburguer.svg" alt="Menu"/>
-                </button>
-            </div>
-
-            <div class="menu-itens">
-
-                <a class="menu-item ativo">
-                    <img src="../public/img/icone-home/home.png" alt="Voltar para o início"/>
-                    <span>Início</span>
-                </a>
-
-                <a class="menu-item " href="./dashboard.html">
-                    <img src="../public/img/icone-home/aviao.png" alt="Dados de vôos"/>
-                    <span>Voos</span>
-                </a>
-
-                <a class="menu-item">
-                    <img src="../public/img/icone-home/notificacoes.png" alt="Notificações"/>
-                    <span>Notificações</span>
-                </a>
-
-                <a class="menu-item" href="./central-gerenciamento.html">
-                    <img src="../public/img/icone-home/config.png" alt="Configurações"/>
-                    <span>Configurações</span>
-                </a>
-
-                <a class="menu-item">
-                    <img src="../public/img/icone-home/sair.png" alt="Sair"/>
-                    <span>Sair</span>
-                </a>
-            </div>
-        </header>
 
     </main>
 </body>
 </html>
-
+<script src="js/sair.js"></script>
 <script>
 function toggle(botao) {
     botao
