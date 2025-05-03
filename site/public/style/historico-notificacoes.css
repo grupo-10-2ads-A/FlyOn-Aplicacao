@@ -149,8 +149,8 @@ a {
             align-items: center;
 
             img {
-                width: 60%;
-                height: 60%;
+                width: 2rem;
+                height: auto;
             }
         }
 
