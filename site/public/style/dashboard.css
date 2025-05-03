@@ -15,7 +15,7 @@ a{
 .cabecalho {
     position: relative;
     width: calc(100vw - 80px);
-    height: 150px;
+    height: 100px;
     background-image: url(../img/nave-fundo/fundo-aviao-canva.webp);
     background-size: 100%;
     background-repeat: no-repeat;
@@ -40,7 +40,13 @@ a{
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+}
+.conteudo-cabecalho img{
+    margin-left: 10px;
+    width: 4rem;
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.29));
+
 }
   
 .titulo {

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <title>FlyOn | Cadastro de Usuários</title>
+    <!-- <link rel="stylesheet" href="style/login.css"> -->
+    <!-- <link rel="stylesheet" href="style/responsividade.css"> -->
+    <!-- <link rel="stylesheet" href="style/resp-cadastro-login.css"> -->
+    <link rel="stylesheet" href="style/adicionar-sugestao.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <script src="../js/menuresponsivo.js"></script>
+    <script src="../js/cadastro.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <div class="filtro-branco"></div>
+        
+        <div class="seta-voltar">
+            <a href="./lista-sugestao.html">
+                <img src="./img/seta-esquerda.png" alt="">
+                <p>Voltar</p>
+            </a>
+        </div>
+
+
+        <div class="form-container">
+            <div class="form">
+                <span class="formTitle">Adicionar Sugestão</span>
+                <div class="labelsInputs">
+                    <div class="form-informacao">
+                        <div class="inputs-origem-destino">
+                            <div class="select-labels">
+                                <label for="origem">ORIGEM:</label>
+                                    <select id="origem" name="origem">
+                                        <option value="">Aeroporto e UF</option>
+                                        <option value="GRU–SP">GRU–SP (São Paulo – Guarulhos)</option>
+                                        <option value="CGH–SP">CGH–SP (São Paulo – Congonhas)</option>
+                                        <option value="GIG–RJ">GIG–RJ (Rio de Janeiro – Galeão)</option>
+                                        <option value="SDU–RJ">SDU–RJ (Rio de Janeiro – Santos Dumont)</option>
+                                        <option value="CNF–MG">CNF–MG (Belo Horizonte – Confins)</option>
+                                        <option value="SSA–BA">SSA–BA (Salvador)</option>
+                                        <option value="REC–PE">REC–PE (Recife)</option>
+                                        <option value="POA–RS">POA–RS (Porto Alegre)</option>
+                                        <option value="BSB–DF">BSB–DF (Brasília)</option>
+                                    </select>
+                            </div>
+                                    <br>
+                            <div class="select-labels">
+                            <label for="destino">DESTINO:</label>
+                                <select id="destino" name="destino">
+                                    <option value="">Aeroporto e UF</option>
+                                    <option value="GRU–SP">GRU–SP (São Paulo – Guarulhos)</option>
+                                    <option value="CGH–SP">CGH–SP (São Paulo – Congonhas)</option>
+                                    <option value="GIG–RJ">GIG–RJ (Rio de Janeiro – Galeão)</option>
+                                    <option value="SDU–RJ">SDU–RJ (Rio de Janeiro – Santos Dumont)</option>
+                                    <option value="CNF–MG">CNF–MG (Belo Horizonte – Confins)</option>
+                                    <option value="SSA–BA">SSA–BA (Salvador)</option>
+                                    <option value="REC–PE">REC–PE (Recife)</option>
+                                    <option value="POA–RS">POA–RS (Porto Alegre)</option>
+                                    <option value="BSB–DF">BSB–DF (Brasília)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <label for="sugestao">DESCRIÇÃO:</label>
+                        <textarea id="sugestao" name="sugestao" rows="6" cols="50" placeholder="Uma nova sugestão pode impulsionar seus negócios" required></textarea>
+                    </div>
+                    
+                   
+                    
+                </div>
+                <button class="submit-btn" id="btnSalvarSugestao">SALVAR SUGESTÃO</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        COPYRIGHT© 2025
+    </footer>
+<script src="js/validacao-cadastro-usuario.js" defer></script>
+</body>
+</html>
