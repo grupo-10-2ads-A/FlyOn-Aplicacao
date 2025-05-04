@@ -88,11 +88,12 @@ function autenticarUsuario(req, res) {
         });
 }
 
+
 module.exports = {
     listarUsuario,
     buscarPorIdUsuario,
     atualizarUsuario,
     deletarUsuario,
     cadastrarUsuario,
-    autenticarUsuario
+    autenticarUsuario,
 };

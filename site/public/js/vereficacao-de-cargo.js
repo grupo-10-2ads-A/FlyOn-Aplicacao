@@ -12,10 +12,10 @@
     cardSugestoes.style.display = "none";
 
     if (cargo === "admin") {
-      cardUsuarios.style.display = "block";
-      cardPerfis.style.display = "block";
-      cardNotificacoes.style.display = "block";
-      cardSugestoes.style.display = "block";
+      cardUsuarios.style.display = "flex";
+      cardPerfis.style.display = "flex";
+      cardNotificacoes.style.display = "flex";
+      cardSugestoes.style.display = "flex";
     } else if (cargo === "gerente") {
       cardPerfis.style.display = "block";
       cardSugestoes.style.display = "block";

@@ -201,21 +201,5 @@
 </body>
 </html>
 <script src="js/sair.js"></script>
-<script>
-function toggle(botao) {
-    botao
-        .classList
-        .toggle("ativofiltro");
-    var conteudo = botao.nextElementSibling;
-    if (conteudo.style.maxHeight) {
-        conteudo.style.maxHeight = null;
-    } else {
-        conteudo.style.maxHeight = conteudo.scrollHeight + "px";
-    }
-}
 
-function mostrarItenMenu() {
-    const header = document.querySelector("header");
-    header.classList.toggle("expandido");
-  }
-</script>
+

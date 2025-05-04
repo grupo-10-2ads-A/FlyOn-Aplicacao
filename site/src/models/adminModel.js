@@ -41,6 +41,8 @@ function autenticarUsuario(email, senha) {
     return database.executar(instrucao);
 }
 
+
+
 module.exports = {
     listarUsuario,
     buscarPorIdUsuario,
